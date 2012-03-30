@@ -35,4 +35,7 @@ Scripts[]=cjw_newsletter_mailqueue_create.php
 [CronjobPart-cjw_newsletter_mailqueue_process]
 Scripts[]=cjw_newsletter_mailqueue_process.php
 
+[CronjobPart-cjw_test]
+Scripts[]=cjw_test.php
+
 */ ?>
