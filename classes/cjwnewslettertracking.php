@@ -15,74 +15,60 @@
  * @package cjw_newsletter
  */
 
-//require_once( 'kernel/common/i18n.php' );
-
-
-/*$html = "
-<html>
-	<body>
-		<a href='http://www.toto.fr/niarf/grpoj.php'>Test</a>
-		<a href='http://www.toto.fr/niarf/grpoj.php#ancre'>Test</a>
-		<a href='http://www.toto.fr/niarf/grpoj.php?param=oihg&stamp=gfe'>Test</a>
-		<a href='http://www.toto.fr/niarf/grpoj.php?param=oihg&stamp=gfe#ancre'>Test</a>
-	</body>
-</html>
-";
-
-echo $html;
-echo "
------------------------------------------------------------------
-";
-//$html = CjwNewsletterTracking::insertClicMarkers( $html, $clicMarker, 'param' );
-//$html = CjwNewsletterTracking::insertMarkers( $html );
-$CjwNewsletterTracking = new CjwNewsletterTracking();
-$html = $CjwNewsletterTracking_>insertMarkers( $html );
-
-echo $html;
-echo "
------------------------------------------------------------------
-";*/
-
 
 class CjwNewsletterTracking
 {
-	
-	//const DEFAULT_CLIC_MARKER_TYPE = "param";
-	
-	//private $mode = "generic";
-	protected $newsletterEditionSendObject = false;
+
 	
 	protected $newsletterUserObject = false;
 	
 	protected $editionContentObject = false;
 	
-	protected $html = false;
-	
 	protected $ini = false;
 	
 	
-	public function __construct( $editionContentObject=false, $newsletterUserObject=false ) {
+	
+	public static function create( ) {
+		if ( self::isEnabled() ) {
+			$ini = eZINI::instance( 'cjw_newsletter.ini' );
+			if ( $ini->hasVariable( 'NewsletterTracking', 'TrackingClass' ) ) {
+		    	$cjwNewsletterTrackingClass = $ini->variable( 'NewsletterTracking', 'TrackingClass' );
+				if ( class_exists( $cjwNewsletterTrackingClass ) ) {
+					return new $cjwNewsletterTrackingClass( );
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static function isEnabled () {
+		
+		$ini = eZINI::instance( 'cjw_newsletter.ini' );
+		return ( $ini->hasVariable( 'NewsletterTracking', 'NewsletterTracking' ) && $ini->variable( 'NewsletterTracking', 'NewsletterTracking' )=='enabled' );
+	}
+	
+	
+	
+	public function __construct( ) {
 		
 		$this->ini = eZINI::instance( 'cjw_newsletter.ini' );
-		
-		$this->setEditionContentObject( $editionContentObject );
-		
-		$this->setNewsletterUserObject( $newsletterUserObject );
 
 	}
 	
 	public function insertMarkers ( $html ) {
-
-		$html = $this->insertClicMarkers( $html, $this->getClicMarker(), $this->getClicMarkerType() );
-														   
-		$html = $this->insertReadMarker( $html, $this->getReadMarker() );
+		if ( $this->isEnabled() ) {
+			$html = $this->insertClicMarkers( $html, $this->getClicMarker(), $this->getClicMarkerType() );											   
+			$html = $this->insertReadMarker( $html, $this->getReadMarker() );
+		}
 		
 		return $html;
-		
 	}
 	
+	
+	
+	
 	protected function insertClicMarkers ( $html, $clicMarker, $clicMarkerType = "param" ) {
-		
+
 		switch ( $clicMarkerType ) {
 	    	case 'anchor':
 	            $linkSearchPattern = '#(href)=("|\')(?!mailto)([^\'"]*)("|\')#';
@@ -104,7 +90,6 @@ class CjwNewsletterTracking
 	                                        '$1="$3?'.$clicMarker.'$4"',
 	                                        '$1="$3&'.$clicMarker.'"',
 	                                        '$1="$3?'.$clicMarker.'"');
-	            
 	    		break;
 	    		
 	    	default:
@@ -122,9 +107,9 @@ class CjwNewsletterTracking
 	                          '{{NL_ALIAS}}',
 	                          '{{USER}}'
 	                         );
-	    $replaceArray = array( $this->getListAlias(),
-	                           $this->getNlAlias(),
-	                           $this->getUser()
+	    $replaceArray = array( rawurlencode( $this->getListAlias() ),
+	                           rawurlencode( $this->getNlAlias() ),
+	                           rawurlencode($this->getUser() )
 	                          );
 	
 	    /******************************************************
@@ -137,13 +122,13 @@ class CjwNewsletterTracking
         // Blocks dates
         preg_match_all('#{{DATE=([^}]+)}}#',$marker,$dateArray); 
         foreach ($dateArray[1] as $dateFormat) {
-        	$marker = str_replace( '{{DATE='.$dateFormat.'}}', date($dateFormat,$contentObjectTimestamp), $marker );
+        	$marker = str_replace( '{{DATE='.$dateFormat.'}}', rawurlencode( date($dateFormat,$contentObjectTimestamp) ), $marker );
         }
         
     	// Blocks attributs
         preg_match_all('#{{ATTRIBUTE=([^}]+)}}#',$marker,$attrArray); 
         foreach ($attrArray[1] as $attrIdentifier) {
-        	$marker = str_replace( '{{ATTRIBUTE='.$attrIdentifier.'}}', $this->getNlAttribute($attrIdentifier), $marker );
+        	$marker = str_replace( '{{ATTRIBUTE='.$attrIdentifier.'}}', rawurlencode( $this->getNlAttribute($attrIdentifier) ), $marker );
         }
         
         // Suppression des blocks non remplacés
@@ -160,7 +145,7 @@ class CjwNewsletterTracking
 	
 	
 	
-	protected function setNewsletterUserObject ($newsletterUserObject) {
+	public function setNewsletterUserObject ($newsletterUserObject) {
 		if ( $newsletterUserObject instanceof CjwNewsletterUser ) {
 			$this->newsletterUserObject = $newsletterUserObject;
 			return true;
@@ -169,13 +154,15 @@ class CjwNewsletterTracking
 		}
 	}
 	
-	protected function setEditionContentObject ($editionContentObject) {
-		if ( $editionContentObject instanceof eZContentObject ) {
-			$this->editionContentObject = $editionContentObject;
-			return true;
-		} else {
-			return false;
+	public function setEditionContentObject ( $editionContentObjectID ) {
+		if ( $editionContentObjectID ) {
+			$editionContentObject = eZFunctionHandler::execute( 'content', 'object' , array( 'object_id' => $editionContentObjectID ) );
+			if ( $editionContentObject instanceof eZContentObject ) {
+				$this->editionContentObject = $editionContentObject;
+				return true;
+			}
 		}
+		return false;
 	}
 	
 	
@@ -188,11 +175,6 @@ class CjwNewsletterTracking
 	}
 	
 	protected function getClicMarker () {
-		/*$marker = "date={{DATE=Y-m-d-H-i-s}}&toto={{ATTRIBUTE=toto}}&list_alias={{LIST_ALIAS}}&nl_alias={{NL_ALIAS}}&user={{USER}}";
-		
-		$marker = $this->replacePlaceholders( $marker );
-		return $marker;*/
-		
 		if ( $this->ini->hasVariable( 'NewsletterTracking', 'ClicMarker' )) {
 			$marker = $this->ini->variable( 'NewsletterTracking', 'ClicMarker' );
 			$marker = $this->replacePlaceholders( $marker );
@@ -203,10 +185,6 @@ class CjwNewsletterTracking
 	}
 	
 	protected function getReadMarker () {
-		/*$marker = "<img src='toto' />";
-		$marker = $this->replacePlaceholders( $marker );
-		return $marker;*/
-		
 		if ( $this->ini->hasVariable( 'NewsletterTracking', 'ReadMarker' )) {
 			$marker = $this->ini->variable( 'NewsletterTracking', 'ReadMarker' );
 			$marker = $this->replacePlaceholders( $marker );
@@ -245,7 +223,7 @@ class CjwNewsletterTracking
 	
 	protected function getNlAttribute( $identifier ) {
 		if ( $this->editionContentObject instanceof eZContentObject ) {
-			$dataMap = $contentObject->dataMap();
+			$dataMap = $this->editionContentObject->dataMap();
 			if ($dataMap[$identifier]) {
 				return $dataMap[$identifier]->DataText;
 			}

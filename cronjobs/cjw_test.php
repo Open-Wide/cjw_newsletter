@@ -28,20 +28,23 @@ $cli->output( $message );
 // to fetch all send objetc with status == STATUS_MALQUEUE_CREATED || STATUS_MALQUEUE_STARTED
 $sendObjectList = CjwNewsletterEditionSend::fetchEditionSendListByStatus( array( CjwNewsletterEditionSend::STATUS_MAILQUEUE_CREATED , CjwNewsletterEditionSend::STATUS_MAILQUEUE_PROCESS_STARTED ) );
 
+// Create newsletterTracking object
+$cjwNewsletterTracking = CjwNewsletterTracking::create();
+
 // - count all + how much should send?
 // - if send = 0 at first element status == STATUS_MALQUEUE_STARTED
 // - if send = count all => status == PROCESS_FINISHED
 foreach ( $sendObjectList as $sendObject )
 {
     // set startdate only at the first time
-    /*if ( $sendObject->attribute( 'status' ) == CjwNewsletterEditionSend::STATUS_MAILQUEUE_CREATED )
+    if ( $sendObject->attribute( 'status' ) == CjwNewsletterEditionSend::STATUS_MAILQUEUE_CREATED )
     {
         // if ok, set status == STATUS_MAILQUEUE_PROCESS_STARTED
-        $sendObject->setAttribute('status', CjwNewsletterEditionSend::STATUS_MAILQUEUE_PROCESS_STARTED );
-        $sendObject->store();
+        /*$sendObject->setAttribute('status', CjwNewsletterEditionSend::STATUS_MAILQUEUE_PROCESS_STARTED );
+        $sendObject->store();*/
         $message = "Status set: editonSend  STATUS_MAILQUEUE_PROCESS_STARTED";
         $cli->output( $message );
-    }*/
+    }
 
     $output = new ezcConsoleOutput();
     $editionSendId = (int) $sendObject->attribute('id');
@@ -50,6 +53,10 @@ foreach ( $sendObjectList as $sendObject )
     $itemsCountAll = $sendItemsStatistic['items_count'];
     $itemsSend = $sendItemsStatistic['items_send'];
     $itemsNotSend = $sendItemsStatistic['items_not_send'];
+    
+    if ( $cjwNewsletterTracking ) {
+    	$cjwNewsletterTracking->setEditionContentObject( $sendObject->attribute('edition_contentobject_id') );
+    }
 
     // ### sendObject Data
     $outputFormatStringArray = $sendObject->getParsedOutputXml( );
@@ -105,7 +112,11 @@ foreach ( $sendObjectList as $sendObject )
             // data of outputformate
             $outputStringArray = $outputFormatStringArray[ $outputFormatId ]['body'];
             $emailSubject = $outputFormatStringArray[ $outputFormatId ]['subject'];
-
+			
+            
+	        if ( $cjwNewsletterTracking ) {
+		    	$cjwNewsletterTracking->setNewsletterUserObject( $newsletterUserObject );
+		    }
             // parsed text and replace vars
             // TODO parse extra variables
 
@@ -115,7 +126,7 @@ foreach ( $sendObjectList as $sendObject )
             $replaceArray =  array( $newsletterUnsubscribeHash,
                                     $newsletterConfigureHash );
 
-            if( $personalizeContent === 1 )
+            if( $personalizeContent === 1 || 1 )
             {
                 $searchArray = array_merge( $searchArray,
                                             array(
@@ -132,17 +143,19 @@ foreach ( $sendObjectList as $sendObject )
                                                     $newsletterUserObject->attribute( 'last_name' )
                                                   ));
             }
-			
-            $editionContentObject = eZFunctionHandler::execute( 'content', 'object' , array( 'object_id' => $sendObject->attribute('edition_contentobject_id') ) );
-            $CjwNewsletterTracking = new CjwNewsletterTracking( $editionContentObject, $newsletterUserObject );
-			$html = $CjwNewsletterTracking->insertMarkers( $html );
+            
             
             $outputStringArrayNew = array('html' => '', 'text' => '');
             foreach ( $outputStringArray as $index => $string )
             {
-                $outputStringArrayNew[ $index ] = $CjwNewsletterTracking->insertMarkers( 
-                				str_replace( $searchArray, $replaceArray, $string )
-                );
+            	
+            	// Insert tracking markers if newsletterTracking is enabled
+				if ( $cjwNewsletterTracking ) {
+					$string = $cjwNewsletterTracking->insertMarkers( $string );
+				}
+            	
+            	$outputStringArrayNew[ $index ] = str_replace( $searchArray, $replaceArray, $string );
+
             }
 
             // set x-cjwnl header
