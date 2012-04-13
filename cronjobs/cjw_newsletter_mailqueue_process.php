@@ -105,14 +105,14 @@ foreach ( $sendObjectList as $sendObject )
             $newsletterUserObject = $sendItem->attribute('newsletter_user_object');
             $emailReceiver = $newsletterUserObject->attribute('email');
             $emailReceiverName = $newsletterUserObject->attribute('email_name');
-            
-            // Assign newsletter user to tracking
-        	if ( $cjwNewsletterTracking ) {
-		    	$cjwNewsletterTracking->setNewsletterUserObject( $newsletterUserObject );
-		    }
 
             // ### configure hash
             $newsletterConfigureHash = $newsletterUserObject->attribute('hash');
+            
+        	// Assign newsletter user to tracking
+        	if ( $cjwNewsletterTracking ) {
+		    	$cjwNewsletterTracking->setNewsletterUserObject( $newsletterUserObject );
+		    }
 
             // fetch html & text content of parsed outputxml from senmdobject
             // data of outputformate

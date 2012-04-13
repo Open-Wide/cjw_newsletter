@@ -2,14 +2,13 @@
 /**
  * File containing the CjwNewsletterList class
  *
- * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
  * @package cjw_newsletter
  * @filesource
  */
 /**
- * Data management datatyp cjwnewsletterlist
+ * Build newsletter tracking markers
  *
  * @version //autogentag//
  * @package cjw_newsletter
@@ -27,7 +26,26 @@ class CjwNewsletterTracking
 	protected $ini = false;
 	
 	
+	/**
+     * Constructor
+     */
+	public function __construct( ) {
+		
+		$this->ini = eZINI::instance( 'cjw_newsletter.ini' );
+
+	}
 	
+	// ######################################
+	// Functions used in process cronjob.
+    // ######################################
+	
+	
+	/**
+     * Return new $cjwNewsletterTrackingClass object. Return false if NewsletterTracking is disabled or if TrackingClass doesn't exists
+     * Used in process cronjob.
+     *
+     * @return CjwNewsletterTracking or $cjwNewsletterTrackingClass
+     */
 	public static function create( ) {
 		if ( self::isEnabled() ) {
 			$ini = eZINI::instance( 'cjw_newsletter.ini' );
@@ -41,6 +59,11 @@ class CjwNewsletterTracking
 		return false;
 	}
 	
+	/**
+     * Return false if NewsletterTracking is disabled
+     *
+     * @return boolean
+     */
 	public static function isEnabled () {
 		
 		$ini = eZINI::instance( 'cjw_newsletter.ini' );
@@ -49,12 +72,47 @@ class CjwNewsletterTracking
 	
 	
 	
-	public function __construct( ) {
-		
-		$this->ini = eZINI::instance( 'cjw_newsletter.ini' );
-
+	/**
+     * Assign $newsletterUserObject to current instance of CjwNewsletterTracking
+     * Used in process cronjob.
+     *
+     * @param CjwNewsletterUser $newsletterUserObject
+     * @return boolean
+     */	
+	public function setNewsletterUserObject ($newsletterUserObject) {
+		if ( $newsletterUserObject instanceof CjwNewsletterUser ) {
+			$this->newsletterUserObject = $newsletterUserObject;
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
+	/**
+     * Assign object with ID $editionContentObjectID to current instance of CjwNewsletterTracking
+     * Used in process cronjob.
+     *
+     * @param integer $editionContentObjectID
+     * @return boolean
+     */	
+	public function setEditionContentObject ( $editionContentObjectID ) {
+		if ( $editionContentObjectID ) {
+			$editionContentObject = eZFunctionHandler::execute( 'content', 'object' , array( 'object_id' => $editionContentObjectID ) );
+			if ( $editionContentObject instanceof eZContentObject ) {
+				$this->editionContentObject = $editionContentObject;
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+     * Insert read and click merkers in $html (only if NewsletterTracking is enabled)
+     * Used in process cronjob.
+     *
+     * @param string $html
+     * @return string
+     */
 	public function insertMarkers ( $html ) {
 		if ( $this->isEnabled() ) {
 			$html = $this->insertClicMarkers( $html, $this->getClicMarker(), $this->getClicMarkerType() );											   
@@ -67,6 +125,82 @@ class CjwNewsletterTracking
 	
 	
 	
+	// ######################################
+	// Protected functions
+	// ######################################
+	
+	/**
+     * Return general placeholders which will be replaced in tracking markers
+     *
+     * @return array
+     */
+	protected function getPlaceholders() {
+		
+		$ini = eZINI::instance( 'site.ini' );
+		return array(	'{{LIST_ALIAS}}' 	=>	rawurlencode( $this->getListAlias() ),
+						'{{NL_ALIAS}}' 		=>	rawurlencode( $this->getNlAlias() ),
+						'{{USER_ID}}'			=>	rawurlencode( $this->getUserID() ),
+						'{{SITE_URL}}'		=>	$this->getIniValue( 'SiteSettings', 'SiteURL' )
+		);
+	}
+	
+	
+	/**
+     * Replace all "{{.*}}" blocks in $marker.
+     * 
+     * @see cjwnewsletter.ini
+     *
+     * @param string $marker
+     * @return string
+     */
+	protected function replacePlaceholders ( $marker ) {
+	    
+		// Settings blocks
+		preg_match_all('#{{SETTINGS=([^}]+)}}#',$marker,$settingsArray); 
+        foreach ($settingsArray[1] as $settingIdentifier) {
+        	if ( $settingValue = $this->getIniValue( 'CustomTrackingSettings', $settingIdentifier ) ) {
+        		$marker = str_replace( '{{SETTINGS='.$settingIdentifier.'}}', $settingValue, $marker );
+        	}
+        }
+
+    	// Simple blocks
+    	$placeHolders = $this->getPlaceholders();
+    	$searchArray = array();
+    	$replaceArray = array();
+    	foreach ( $placeHolders as $search => $replace ) {
+    		$searchArray[] = $search;
+    		$replaceArray[] = $replace;
+    	}
+    	$marker = str_replace( $searchArray, $replaceArray, $marker );
+
+        // Date blocks
+        preg_match_all('#{{DATE=([^}]+)}}#',$marker,$dateArray); 
+        $contentObjectTimestamp = time();	
+        foreach ($dateArray[1] as $dateFormat) {
+        	$marker = str_replace( '{{DATE='.$dateFormat.'}}', rawurlencode( date($dateFormat,$contentObjectTimestamp) ), $marker );
+        }
+        
+    	// Attribute blocks
+        preg_match_all('#{{ATTRIBUTE=([^}]+)}}#',$marker,$attrArray); 
+        foreach ($attrArray[1] as $attrIdentifier) {
+        	$marker = str_replace( '{{ATTRIBUTE='.$attrIdentifier.'}}', rawurlencode( $this->getNlAttribute($attrIdentifier) ), $marker );
+        }
+        
+        // Delete others
+        $marker = preg_replace( '#{{[^}]*}}#', '', $marker );
+	    
+	    return $marker;
+	}
+	
+	
+	/**
+     * Insert $clickMarker in all links in $html, with type $clicMarkerType ('param' or 'anchor')
+     *
+     * @param string $html
+     * @param string $clicMarker
+     * @param string $clicMarkerType
+     * @return string
+     */
 	protected function insertClicMarkers ( $html, $clicMarker, $clicMarkerType = "param" ) {
 
 		switch ( $clicMarkerType ) {
@@ -76,10 +210,10 @@ class CjwNewsletterTracking
 	    		break;
 	    		
 	    	case 'param':
-	    		/* 1. Url contenant une ancre et des paramètres
-	    		 * 2. Url contenant une ancre sans paramètres
-	    		 * 3. Url contenant des paramètres sans ancre
-	    		 * 4. Url sans ancre ni paramètre
+	    		/* 1. Url with anchor and params
+	    		 * 2. Url with only anchor
+	    		 * 3. Url with only params
+	    		 * 4. Url without anchor or params
 	    		 */
 	    		$linkSearchPattern = array('#(href)=("|\')(?!mailto)([^\'"]*\?[^\'"]*)(\#[^\?"\']*)("|\')#',
 	    		                           '#(href)=("|\')(?!mailto)([^\?"\']*)(\#[^\?"\']*)("|\')#',
@@ -101,42 +235,15 @@ class CjwNewsletterTracking
 		return $output;
 	}
 	
-	protected function replacePlaceholders ( $marker ) {
-		
-		$searchArray = array( '{{LIST_ALIAS}}',
-	                          '{{NL_ALIAS}}',
-	                          '{{USER}}'
-	                         );
-	    $replaceArray = array( rawurlencode( $this->getListAlias() ),
-	                           rawurlencode( $this->getNlAlias() ),
-	                           rawurlencode($this->getUser() )
-	                          );
 	
-	    /******************************************************
-	     * Remplacement des blocks "{{.*}}" dans les marqueurs
-	     ******************************************************/ 
-	    $contentObjectTimestamp = time();	
-    	// Blocks simples
-        $marker = str_replace( $searchArray, $replaceArray, $marker );
-        
-        // Blocks dates
-        preg_match_all('#{{DATE=([^}]+)}}#',$marker,$dateArray); 
-        foreach ($dateArray[1] as $dateFormat) {
-        	$marker = str_replace( '{{DATE='.$dateFormat.'}}', rawurlencode( date($dateFormat,$contentObjectTimestamp) ), $marker );
-        }
-        
-    	// Blocks attributs
-        preg_match_all('#{{ATTRIBUTE=([^}]+)}}#',$marker,$attrArray); 
-        foreach ($attrArray[1] as $attrIdentifier) {
-        	$marker = str_replace( '{{ATTRIBUTE='.$attrIdentifier.'}}', rawurlencode( $this->getNlAttribute($attrIdentifier) ), $marker );
-        }
-        
-        // Suppression des blocks non remplacés
-        $marker = preg_replace( '#{{[^}]*}}#', '', $marker );
-	    
-	    return $marker;
-	}
 	
+	/**
+     * Insert $readMarker before </body> tag
+     *
+     * @param string $html
+     * @param string $readMarker
+     * @return string
+     */
 	protected function insertReadMarker ( $html, $readMarker ) {
 		$output = str_replace( "</body>", $readMarker . "\n</body>", $html );
 		return $output;
@@ -145,55 +252,69 @@ class CjwNewsletterTracking
 	
 	
 	
-	public function setNewsletterUserObject ($newsletterUserObject) {
-		if ( $newsletterUserObject instanceof CjwNewsletterUser ) {
-			$this->newsletterUserObject = $newsletterUserObject;
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public function setEditionContentObject ( $editionContentObjectID ) {
-		if ( $editionContentObjectID ) {
-			$editionContentObject = eZFunctionHandler::execute( 'content', 'object' , array( 'object_id' => $editionContentObjectID ) );
-			if ( $editionContentObject instanceof eZContentObject ) {
-				$this->editionContentObject = $editionContentObject;
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	
+	/**
+     * Get clic marker type from cjw_newsletter.ini
+     *
+     * @return string
+     */	
 	protected function getClicMarkerType () {
-		if ( $this->ini->hasVariable( 'NewsletterTracking', 'ClicMarkerType' )) {
-			return $this->ini->variable( 'NewsletterTracking', 'ClicMarkerType' );
+		if ( $clicMarkerType = $this->getIniValue( 'NewsletterTracking', 'ClicMarkerType' ) ) {
+			return $clicMarkerType;
 		} else {
 			return "param";
 		}
 	}
 	
+	/**
+     * Get clic marker from cjw_newsletter.ini, and replace placeholders in this marker.
+     *
+     * @return string
+     */	
 	protected function getClicMarker () {
-		if ( $this->ini->hasVariable( 'NewsletterTracking', 'ClicMarker' )) {
-			$marker = $this->ini->variable( 'NewsletterTracking', 'ClicMarker' );
-			$marker = $this->replacePlaceholders( $marker );
-			return $marker;
+		if ( $marker = $this->getIniValue( 'NewsletterTracking', 'ClicMarker' ) ) {
+			return $this->replacePlaceholders( $marker );
 		} else {
 			return '';
 		}
 	}
 	
+	/**
+     * Get read marker from cjw_newsletter.ini, and replace placeholders in this marker.
+     *
+     * @return string
+     */	
 	protected function getReadMarker () {
-		if ( $this->ini->hasVariable( 'NewsletterTracking', 'ReadMarker' )) {
-			$marker = $this->ini->variable( 'NewsletterTracking', 'ReadMarker' );
-			$marker = $this->replacePlaceholders( $marker );
-			return $marker;
+		if ( $marker = $this->getIniValue( 'NewsletterTracking', 'ReadMarker' ) ) {
+			return $this->replacePlaceholders( $marker );
 		} else {
 			return '';
 		}
 	}
 	
+	/**
+     * Get cjw_newsletter.ini parameter value. Return false if doesn't exist.
+     *
+     * @return mixed
+     */	
+	protected function getIniValue ( $section, $param ) {
+		if ( $this->ini->hasVariable( $section, $param )) {
+			return $this->ini->variable( $section, $param );
+		} else {
+			return false;
+		}
+	}
+	
+	
+	// ######################################
+	// Protected functions used in placeholders replacement.
+	// ######################################
+	
+	/**
+     * Return current CJWNewsletterList alias, from url_alias of current newsletter
+     * Used in placeholders replacement.
+     *
+     * @return string
+     */	
 	protected function getListAlias() {
 		if ( $this->editionContentObject instanceof eZContentObject ) {
 			$path_array = explode( '/', $this->editionContentObject->MainNode()->PathIdentificationString );
@@ -204,6 +325,12 @@ class CjwNewsletterTracking
 		return '';
 	}
 	
+	/**
+     * Return current newsletter alias, from url_alias
+     * Used in placeholders replacement.
+     *
+     * @return string
+     */
 	protected function getNlAlias() {
 		if ( $this->editionContentObject instanceof eZContentObject ) {
 			$path_array = explode( '/', $this->editionContentObject->MainNode()->PathIdentificationString );
@@ -214,13 +341,26 @@ class CjwNewsletterTracking
 		return '';
 	}
 	
-	protected function getUser() {
+	/**
+     * Return ID of current newsletterUserObject
+     * Used in placeholders replacement.
+     *
+     * @return string
+     */
+	protected function getUserID() {
 		if ( $this->newsletterUserObject instanceof CjwNewsletterUser ) {
 			return $this->newsletterUserObject->attribute('id');
 		}
 		return '';
 	}
 	
+	/**
+     * Return value of current CJWNewsletterEdition attribute, identified by $identifier
+     * Used in placeholders replacement.
+     *
+     * @param string $identifier
+     * @return string
+     */
 	protected function getNlAttribute( $identifier ) {
 		if ( $this->editionContentObject instanceof eZContentObject ) {
 			$dataMap = $this->editionContentObject->dataMap();

@@ -155,7 +155,7 @@ foreach ( $sendObjectList as $sendObject )
 				}
             	
             	$outputStringArrayNew[ $index ] = str_replace( $searchArray, $replaceArray, $string );
-
+				echo $outputStringArrayNew[ $index ];
             }
 
             // set x-cjwnl header
