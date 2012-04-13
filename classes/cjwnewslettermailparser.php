@@ -190,7 +190,7 @@ class CjwNewsletterMailParser
             }
 
             // error code in recipients
-            if ( $diagnostic != 0 )
+            if ( !empty($diagnostic) )
             {
                 $errorCode = $this->standardParser( $diagnostic );
             }
