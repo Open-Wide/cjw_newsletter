@@ -649,8 +649,8 @@ class CjwNewsletterMailbox extends eZPersistentObject
                 // if memory_usage is to high return false 10 MB files should be ok normal usage is 1672448
                 // on some imap connections i had such a problem
                 // after new fetch it was ok
-                if( memory_get_usage( true ) > 3000000 )
-                    return false;
+                /*if( memory_get_usage( true ) > 3000000 )
+                    return false;*/
                 $rawMail .= $line;
             }
             return $rawMail;
