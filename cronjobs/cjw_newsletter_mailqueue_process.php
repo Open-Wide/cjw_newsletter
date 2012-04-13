@@ -28,6 +28,9 @@ $cli->output( $message );
 // to fetch all send objetc with status == STATUS_MALQUEUE_CREATED || STATUS_MALQUEUE_STARTED
 $sendObjectList = CjwNewsletterEditionSend::fetchEditionSendListByStatus( array( CjwNewsletterEditionSend::STATUS_MAILQUEUE_CREATED , CjwNewsletterEditionSend::STATUS_MAILQUEUE_PROCESS_STARTED ) );
 
+// Create newsletterTracking object
+$cjwNewsletterTracking = CjwNewsletterTracking::create();
+
 // - count all + how much should send?
 // - if send = 0 at first element status == STATUS_MALQUEUE_STARTED
 // - if send = count all => status == PROCESS_FINISHED
@@ -50,6 +53,11 @@ foreach ( $sendObjectList as $sendObject )
     $itemsCountAll = $sendItemsStatistic['items_count'];
     $itemsSend = $sendItemsStatistic['items_send'];
     $itemsNotSend = $sendItemsStatistic['items_not_send'];
+    
+    // Assign edition contentobject to tracking
+	if ( $cjwNewsletterTracking ) {
+    	$cjwNewsletterTracking->setEditionContentObject( $sendObject->attribute('edition_contentobject_id') );
+    }
 
     // ### sendObject Data
     $outputFormatStringArray = $sendObject->getParsedOutputXml( );
@@ -100,6 +108,11 @@ foreach ( $sendObjectList as $sendObject )
 
             // ### configure hash
             $newsletterConfigureHash = $newsletterUserObject->attribute('hash');
+            
+        	// Assign newsletter user to tracking
+        	if ( $cjwNewsletterTracking ) {
+		    	$cjwNewsletterTracking->setNewsletterUserObject( $newsletterUserObject );
+		    }
 
             // fetch html & text content of parsed outputxml from senmdobject
             // data of outputformate
@@ -136,6 +149,10 @@ foreach ( $sendObjectList as $sendObject )
             $outputStringArrayNew = array('html' => '', 'text' => '');
             foreach ( $outputStringArray as $index => $string )
             {
+            	// Insert tracking markers if newsletterTracking is enabled
+				if ( $cjwNewsletterTracking ) {
+					$string = $cjwNewsletterTracking->insertMarkers( $string );
+				}
                 $outputStringArrayNew[ $index ] = str_replace( $searchArray, $replaceArray, $string );
             }
 
