@@ -40,8 +40,8 @@ foreach ( $sendObjectList as $sendObject )
     if ( $sendObject->attribute( 'status' ) == CjwNewsletterEditionSend::STATUS_MAILQUEUE_CREATED )
     {
         // if ok, set status == STATUS_MAILQUEUE_PROCESS_STARTED
-        $sendObject->setAttribute('status', CjwNewsletterEditionSend::STATUS_MAILQUEUE_PROCESS_STARTED );
-        $sendObject->store();
+        /*$sendObject->setAttribute('status', CjwNewsletterEditionSend::STATUS_MAILQUEUE_PROCESS_STARTED );
+        $sendObject->store();*/
         $message = "Status set: editonSend  STATUS_MAILQUEUE_PROCESS_STARTED";
         $cli->output( $message );
     }
@@ -54,8 +54,7 @@ foreach ( $sendObjectList as $sendObject )
     $itemsSend = $sendItemsStatistic['items_send'];
     $itemsNotSend = $sendItemsStatistic['items_not_send'];
     
-    // Assign edition contentobject to tracking
-	if ( $cjwNewsletterTracking ) {
+    if ( $cjwNewsletterTracking ) {
     	$cjwNewsletterTracking->setEditionContentObject( $sendObject->attribute('edition_contentobject_id') );
     }
 
@@ -108,17 +107,16 @@ foreach ( $sendObjectList as $sendObject )
 
             // ### configure hash
             $newsletterConfigureHash = $newsletterUserObject->attribute('hash');
-            
-        	// Assign newsletter user to tracking
-        	if ( $cjwNewsletterTracking ) {
-		    	$cjwNewsletterTracking->setNewsletterUserObject( $newsletterUserObject );
-		    }
 
             // fetch html & text content of parsed outputxml from senmdobject
             // data of outputformate
             $outputStringArray = $outputFormatStringArray[ $outputFormatId ]['body'];
             $emailSubject = $outputFormatStringArray[ $outputFormatId ]['subject'];
-
+			
+            
+	        if ( $cjwNewsletterTracking ) {
+		    	$cjwNewsletterTracking->setNewsletterUserObject( $newsletterUserObject );
+		    }
             // parsed text and replace vars
             // TODO parse extra variables
 
@@ -128,7 +126,7 @@ foreach ( $sendObjectList as $sendObject )
             $replaceArray =  array( $newsletterUnsubscribeHash,
                                     $newsletterConfigureHash );
 
-            if( $personalizeContent === 1 )
+            if( $personalizeContent === 1 || 1 )
             {
                 $searchArray = array_merge( $searchArray,
                                             array(
@@ -145,19 +143,23 @@ foreach ( $sendObjectList as $sendObject )
                                                     $newsletterUserObject->attribute( 'last_name' )
                                                   ));
             }
-
+            
+            
             $outputStringArrayNew = array('html' => '', 'text' => '');
             foreach ( $outputStringArray as $index => $string )
             {
+            	
             	// Insert tracking markers if newsletterTracking is enabled
 				if ( $cjwNewsletterTracking ) {
 					$string = $cjwNewsletterTracking->insertMarkers( $string );
 				}
-                $outputStringArrayNew[ $index ] = str_replace( $searchArray, $replaceArray, $string );
+            	
+            	$outputStringArrayNew[ $index ] = str_replace( $searchArray, $replaceArray, $string );
+				echo $outputStringArrayNew[ $index ];
             }
 
             // set x-cjwnl header
-            $cjwMail->resetExtraMailHeaders();
+           /* $cjwMail->resetExtraMailHeaders();
             $cjwMail->setExtraMailHeadersByNewsletterSendItem( $sendItem );
 
             $resultArray = $cjwMail->sendEmail( $emailSender,
@@ -183,7 +185,7 @@ foreach ( $sendObjectList as $sendObject )
                  // error execption
                  $exception = $resultArray['send_result'];
                  $progressMonitor->addEntry( "[FAILED] $itemCounter/$itemsNotSend", "Newsletter send item {$id} failed. " );
-            }
+            }*/
 
             // parse output_xml with user_content, normal or personalizied?
             // create email
@@ -197,7 +199,7 @@ foreach ( $sendObjectList as $sendObject )
     }
 
     // all send_items of sendobject are send? if yes set status == PROCESS_FINISHED
-    $sendObject->sync();
+   /* $sendObject->sync();
     $sendItemsStatistic = $sendObject->attribute('send_items_statistic');
 
     $itemsCountAll = $sendItemsStatistic['items_count'];
@@ -213,7 +215,7 @@ foreach ( $sendObjectList as $sendObject )
 
         $message = "Status set: editonSend  STATUS_MAILQUEUE_PROCESS_FINISHED";
         $cli->output( $message );
-    }
+    }*/
 
     // var_dump( $sendItemsStatistic );
     $output->outputLine();
