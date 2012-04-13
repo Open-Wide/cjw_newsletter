@@ -73,7 +73,7 @@ $subjectStyle = 'style="background-color:#dddddd;border-color: #cccccc;border-wi
 
 $mailSubject = '<body${1}><!-- email subject preview start --><table width="100%" cellpadding="5" cellspacing="0" border="0" bgcolor="#dddddd" class="newsletter-skin-preview-email-subject" '. $subjectStyle .'><tr><th width="1%" nowrap>' . $mailSubjectLabel . ':</th><td width="99%">' . $newsletterContentArray['subject'] . '</td></tr></table></span><!-- email subject preview end -->';
 
-$newsletterContent = preg_replace( "%<body(.*)>%", $mailSubject, $newsletterContent );
+$newsletterContent = preg_replace( "%<body([^>]*)>%", $mailSubject, $newsletterContent );
 
 /*$mailSubject = "<body><b>Email subject:</b> ". $newsletterContentArray['subject'] . "<br />";
 $newsletterContent = preg_replace( array('%<body>%'), array( $mailSubject ), $newsletterContent);*/
