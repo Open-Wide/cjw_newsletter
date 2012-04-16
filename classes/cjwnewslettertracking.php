@@ -215,8 +215,8 @@ class CjwNewsletterTracking
 	    		 * 3. Url with only params
 	    		 * 4. Url without anchor or params
 	    		 */
-	    		$linkSearchPattern = array('#(href)=("|\')(?!mailto)([^\'"]*\?[^\'"]*)(\#[^\?"\']*)("|\')#',
-	    		                           '#(href)=("|\')(?!mailto)([^\?"\']*)(\#[^\?"\']*)("|\')#',
+	    		$linkSearchPattern = array('#(href)=("|\')(?!mailto)([^\'"]*\?[^\'"]*)(\#[^\?"\'\#]+)("|\')#',
+	    		                           '#(href)=("|\')(?!mailto)([^\?"\']*)(\#[^\?"\'\#]+)("|\')#',
 	    		                           '#(href)=("|\')(?!mailto)([^\#\'"]*\?[^\#\'"]*)("|\')#',
 	                                       '#(href)=("|\')(?!mailto)([^\#\?"\']*)("|\')#');
 	    		
