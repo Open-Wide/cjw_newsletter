@@ -94,68 +94,86 @@ $cli->output( $message );
 // 2. every SEND object true
 foreach ( $waitForProcessObjectList as $newsletterEdtionSendObject )
 {
-    $sendId = $newsletterEdtionSendObject->attribute('id');
-    $listContentObjectId = $newsletterEdtionSendObject->attribute('list_contentobject_id');
-
-    $message = "## Procsessing: cjw_newsletter_mailqueue_create - sendObjectId: ". $sendId;
-    $cli->output( $message );
-
-    // 3. search all user which corresponding with list and has CjwNewslettersSubscription::STATUS_APPROVED
-    // create a new send_item-entry
-    $limit = 0;
-    $offset = 0;
-    $subscriptionObjectList = CjwNewsletterSubscription::fetchSubscriptionListByListIdAndStatus( $listContentObjectId, CjwNewsletterSubscription::STATUS_APPROVED, $limit, $offset  );
-
-    $message = "++ Find SubscriptionObjects with STATUS_APPROVED: ". count( $subscriptionObjectList );
-    $cli->output( $message );
-
-    $counter = 0;
-    foreach ( $subscriptionObjectList as $subscriptionObject )
-    {
-        $subscriptionId = $subscriptionObject->attribute('id');
-        $editionContentObjectId = $subscriptionObject->attribute('edition_contentobject_id');
-        $newsletterUserId = $subscriptionObject->attribute('newsletter_user_id');
-        $subscriptionOutputFormatArray = $subscriptionObject->attribute('output_format_array');
-
-        $counter++;
-        // status == STATUS_WAIT_FOR_PROCESS || != ABORT ?
-        $newsletterEdtionSendObject->sync();
-        if ( $newsletterEdtionSendObject->attribute('status') == CjwNewsletterEditionSend::STATUS_WAIT_FOR_PROCESS )
-        {
-            // every subscription can have multiple outputformats
-            // create for every outputformat one send_item
-            foreach ( $subscriptionOutputFormatArray as $outputFormatId => $outputFormatName )
-            {
-                $newSendItemResult = CjwNewsletterEditionSendItem::create( $sendId,
-                                                                     $newsletterUserId,
-                                                                     $outputFormatId,
-                                                                     $subscriptionId );
-                if ( is_object( $newSendItemResult ) )
-                {
-                    // create edtion_send_item
-                    $message = "++ [SEND_ITEM][$counter] create new sendItem id: " . $newSendItemResult->attribute('id');
-                    $cli->output( $message );
-                }
-                else
-                {
-                    // create edtion_send_item
-                    $message = "++ [Error][SEND_ITEM][$counter] sendItem already exist do nothing with it!";
-                    $cli->output( $message );
-                }
-            }
-        }
-        else
-        {
-            $message = "++ [ABBORT][$counter] Abborting EditionSendObject has not Status STATUS_WAIT_FOR_PROCESS or : ". $sendId ;
-            $cli->output( $message );
-        }
-    } // end foreach subscriptions
-
-    // if are create all send_item entry's, set status == STATUS_MAILQUEUE_CREATED
-    $message = "+ [STATUS_MAILQUEUE_CREATED] $counter sendItems has be processed (create / or do nothing)  SendId: ". $sendId ;
-    $cli->output( $message );
-    $newsletterEdtionSendObject->setAttribute('status', CjwNewsletterEditionSend::STATUS_MAILQUEUE_CREATED );
-    $newsletterEdtionSendObject->store();
+	
+	/*******************************************************************************************
+     * Ajout d'une date d'envoi prévisionnel pour chaque newsletter [optionnel]
+     *  => attribut 'send_date', datatype 'ezdate'
+     *                                                                                ##SBOYER##
+     *******************************************************************************************/
+    $editionContentObject = eZFunctionHandler::execute( 'content', 'object' , array( 'object_id' => $newsletterEdtionSendObject->attribute('edition_contentobject_id') ) );
+    $editionContentObjectDataMap = $editionContentObject->dataMap();
+    $editionContentObjectTimestamp = empty($editionContentObjectDataMap['send_date'])?0:$editionContentObjectDataMap['send_date']->DataInt;
+    
+    if ( $editionContentObjectTimestamp < time()) {
+		
+    	$outputXml = $newsletterEdtionSendObject->attribute('output_xml');
+    	$outputXml = str_replace( '#_hash_newsletter_#', $newsletterEdtionSendObject->attribute('hash'), $outputXml );
+    	$newsletterEdtionSendObject->setAttribute( 'output_xml', $outputXml);
+        $newsletterEdtionSendObject->store();
+    	
+	    $sendId = $newsletterEdtionSendObject->attribute('id');
+	    $listContentObjectId = $newsletterEdtionSendObject->attribute('list_contentobject_id');
+	
+	    $message = "## Procsessing: cjw_newsletter_mailqueue_create - sendObjectId: ". $sendId;
+	    $cli->output( $message );
+	
+	    // 3. search all user which corresponding with list and has CjwNewslettersSubscription::STATUS_APPROVED
+	    // create a new send_item-entry
+	    $limit = 0;
+	    $offset = 0;
+	    $subscriptionObjectList = CjwNewsletterSubscription::fetchSubscriptionListByListIdAndStatus( $listContentObjectId, CjwNewsletterSubscription::STATUS_APPROVED, $limit, $offset  );
+	
+	    $message = "++ Find SubscriptionObjects with STATUS_APPROVED: ". count( $subscriptionObjectList );
+	    $cli->output( $message );
+	
+	    $counter = 0;
+	    foreach ( $subscriptionObjectList as $subscriptionObject )
+	    {
+	        $subscriptionId = $subscriptionObject->attribute('id');
+	        $editionContentObjectId = $subscriptionObject->attribute('edition_contentobject_id');
+	        $newsletterUserId = $subscriptionObject->attribute('newsletter_user_id');
+	        $subscriptionOutputFormatArray = $subscriptionObject->attribute('output_format_array');
+	
+	        $counter++;
+	        // status == STATUS_WAIT_FOR_PROCESS || != ABORT ?
+	        $newsletterEdtionSendObject->sync();
+	        if ( $newsletterEdtionSendObject->attribute('status') == CjwNewsletterEditionSend::STATUS_WAIT_FOR_PROCESS )
+	        {
+	            // every subscription can have multiple outputformats
+	            // create for every outputformat one send_item
+	            foreach ( $subscriptionOutputFormatArray as $outputFormatId => $outputFormatName )
+	            {
+	                $newSendItemResult = CjwNewsletterEditionSendItem::create( $sendId,
+	                                                                     $newsletterUserId,
+	                                                                     $outputFormatId,
+	                                                                     $subscriptionId );
+	                if ( is_object( $newSendItemResult ) )
+	                {
+	                    // create edtion_send_item
+	                    $message = "++ [SEND_ITEM][$counter] create new sendItem id: " . $newSendItemResult->attribute('id');
+	                    $cli->output( $message );
+	                }
+	                else
+	                {
+	                    // create edtion_send_item
+	                    $message = "++ [Error][SEND_ITEM][$counter] sendItem already exist do nothing with it!";
+	                    $cli->output( $message );
+	                }
+	            }
+	        }
+	        else
+	        {
+	            $message = "++ [ABBORT][$counter] Abborting EditionSendObject has not Status STATUS_WAIT_FOR_PROCESS or : ". $sendId ;
+	            $cli->output( $message );
+	        }
+	    } // end foreach subscriptions
+	
+	    // if are create all send_item entry's, set status == STATUS_MAILQUEUE_CREATED
+	    $message = "+ [STATUS_MAILQUEUE_CREATED] $counter sendItems has be processed (create / or do nothing)  SendId: ". $sendId ;
+	    $cli->output( $message );
+	    $newsletterEdtionSendObject->setAttribute('status', CjwNewsletterEditionSend::STATUS_MAILQUEUE_CREATED );
+	    $newsletterEdtionSendObject->store();
+	}
 }
 
 $message = ">> END: check NlEditionSend objects\n--";
