@@ -14,8 +14,8 @@
 
 # this settings you should copy to your siteaccess site.ini
 # so you have the fully control which ts files are loaded
-#[RegionalSettings]
-#TranslationExtensions[]=cjw_newsletter
+[RegionalSettings]
+TranslationExtensions[]=cjw_newsletter
 
 
 [TemplateSettings]
