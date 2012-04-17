@@ -599,27 +599,27 @@
     <name>cjw_newsletter/configure</name>
     <message>
         <source>Configure newsletter settings</source>
-        <translation>Configuration de la newsletter</translation>
+        <translation>Configuration de votre abonnement</translation>
     </message>
     <message>
         <source>Newsletter confirmation successful</source>
-        <translation></translation>
+        <translation>Confirmation effectuée avec succès</translation>
     </message>
     <message>
         <source>First name of the subscriber.</source>
-        <translation>Prénom du souscripteur</translation>
+        <translation>Prénom de l'abonné</translation>
     </message>
     <message>
         <source>Email of the subscriber.</source>
-        <translation>Email du souscripteur</translation>
+        <translation>Email de l'abonné</translation>
     </message>
     <message>
         <source>Add to subscription.</source>
-        <translation>Ajout pour souscription</translation>
+        <translation>Ajout pour abonnement</translation>
     </message>
     <message>
         <source>Salutation</source>
-        <translation>Titre</translation>
+        <translation>Civilité</translation>
     </message>
     <message>
         <source>First name</source>
@@ -639,15 +639,15 @@
     </message>
     <message>
         <source>Here you can edit your newsletter attributes.</source>
-        <translation>Ici, vous pouvez éditer les attributs de la newsletter.</translation>
+        <translation>Ici, vous pouvez modifier vos paramètres d'abonnement à nos newsletters.</translation>
     </message>
     <message>
         <source>Please select the newsletter you wish to subscribe to. Deselect to unsubscribe.</source>
-        <translation>Veuillez sélectionner les newsletter auxquelles vous voulez souscrire, et désélectionner celles que vous ne voulez pas recevoir.</translation>
+        <translation>Veuillez sélectionner les newsletters auxquelles vous voulez vous abonner, et désélectionner celles que vous ne voulez pas recevoir.</translation>
     </message>
     <message>
         <source>You can also edit the small boxes &quot;first name&quot; and &quot;last name&quot;.</source>
-        <translation>Vous pouvez aussi éditer votre prénom et nom.</translation>
+        <translation>Vous pouvez également éditer vos nom et prénom.</translation>
     </message>
     <message>
         <source>Please register another email address to subscribe to the same newsletter twice.</source>
@@ -659,7 +659,7 @@
     </message>
     <message>
         <source>Changes saved</source>
-        <translation>Changements sauvegardés</translation>
+        <translation>Changements enregistrés</translation>
     </message>
 </context>
 <context>
@@ -1214,6 +1214,10 @@ To activate or edit your subscription, please visit this link:
 </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Subscription verification</source>
+        <translation>Confirmation de l'abonnement</translation>
+    </message>
 </context>
 <context>
     <name>cjw_newsletter/mail/subscription_information</name>
@@ -1224,8 +1228,8 @@ To activate or edit your subscription, please visit this link:
 <byte value="x9"/><byte value="x9"/>%configureLink
 <byte value="x9"/><byte value="x9"/><byte value="x9"/></source>
         <translation type="obsolete">Bonjour %name
-<byte value="x9"/><byte value="x9"/>Merci d&apos;utiliser notre newsletter.
-<byte value="x9"/>Pour éditer et configurer vos newsletter, veuillez visiter le lien suivant :
+<byte value="x9"/><byte value="x9"/>Nous vous remercions de l&apos;intérêt que vous portez à nos newsletters.
+<byte value="x9"/>Vous pouvez éditer à tout moment vos informations d'abonnement en cliquant sur le lien suivant :
 <byte value="x9"/><byte value="x9"/>%configureLink
 <byte value="x9"/></translation>
     </message>
@@ -1237,7 +1241,16 @@ To edit your newsletter settings please visit the following link:
 
 %configureLink
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Bonjour %name,
+
+Nous vous remercions de l'intérêt que vous portez à nos newsletters.
+
+Vous pouvez éditer à tout moment vos informations d'abonnement en cliquant sur le lien suivant :
+%configureLink</translation>
+    </message>
+    <message>
+        <source>Subscription information</source>
+        <translation>Informations sur l'abonnement</translation>
     </message>
 </context>
 <context>
@@ -1997,8 +2010,8 @@ To edit your newsletter settings please visit the following link:
         <translation>se désabonner</translation>
     </message>
     <message>
-        <source>To unsubscribe your newsletter please visit the following link</source>
-        <translation type="obsolete"></translation>
+        <source>To unsubscribe from this newsletter please visit the following link</source>
+        <translation>Si vous ne souhaitez plus recevoir notre newsletter, cliquez sur le lien suivant</translation>
     </message>
     <message>
         <source>To unsubscribe from this newsletter please visit the following link</source>
@@ -2009,11 +2022,11 @@ To edit your newsletter settings please visit the following link:
     <name>cjw_newsletter/subscribe</name>
     <message>
         <source>Salutation</source>
-        <translation>Titre</translation>
+        <translation>Civilité</translation>
     </message>
     <message>
         <source>Newsletter subscribe</source>
-        <translation>Souscription à la newsletter</translation>
+        <translation>Abonnement à la newsletter</translation>
     </message>
     <message>
         <source>First name</source>
@@ -2021,7 +2034,7 @@ To edit your newsletter settings please visit the following link:
     </message>
     <message>
         <source>First name of the subscriber.</source>
-        <translation>Prénom du souscripteur.</translation>
+        <translation>Prénom de l'abonné.</translation>
     </message>
     <message>
         <source>Last name</source>
@@ -2029,19 +2042,19 @@ To edit your newsletter settings please visit the following link:
     </message>
     <message>
         <source>Last name of the subscriber.</source>
-        <translation>Nom du souscripteur.</translation>
+        <translation>Nom de l'abonné.</translation>
     </message>
     <message>
         <source>Email of the subscriber.</source>
-        <translation>Email du souscripteur</translation>
+        <translation>Email de l'abonné.</translation>
     </message>
     <message>
         <source>Subscribe</source>
-        <translation>Souscrire</translation>
+        <translation>S'abonner</translation>
     </message>
     <message>
         <source>Add to subscription.</source>
-        <translation>Ajouter aux souscriptions</translation>
+        <translation>Ajouter aux abonnements</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -2061,11 +2074,11 @@ To edit your newsletter settings please visit the following link:
     </message>
     <message>
         <source>Here you can subscribe to one of our newsletters.</source>
-        <translation>Ici vous pouvez souscrire à une de nos newsletters.</translation>
+        <translation>Sur cette page, vous avez la possibilité de vous abonner à nos newsletters.</translation>
     </message>
     <message>
         <source>Please fill in the boxes &quot;first name&quot; and &quot;last name&quot; and enter your e-mail address in the corresponding field. Then, select the newsletter you are interested in and the format you prefer.</source>
-        <translation>Veuillez saisir votre Prénom, Nom, et adresse email dans les champs correspondants. Puis, sélectionner la newsletter qui vous interesse ainsi que le format que vous préférez.</translation>
+        <translation>Veuillez saisir vos nom, prénom et adresse email dans les champs correspondants. Puis, sélectionnez la ou les newsletters qui vous intéressent.</translation>
     </message>
     <message>
         <source>E-mail</source>
@@ -2077,7 +2090,7 @@ To edit your newsletter settings please visit the following link:
     </message>
     <message>
         <source>Your e-mail address will under no circumstances be passed on to unauthorized third parties.</source>
-        <translation type="unfinished"></translation>
+        <translation>Votre adresse mail ne sera en aucun cas transmise à un tiers.</translation>
     </message>
     <message>
         <source>Further Options</source>
@@ -2097,7 +2110,11 @@ To edit your newsletter settings please visit the following link:
     </message>
     <message>
         <source>Subscription form</source>
-        <translation>Formulaire de souscription</translation>
+        <translation>Formulaire d'abonnement</translation>
+    </message>
+    <message>
+        <source>Your email address</source>
+        <translation>Votre adresse email</translation>
     </message>
 </context>
 <context>
@@ -2165,11 +2182,11 @@ To edit your newsletter settings please visit the following link:
     <name>cjw_newsletter/subscribe_success</name>
     <message>
         <source>Newsletter - subscribe success</source>
-        <translation>Newsletter - souscription effectuée</translation>
+        <translation>Newsletter - abonnement effectué</translation>
     </message>
     <message>
         <source>You are registered for our newsletter.</source>
-        <translation>Vous etes enregistré a notre newsletter.</translation>
+        <translation>Vous vous êtes abonné à notre newsletter.</translation>
     </message>
     <message>
         <source>An email was sent to your address %email.</source>
@@ -2177,11 +2194,11 @@ To edit your newsletter settings please visit the following link:
     </message>
     <message>
         <source>Please note that your subscription is only active if you clicked confirmation link in these email.</source>
-        <translation>Veuillez noter que votre souscription ne sera active que lorsque vous aurez cliquez sur le lien de confirmation de cet email.</translation>
+        <translation>Votre abonnement sera pris en compte dès que vous aurez cliqué sur le lien de confirmation présent dans cet email.</translation>
     </message>
     <message>
         <source>You have the possibility of changing your personal profile at any time.</source>
-        <translation>Vous avez la possibilité de changer vos données personnelles à tout moment.</translation>
+        <translation>Vous avez la possibilité de modifier vos données personnelles à tout moment.</translation>
     </message>
     <message>
         <source>back</source>
@@ -2757,16 +2774,40 @@ To edit your newsletter settings please visit the following link:
 </context>
 <context>
     <name>cjw_newsletter/unsubscribe</name>
+    
+    <message>
+        <source>Hi %name
+
+If you want to unsubscribe from from List &quot;%listName&quot;
+you have to confirm this page.</source>
+        <translation>Bonjour %name,
+        
+Si vous souhaitez vous désabonner de la liste &quot;%listName&quot;,
+cliquez sur le bouton &quot;Se désabonner&quot;.</translation>
+    </message>
+    <message>
+        <source>Hi %name
+
+        You already unsubscribed from List &quot;%listName&quot;.</source>
+        <translation>Bonjour %name,
+        
+Vous êtes déjà désabonné de la liste &quot;%listName&quot;.
+        </translation>
+    </message>
+    <message>
+        <source>Hi %name
+
+        You unsubscribe successfully from List &quot;%listName&quot;.</source>
+        <translation>Bonjour %name,
+        
+Vous avez été désabonné avec succès de la liste &quot;%listName&quot;.</translation>
+    </message>
+
     <message>
         <source>Unsubscribe</source>
         <translation>Se désabonner</translation>
     </message>
-    <message>
-        <source>Hi %name
-<byte value="x9"/><byte value="x9"/>        You unsubscribe successfully from List &quot;%listName&quot;.</source>
-        <translation type="obsolete">Bonjour %name
-<byte value="x9"/><byte value="x9"/>        Vous etes désabonné de la liste &quot;%listName&quot;.</translation>
-    </message>
+    
     <message>
         <source>Unsubscribe from list.</source>
         <translation>Désabonnement de la liste.</translation>
@@ -2775,43 +2816,12 @@ To edit your newsletter settings please visit the following link:
         <source>Unsubscription already done</source>
         <translation>Désabonnement déjà effectué</translation>
     </message>
-    <message>
-        <source>Hi %name
-<byte value="x9"/><byte value="x9"/>        You already unsubscribed from List &quot;%listName&quot;.</source>
-        <translation type="obsolete">Bonjour %name
-<byte value="x9"/><byte value="x9"/>        vous etes déjà désabonné de la liste &quot;%listName&quot;.</translation>
-    </message>
+    
     <message>
         <source>Unsubscribe success</source>
         <translation>Désabonnement effectué</translation>
     </message>
-    <message>
-        <source>Hi %name
-<byte value="x9"/><byte value="x9"/>If you want to unsubscribe from from List &quot;%listName&quot;
-<byte value="x9"/>you have to confirm this page.</source>
-        <translation type="obsolete">Bonjour %name
-<byte value="x9"/><byte value="x9"/>Si vous désirer vous déasbonner de la liste &quot;%listName&quot;
-<byte value="x9"/>vous devez confirmer cette page.</translation>
-    </message>
-    <message>
-        <source>Hi %name
-
-If you want to unsubscribe from from List &quot;%listName&quot;
-you have to confirm this page.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hi %name
-
-        You already unsubscribed from List &quot;%listName&quot;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hi %name
-
-        You unsubscribe successfully from List &quot;%listName&quot;.</source>
-        <translation type="unfinished"></translation>
-    </message>
+    
 </context>
 <context>
     <name>cjw_newsletter/user/salutation</name>
