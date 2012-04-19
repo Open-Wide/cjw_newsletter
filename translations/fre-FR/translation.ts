@@ -1212,7 +1212,14 @@ To activate or edit your subscription, please visit this link:
 
 %configureLink
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Bonjour %name
+        
+Merci d&apos;avoir souscrit aux newsletters suivantes :
+%subscriptionList
+
+Pour activer votre abonnement, cliquez sur le lien suivant :
+%configureLink
+</translation>
     </message>
     <message>
         <source>Subscription verification</source>
@@ -2185,6 +2192,10 @@ Vous pouvez éditer à tout moment vos informations d'abonnement en cliquant sur
         <translation>Newsletter - abonnement effectué</translation>
     </message>
     <message>
+        <source>Subscribe success</source>
+        <translation>Abonnement effectué</translation>
+    </message>
+    <message>
         <source>You are registered for our newsletter.</source>
         <translation>Vous vous êtes abonné à notre newsletter.</translation>
     </message>
@@ -2805,7 +2816,7 @@ Vous avez été désabonné avec succès de la liste &quot;%listName&quot;.</tra
 
     <message>
         <source>Unsubscribe</source>
-        <translation>Se désabonner</translation>
+        <translation>Désabonnement</translation>
     </message>
     
     <message>
