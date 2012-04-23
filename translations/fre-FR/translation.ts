@@ -2213,7 +2213,7 @@ Vous pouvez éditer à tout moment vos informations d'abonnement en cliquant sur
     </message>
     <message>
         <source>back</source>
-        <translation>retour</translation>
+        <translation>Retour</translation>
     </message>
 </context>
 <context>
