@@ -554,9 +554,11 @@ class CjwNewsletterUser extends eZPersistentObject
 
         // TODO Namen extrahieren
         $emailReceiverName = '';
+		
+        $mailFormat = $cjwNewsletterIni->hasVariable('NewsletterMailSettings','MailFormat')?$cjwNewsletterIni->variable('NewsletterMailSettings','MailFormat'):'text';
 
         $emailSubject = $subject;
-        $emailBody['text'] = $templateResult;
+        $emailBody[$mailFormat] = $templateResult;
 
         $cjwMail = new CjwNewsletterMail();
         // x header set for current user
