@@ -55,6 +55,9 @@ if( $newsletterUser->attribute('is_confirmed') == false )
 {
     // alle offenen subscription des users setzen
     $confirmAllResult = $newsletterUser->confirmAll();
+    
+    $mailSendResult = $newsletterUser->sendSubcriptionInformationMail();
+    
     $tpl->setVariable( 'confirm_all_result', $confirmAllResult );
 
     $newsletterUser = CjwNewsletterUser::fetchByHash( $Params['UserHash'] );
