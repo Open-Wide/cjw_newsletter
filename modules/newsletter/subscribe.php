@@ -190,7 +190,7 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
             $tpl->setVariable( 'user_email_already_exists', $subscriptionDataArr['email'] );
 
             // $existingNewsletterUserObject->sendSubriptionInfoMail();
-            // $mailSendResult = $existingNewsletterUserObject->sendSubcriptionInformationMail();
+            $mailSendResult = $existingNewsletterUserObject->sendSubcriptionConfirmationMail();
 			$mailSendResult['send_result'] = true;
             
             $tpl->setVariable( 'newsletter_user', $existingNewsletterUserObject );
