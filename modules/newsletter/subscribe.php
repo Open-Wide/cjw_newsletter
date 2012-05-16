@@ -191,7 +191,7 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
 
             // $existingNewsletterUserObject->sendSubriptionInfoMail();
             $mailSendResult = $existingNewsletterUserObject->sendSubcriptionConfirmationMail();
-			$mailSendResult['send_result'] = true;
+			//$mailSendResult['send_result'] = true;
             
             $tpl->setVariable( 'newsletter_user', $existingNewsletterUserObject );
             $tpl->setVariable( 'mail_send_result', $mailSendResult );
