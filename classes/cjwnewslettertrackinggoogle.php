@@ -51,6 +51,7 @@ class CjwNewsletterTrackingGoogle extends CjwNewsletterTracking
      */	
 	protected function getReadMarker () {
 		
+		$ini = eZINI::instance( "cjw_newsletter.ini" );
 		$var_utmac = '{{SETTINGS=GoogleId}}';
 		$var_utmhn = '{{SITE_URL}}'; // domain
 		$var_utmn = rand(1000000000,9999999999); // random number
@@ -58,11 +59,28 @@ class CjwNewsletterTrackingGoogle extends CjwNewsletterTracking
 		$var_random = rand(1000000000,2147483647); //number under 2147483647
 		$var_today = $this->currentTimestamp;
 		$var_referer = $_SERVER['HTTP_REFERER']; //referer url
+		$var_utmt = $ini->hasVariable( 'CustomTrackingSettings', 'utmt' ) ? $ini->variable( 'CustomTrackingSettings', 'utmt' ) : 'page'; 
 		if ($var_referer == '') { $var_referer = '-'; }
 		$var_uservar='-'; // no user-defined
 		$var_utmp='{{SETTINGS=Campaign}}'; // Name of campaign
-		$urchinUrl=	'http://www.google-analytics.com/__utm.gif?utmwv=3&utmn=' . $var_utmn .
-					'&utme=&utmcs=-&utmsr=-&utmsc=-&utmul=-&utmje=0&utmfl=-&utmdt=-&utmhn=' . $var_utmhn . '&utmhid=' . $var_utmn . '&utmr=' . $var_referer . '&utmp=' . $var_utmp . '&utmac=' . $var_utmac . '&utmcc=__utma%3D' . $var_cookie . '.' . $var_random . '.' . $var_today . '.' . $var_today . '.' . $var_today . '.2%3B%2B__utmz%3D' . $var_cookie . '.' . $var_today . '.2.2.'.
+		$urchinUrl=	'http://www.google-analytics.com/__utm.gif'
+					.'?utmwv=3'
+					.'&utmn='.$var_utmn
+					.'&utme='
+					.'&utmcs=-'
+					.'&utmsr=-'
+					.'&utmsc=-'
+					.'&utmul=-'
+					.'&utmje=0'
+					.'&utmfl=-'
+					.'&utmdt=-'
+					.'&utmhn='.$var_utmhn 
+					.'&utmhid='.$var_utmn
+					.'&utmr='.$var_referer
+					.'&utmp='.$var_utmp
+					.'&utmac='.$var_utmac
+					.'&utmt='.$var_utmt
+					.'&utmcc=__utma%3D' . $var_cookie . '.' . $var_random . '.' . $var_today . '.' . $var_today . '.' . $var_today . '.2%3B%2B__utmz%3D' . $var_cookie . '.' . $var_today . '.2.2.'.
 					'utmcsr%3D{{SETTINGS=Source}}'.
 					'%7Cutmccn%3D'.$var_utmp.
 					'%7Cutmcmd%3D{{SETTINGS=Medium}}'.
