@@ -16,13 +16,19 @@ nur nodeobject vom type  cjw_newsletter_list aktzeptieren
         {/case}
     {/switch}
 {/if}
-{def $user_list = fetch('newsletter', 'user_list',
-                        hash( 'offset', $view_parameters.offset,
+{def $user_list = fetch('newsletter', 'user_list_search',
+                        hash( 'search_str', $view_parameters.search_user_email,
+                        	  'logic', 'AND',
+                        	  'offset', $view_parameters.offset,
                               'limit', $limit,
-                              'email_search', $view_parameters.search_user_email,
+                              
                               'sort_by', hash('created', 'desc' ) ))
-     $user_list_count = fetch('newsletter', 'user_list_count',
-                               hash('email_search', $view_parameters.search_user_email ))
+     $user_list_count = fetch('newsletter', 'user_list_search',
+                        hash( 'search_str', $view_parameters.search_user_email,
+                        	  'logic', 'AND',
+                        	  'offset', $view_parameters.offset,
+                        	  'as_object', false(),
+                              'sort_by', hash('created', 'desc' ) ))|count
      $page_uri = 'newsletter/user_list'}
 
     <div class="context-block">
@@ -55,7 +61,9 @@ nur nodeobject vom type  cjw_newsletter_list aktzeptieren
                             {*Alles: <input type="text" name="SearchText" value="">
                             <br/>
                             *}
-                            {'Email'|i18n( 'cjw_newsletter/user_list' )}: <input type="text" name="SearchUserEmail" value="{if is_set($view_parameters['search_user_email'])}{$view_parameters['search_user_email']}{/if}"><input type="submit" name="SubmitUserSearch" value="{'Search for existing user'|i18n( 'cjw_newsletter/user_list' )}">
+                            {*
+                            {'Email'|i18n( 'cjw_newsletter/user_list' )}: 
+                            *}<input type="text" name="SearchUserEmail" value="{if is_set($view_parameters['search_user_email'])}{$view_parameters['search_user_email']}{/if}"><input type="submit" name="SubmitUserSearch" value="{'Search for existing user'|i18n( 'cjw_newsletter/user_list' )}">
                         </form>{* Created. *}
                     </div>
                 </div>

@@ -125,6 +125,40 @@ $FunctionList['user_list'] = array( 'name' => 'user_list',
                                                              'default' => true,
                                                              'required' => false ) )
                         );
+// {fetch('newsletter','user_list_search', hash('as_object', true()))|attribute(show)}
+$FunctionList['user_list_search'] = array( 'name' => 'user_list_search',
+											'operation_types' => array( 'read' ),
+											'call_method' => array('include_file' =>'extension/cjw_newsletter/modules/newsletter/cjwnewsletterfunctioncollection.php',
+													'class' => 'CjwNewsletterFunctionCollection',
+													'method' => 'fetchUserListSearch' ),
+											'parameter_type' => 'standard',
+											'parameters' => array( 
+													array( 'name' => 'search_str',
+															'type' => 'string',
+															'default' => '',
+															'required' => true ),
+													array( 'name' => 'logic',
+															'type' => 'string',
+															'default' => 'AND',
+															'required' => false ),
+													array( 'name' => 'limit',
+															'type' => 'integer',
+															'default' => 50,
+															'required' => false ),
+													array( 'name' => 'offset',
+															'type' => 'integer',
+															'default' => 0,
+															'required' => false ),
+													array( 'name' => 'sort_by',
+															'type' => 'array',
+															'default' => array( 'created' => 'desc'),
+															'required' => false ),
+													array( 'name' => 'as_object',
+															'type' => 'integer',
+															'default' => true,
+															'required' => false ) )
+);
+
 // {fetch('newsletter','user_list_count', hash()))|attribute(show)}
 $FunctionList['user_list_count'] = array( 'name' => 'user_list_count',
                                'operation_types' => array( 'read' ),

@@ -147,6 +147,21 @@ class CjwNewsletterFunctionCollection
 
         return array( 'result' => $objectList );
     }
+    
+    /**
+     *
+     * @param integer $limit
+     * @param integer $offset
+     * @param string $email
+     * @param boolean $asObject
+     * @return array
+     */
+    static function fetchUserListSearch( $searchStr, $logic='AND', $limit=0, $offset=0, $sortBy = false, $asObject = true )
+    {
+    	$objectList = CjwNewsletterUserSearch::userSearch( $searchStr, $logic, $limit, $offset, $sortBy, $asObject );
+    
+    	return array( 'result' => $objectList );
+    }
 
     /**
      *
