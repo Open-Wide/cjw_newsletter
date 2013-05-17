@@ -192,18 +192,21 @@ class CjwNewsletterUser extends eZPersistentObject
      * @param string $salutation
      * @param string $firstName
      * @param string $lastName
+     * @param string $organisation
      * @param string $eZUserId
      * @param int $status
      * @return object
      */
-    static function create( $email, $salutation, $firstName, $lastName, $eZUserId, $status = CjwNewsletterUser::STATUS_PENDING, $context = 'default' )
+    static function create( $email, $salutation, $firstName, $lastName, $organisation, $eZUserId, $status = CjwNewsletterUser::STATUS_PENDING, $context = 'default' )
     {
+    	
         $rows = array( 'created' => time(),
                        'creator_contentobject_id' => eZUser::currentUserID(),
                        'ez_user_id' => $eZUserId,
                        'email' => $email,
                        'first_name' => $firstName,
                        'last_name' => $lastName,
+        			   'organisation' => $organisation,
                        'salutation' => $salutation,
                        'hash' => CjwNewsletterUtils::generateUniqueMd5Hash( $email ),
                        'remote_id' => 'cjwnl:'. $context .':' . CjwNewsletterUtils::generateUniqueMd5Hash( $email ),
@@ -223,6 +226,7 @@ class CjwNewsletterUser extends eZPersistentObject
    * @param int $salutation
    * @param string $firstName
    * @param string $lastName
+   * @param string $organisation,
    * @param int $eZUserId
    * @param int $newNewsletterUserStatus the status for new created Newsletter users CjwNewsletterUser::STATUS_PENDING
    * @return object
@@ -231,10 +235,12 @@ class CjwNewsletterUser extends eZPersistentObject
                                                 $salutation,
                                                 $firstName,
                                                 $lastName,
+                                                $organisation,
                                                 $eZUserId,
                                                 $newNewsletterUserStatus = CjwNewsletterUser::STATUS_PENDING,
                                                 $context = 'default' )
     {
+    	
         /*
          * 1. exist a current newsletter user?
          *      yes -> register on lists with status PENDING
@@ -249,6 +255,7 @@ class CjwNewsletterUser extends eZPersistentObject
             $userObject->setAttribute('salutation', $salutation );
             $userObject->setAttribute('first_name', $firstName );
             $userObject->setAttribute('last_name', $lastName );
+            $userObject->setAttribute('organisation', $organisation );
             $userObject->setAttribute('ez_user_id', (int) $eZUserId );
             $userObject->setAttribute('modified', time() );
             $userObject->store();
@@ -261,6 +268,7 @@ class CjwNewsletterUser extends eZPersistentObject
                                             'salutation' => $salutation,
                                             'first_name' => $firstName,
                                             'last_name' => $lastName,
+                                   		    'organisation' => $organisation,
                                             'ez_user_id' => $userObject->attribute( 'ez_user_id' ),
                                             'status' => $userObject->attribute( 'status' ),
                                             'modifier' => eZUser::currentUserID(),
@@ -274,6 +282,7 @@ class CjwNewsletterUser extends eZPersistentObject
                                                      $salutation,
                                                      $firstName,
                                                      $lastName,
+                                                     $organisation,
                                                      $eZUserId,
                                                      (int) $newNewsletterUserStatus,
                                                      $context );
@@ -293,6 +302,7 @@ class CjwNewsletterUser extends eZPersistentObject
                                             'salutation' => $salutation,
                                             'first_name' => $firstName,
                                             'last_name' => $lastName,
+                                     		'organisation' => $organisation,
                                             'ez_user_id' => $userObject->attribute( 'ez_user_id' ),
                                             'status' => $userObject->attribute( 'status' ),
                                             'modifier' => eZUser::currentUserID(),

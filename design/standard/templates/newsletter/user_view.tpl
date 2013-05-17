@@ -81,6 +81,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {'Organisation'|i18n( 'cjw_newsletter/user_view' )}
+                                    </th>
+                                    <td>
+                                        {$newsletter_user.organisation|wash}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {'Status'|i18n( 'cjw_newsletter/user_view' )}
                                     </th>
                                     <td title="{$newsletter_user.status|wash}">

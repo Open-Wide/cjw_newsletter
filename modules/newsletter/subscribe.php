@@ -28,6 +28,7 @@ $email = '';
 $subscriptionDataArr = array( 'salutation' => -1,
                               'first_name' => '' ,
                               'last_name' => '',
+							  'organisation' => '',
                               'email' => '',
                               'id_array' => array(),
                               'list_array' => array(),
@@ -84,6 +85,8 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
         $subscriptionDataArr['first_name'] = trim( $http->postVariable( 'Subscription_FirstName' ) );
     if ( $http->hasPostVariable( 'Subscription_LastName' ) )
         $subscriptionDataArr['last_name'] = trim( $http->postVariable( 'Subscription_LastName' ) );
+    if ( $http->hasPostVariable( 'Subscription_Organisation' ) )
+        $subscriptionDataArr['organisation'] = trim( $http->postVariable( 'Subscription_Organisation' ) );
     if ( $http->hasPostVariable( 'Subscription_Salutation' ) )
         $subscriptionDataArr['salutation'] = trim( $http->postVariable( 'Subscription_Salutation' ) );
     if ( $http->hasPostVariable( 'Subscription_IdArray' ) )
@@ -92,7 +95,7 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
         $subscriptionDataArr['list_array'] = $http->postVariable( 'Subscription_ListArray' );
 
  //   $subscriptionDataArr['list_output_format_array'] = array();
-
+	
     foreach ( $subscriptionDataArr['id_array'] as $listId )
     {
         if ( $http->hasPostVariable( "Subscription_OutputFormatArray_$listId" ) )
@@ -104,14 +107,16 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
          }
     }
 
-    $messageArray['list_array'] = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Newsletter'),
-                                         'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must choose a list for subscription.' ) );
-    $messageArray['first_name'] = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'First name'),
-                                         'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must enter a first name.' ) );
-    $messageArray['last_name']  = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Last name'),
-                                         'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must enter a last name.' ) );
-    $messageArray['email']      = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Email'),
-                                         'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must provide a valid email address.' ) );
+    $messageArray['list_array']   = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Newsletter'),
+                                           'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must choose a list for subscription.' ) );
+    $messageArray['first_name']   = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'First name'),
+                                           'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must enter a first name.' ) );
+    $messageArray['last_name']    = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Last name'),
+                                           'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must enter a last name.' ) );
+    $messageArray['organisation'] = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Organisation'),
+                                           'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must enter an organisation.' ) );
+    $messageArray['email']        = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Email'),
+                                           'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must provide a valid email address.' ) );
 
     $requiredSubscriptionFields = array( 'list_array', 'email' );
     foreach ( $requiredSubscriptionFields as $fieldName )
@@ -137,6 +142,13 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
                 if ( !$subscriptionDataArr['name'] )
                 {
                     $warningArr['last_name'] = $messageArray['last_name'];
+                }
+            } break;
+            case 'organisation':
+            {
+                if ( !$subscriptionDataArr['organisation'] )
+                {
+                    $warningArr['organisation'] = $messageArray['organisation'];
                 }
             } break;
             case 'email':

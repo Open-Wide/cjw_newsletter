@@ -601,6 +601,7 @@ class CjwNewsletterSubscription extends eZPersistentObject
      * $subscriptionDataArr['salutation']
      * $subscriptionDataArr['first_name'] = $http->postVariable( 'Subscription_FirstName' );
      * $subscriptionDataArr['name'] = $http->postVariable( 'Subscription_Name' );
+     * $subscriptionDataArr['organisation'] = $http->postVariable( 'Subscription_Organisation' );
      * $subscriptionDataArr['email'] = $http->postVariable( 'Subscription_Email' );
      *
      * $subscriptionDataArr['id_array'] = $http->postVariable( 'Subscription_IdArray' );
@@ -635,6 +636,7 @@ class CjwNewsletterSubscription extends eZPersistentObject
 
         $firstName = $subscriptionDataArr['first_name'];
         $lastName = $subscriptionDataArr['last_name'];
+        $organisation = $subscriptionDataArr['organisation'];
         $eZUserId = isset( $subscriptionDataArr['ez_user_id'] ) ? (int)$subscriptionDataArr['ez_user_id'] : 0;
 
          // new value form POST
@@ -674,6 +676,7 @@ class CjwNewsletterSubscription extends eZPersistentObject
                                                                                $salutation,
                                                                                $firstName,
                                                                                $lastName,
+                                                                               $organisation,
                                                                                $eZUserId,
                                                                                (int) $newNewsletterUserStatus,
                                                                                $context );

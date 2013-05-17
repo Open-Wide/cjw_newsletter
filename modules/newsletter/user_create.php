@@ -35,6 +35,7 @@ $contextCreateNewsletterUser = false;
 
 $subscriptionDataArr = array( 'first_name' => '' ,
                                  'last_name' => '',
+								 'organisation' => '',
                                  'email' => '',
                                  'salutation' => '',
                                  'note' => '',
@@ -90,6 +91,10 @@ if ( $http->hasPostVariable( 'Subscription_FirstName' ) )
 if ( $http->hasPostVariable( 'Subscription_LastName' ) )
 {
     $subscriptionDataArr['last_name'] = trim( $http->postVariable( 'Subscription_LastName' ) );
+}
+if ( $http->hasPostVariable( 'Subscription_Organisation' ) )
+{
+    $subscriptionDataArr['organisation'] = trim( $http->postVariable( 'Subscription_Organisation' ) );
 }
 if ( $http->hasPostVariable( 'Subscription_Salutation' ) )
 {

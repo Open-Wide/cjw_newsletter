@@ -39,6 +39,7 @@ $addSubscriptionForListId = false;
 
 $subscriptionDataArr = array(    'first_name' => '' ,
                                  'last_name' => '',
+								 'organisation' => '',
                                  'email' => '',
                                  'salutation' => '',
                                  'note' => '',
@@ -65,6 +66,7 @@ if ( $newsletterUserId === -1 )
                                                            $subscriptionDataArr['salutation'],
                                                            $subscriptionDataArr['first_name'],
                                                            $subscriptionDataArr['last_name'],
+                                                           $subscriptionDataArr['organisation'],
                                                            false,
                                                            CjwNewsletterUser::STATUS_CONFIRMED,
                                                            $context );
@@ -138,6 +140,11 @@ if ( $http->hasPostVariable( 'Subscription_LastName' ) )
 {
     $subscriptionDataArr['last_name'] = trim( $http->postVariable( 'Subscription_LastName' ) );
     $newsletterUserObject->setAttribute( 'last_name', $subscriptionDataArr['last_name'] );
+}
+if ( $http->hasPostVariable( 'Subscription_Organisation' ) )
+{
+    $subscriptionDataArr['organisation'] = trim( $http->postVariable( 'Subscription_Organisation' ) );
+    $newsletterUserObject->setAttribute( 'organisation', $subscriptionDataArr['organisation'] );
 }
 if ( $http->hasPostVariable( 'Subscription_Salutation' ) )
 {

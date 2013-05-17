@@ -2052,6 +2052,10 @@ Vous pouvez éditer à tout moment vos informations d'abonnement en cliquant sur
         <translation>Nom de l'abonné.</translation>
     </message>
     <message>
+        <source>Organisation</source>
+        <translation>Organisation</translation>
+    </message>
+    <message>
         <source>Email of the subscriber.</source>
         <translation>Email de l'abonné.</translation>
     </message>
@@ -2242,6 +2246,10 @@ Vous pouvez éditer à tout moment vos informations d'abonnement en cliquant sur
         <translation>Nom</translation>
     </message>
     <message>
+        <source>Organisation</source>
+        <translation>Organisation</translation>
+    </message>
+    <message>
         <source>Email</source>
         <translation>Email</translation>
     </message>
@@ -2259,7 +2267,11 @@ Vous pouvez éditer à tout moment vos informations d'abonnement en cliquant sur
     </message>
     <message>
         <source>You must enter a last name.</source>
-        <translation>vous devez entrer un nom.</translation>
+        <translation>Vous devez entrer un nom.</translation>
+    </message>
+    <message>
+        <source>You must enter an organisation.</source>
+        <translation>Vous devez renseigner une orgnaisation</translation>
     </message>
     <message>
         <source>You must provide a valid email address.</source>
@@ -2918,6 +2930,10 @@ Vous avez été désabonné avec succès de la liste &quot;%listName&quot;.</tra
         <translation>Nom de l&apos;utilisateur</translation>
     </message>
     <message>
+        <source>Organisation of newsletter user.</source>
+        <translation>Organisation de l&apos;utilisateur</translation>
+    </message>
+    <message>
         <source>Subscriptions</source>
         <translation>Souscriptions</translation>
     </message>
@@ -3141,6 +3157,10 @@ Vous avez été désabonné avec succès de la liste &quot;%listName&quot;.</tra
     <message>
         <source>Last name</source>
         <translation>Nom</translation>
+    </message>
+    <message>
+        <source>Organisation</source>
+        <translation>Organisation</translation>
     </message>
     <message>
         <source>Status</source>

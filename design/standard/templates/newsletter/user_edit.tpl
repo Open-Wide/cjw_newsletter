@@ -119,6 +119,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {'Organisation'|i18n( 'cjw_newsletter/user_view' )}
+                                    </th>
+                                    <td>
+                                        <input class="halfbox" type="text" name="Subscription_Organisation" value="{$newsletter_user.organisation|wash}" title="{'Organisation of newsletter user.'|i18n( 'cjw_newsletter/user_edit' )}"
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {'Note'|i18n( 'cjw_newsletter/user_view' )}
                                     </th>
                                     <td>

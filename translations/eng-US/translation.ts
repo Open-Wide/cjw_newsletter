@@ -1998,6 +1998,10 @@ To edit your newsletter settings please visit the following link:
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Organisation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Last name of the subscriber.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2184,6 +2188,10 @@ To edit your newsletter settings please visit the following link:
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Organisation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Email</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2201,6 +2209,10 @@ To edit your newsletter settings please visit the following link:
     </message>
     <message>
         <source>You must enter a last name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You must enter an organisation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2847,6 +2859,10 @@ you have to confirm this page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Organisation of newsletter user.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Subscriptions</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3069,6 +3085,10 @@ you have to confirm this page.</source>
     </message>
     <message>
         <source>Last name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Organisation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

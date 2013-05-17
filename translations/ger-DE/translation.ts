@@ -2014,6 +2014,10 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
         <translation>Hier den Nachname des Abonnenten eintragen.</translation>
     </message>
     <message>
+        <source>Organisation</source>
+        <translation">Unternehmen</translation>
+    </message>
+    <message>
         <source>Email of the subscriber.</source>
         <translation>Hier die E-Mail des Abonnenten eintragen.</translation>
     </message>
@@ -2206,6 +2210,14 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     <message>
         <source>Last name</source>
         <translation>Nachname</translation>
+    </message>
+    <message>
+        <source>Organisation</source>
+        <translation>Unternehmen</translation>
+    </message>
+    <message>
+        <source>You must enter an organisation.</source>
+        <translation>Bitte geben Sie Ihren Unternehmen an.</translation>
     </message>
     <message>
         <source>You must enter a last name.</source>
@@ -2866,6 +2878,10 @@ müssen Sie diese Seite bestätigen.</translation>
         <translation>Nachname des Newsletter Benutzers.</translation>
     </message>
     <message>
+        <source>Organisation of newsletter user.</source>
+        <translation>Unternehmen des Newsletter Benutzers.</translation>
+    </message>
+    <message>
         <source>Subscriptions</source>
         <translation>Abonnenten</translation>
     </message>
@@ -3089,6 +3105,10 @@ müssen Sie diese Seite bestätigen.</translation>
     <message>
         <source>Last name</source>
         <translation>Nachname</translation>
+    </message>
+    <message>
+        <source>Organisation</source>
+        <translation>Unternehmen</translation>
     </message>
     <message>
         <source>Status</source>
