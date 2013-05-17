@@ -2258,6 +2258,10 @@ Vous pouvez éditer à tout moment vos informations d'abonnement en cliquant sur
         <translation>Newsletter</translation>
     </message>
     <message>
+        <source>Please fill in all required fields</source>
+        <translation>Merci de remplir tous les champs obligatoires</translation>
+    </message>
+    <message>
         <source>You must choose a list for subscription.</source>
         <translation>Vous devez choisir une liste de souscription.</translation>
     </message>

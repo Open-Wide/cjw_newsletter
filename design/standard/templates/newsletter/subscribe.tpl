@@ -53,7 +53,7 @@
                     <h2>{'Input did not validate'|i18n('cjw_newsletter/subscribe')}</h2>
                     <ul>
                     {foreach $warning_array as $message_array_item}
-                        <li><span class="key">{$message_array_item.field_key|wash}: </span><span class="text">{$message_array_item.message|wash()}</span></li>
+                        <li>{if $message_array_item.field_key|eq('')|not}<span class="key">{$message_array_item.field_key|wash}: </span>{/if}<span class="text">{$message_array_item.message|wash()}</span></li>
                     {/foreach}
                     </ul>
                 </div>

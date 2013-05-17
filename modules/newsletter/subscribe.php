@@ -117,8 +117,13 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
                                            'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must enter an organisation.' ) );
     $messageArray['email']        = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Email'),
                                            'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must provide a valid email address.' ) );
+    $messageArray['generic']      = array( 'field_key'   => '',
+                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'Please fill in all required fields') );
 
     $requiredSubscriptionFields = array( 'list_array', 'email' );
+    $ini = new eZINI('cjw_newsletter.ini');
+	$requiredSubscriptionFields = array_merge($requiredSubscriptionFields , 
+											  $ini->variable('NewsletterUserSettings', 'AdditionalRequiredSubscriptionFields'));
     foreach ( $requiredSubscriptionFields as $fieldName )
     {
         switch ( $fieldName )
@@ -144,13 +149,6 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
                     $warningArr['last_name'] = $messageArray['last_name'];
                 }
             } break;
-            case 'organisation':
-            {
-                if ( !$subscriptionDataArr['organisation'] )
-                {
-                    $warningArr['organisation'] = $messageArray['organisation'];
-                }
-            } break;
             case 'email':
             {
                 if ( !eZMail::validate( $subscriptionDataArr['email'] ) )
@@ -159,6 +157,15 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
                 }
             } break;
             default:
+            {
+            	if ( $http->postVariable( $fieldName ) == '' || 
+            		 count($http->postVariable( $fieldName )) == 0)
+                {
+                	if (!$warningArr['generic']) {
+                    	$warningArr['generic'] = $messageArray['generic'];
+                	}
+                }
+            }
         }
     }
 
@@ -197,7 +204,7 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
 
         // email exists but subscription for email is done again
         // => email send with configure link
-        if ( is_object( $existingNewsletterUserObject) )
+        if ( is_object( $existingNewsletterUserObject) && count( $warningArr ) == 0 )
         {
             $tpl->setVariable( 'user_email_already_exists', $subscriptionDataArr['email'] );
 

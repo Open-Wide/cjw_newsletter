@@ -2200,6 +2200,10 @@ To edit your newsletter settings please visit the following link:
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Please fill in all required fields</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>You must choose a list for subscription.</source>
         <translation type="unfinished"></translation>
     </message>

@@ -2046,6 +2046,10 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
         <translation>Die Eingabe fehlt oder konnte nicht validiert werden</translation>
     </message>
     <message>
+        <source>Please fill in all required fields</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Here you can subscribe to one of our newsletters.</source>
         <translation>Hier können Sie unsere Newsletter abonnieren.</translation>
     </message>
@@ -2214,6 +2218,10 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     <message>
         <source>Organisation</source>
         <translation>Unternehmen</translation>
+    </message>
+    <message>
+        <source>Please fill in all required fields</source>
+        <translation>Merci de remplir tous les champs obligatoires</translation>
     </message>
     <message>
         <source>You must enter an organisation.</source>
