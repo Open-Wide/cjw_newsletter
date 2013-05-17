@@ -76,7 +76,10 @@ foreach ( $sendObjectList as $sendObject )
     $emailSenderName = $sendObject->attribute( 'email_sender_name' );
     $personalizeContent = (int) $sendObject->attribute( 'personalize_content' );
 
-    $limit = 50;
+    $cjwIni = new eZINI('cjw_newsletter.ini');
+    $limit = $cjwIni->variable('NewsletterMailSettings', 'EmailsBySendingSession');
+    $message = "Sending $limit emails by session";
+    $cli->output( $message );
     $offset = 0;
 
     $itemCounter = 1;
@@ -194,6 +197,11 @@ foreach ( $sendObjectList as $sendObject )
             // wait for 2/10 seconds
             usleep( 200000 );
         }
+        
+        // Wait for x seconds before going on to next sending session
+        $message = "Waiting a little bit before going on to next sending session...";
+        $cli->output( $message );
+        usleep( $cjwIni->variable('NewsletterMailSettings', 'DelayBeforeNextSendingSession')*1000000 );
     }
 
     // all send_items of sendobject are send? if yes set status == PROCESS_FINISHED
