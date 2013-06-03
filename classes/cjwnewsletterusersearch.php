@@ -57,7 +57,7 @@ class CjwNewsletterUserSearch extends CjwNewsletterUser
             $customCondsArray=array();
             foreach($strArray as $str) {
             	$str=$db->escapeString( $str );
-            	$customCondsArray[] = " (email like \"%$str%\" OR first_name like \"%$str%\" OR last_name like \"%$str%\") ";
+            	$customCondsArray[] = " (email like '%$str%' OR first_name like '%$str%' OR last_name like '%$str%') ";
             }
             $customConds.=implode($logic,$customCondsArray);
         }
