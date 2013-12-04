@@ -10,12 +10,9 @@
  * @filesource
  */
 
-require_once( 'kernel/common/i18n.php' );
-include_once( 'kernel/common/template.php' );
-
 $module = $Params['Module'];
 $http = eZHTTPTool::instance();
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 // ezuser, anonym or per hash
 
@@ -118,7 +115,8 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
     $messageArray['email']        = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Email'),
                                            'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must provide a valid email address.' ) );
     $messageArray['generic']      = array( 'field_key'   => '',
-                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'Please fill in all required fields') );
+                                           'message'     => ezi18n( 'cjw_newsletter/subscription', 'Please fill in all required fields') );
+
 
     $requiredSubscriptionFields = array( 'list_array', 'email' );
     $ini = new eZINI('cjw_newsletter.ini');
@@ -279,7 +277,7 @@ $Result = array();
 $Result['content'] = $tpl->fetch( $templateFile );
 
 $Result['path'] =  array( array( 'url'  => false,
-                                 'text' => ezi18n( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezpI18n::tr( 'cjw_newsletter/path', 'Newsletter' ) ),
                           array( 'url'  => false,
-                                 'text' => ezi18n( 'cjw_newsletter/subscribe', 'Subscription form' ) ) );
+                                 'text' => ezpI18n::tr( 'cjw_newsletter/subscribe', 'Subscription form' ) ) );
 ?>
