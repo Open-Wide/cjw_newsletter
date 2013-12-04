@@ -104,18 +104,18 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
          }
     }
 
-    $messageArray['list_array']   = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Newsletter'),
-                                           'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must choose a list for subscription.' ) );
-    $messageArray['first_name']   = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'First name'),
-                                           'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must enter a first name.' ) );
-    $messageArray['last_name']    = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Last name'),
-                                           'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must enter a last name.' ) );
-    $messageArray['organisation'] = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Organisation'),
-                                           'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must enter an organisation.' ) );
-    $messageArray['email']        = array( 'field_key'   => ezi18n( 'cjw_newsletter/subscription', 'Email'),
-                                           'message'     => ezi18n( 'cjw_newsletter/subscription', 'You must provide a valid email address.' ) );
+    $messageArray['list_array']   = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'Newsletter'),
+                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'You must choose a list for subscription.' ) );
+    $messageArray['first_name']   = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'First name'),
+                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'You must enter a first name.' ) );
+    $messageArray['last_name']    = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'Last name'),
+                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'You must enter a last name.' ) );
+    $messageArray['organisation'] = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'Organisation'),
+                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'You must enter an organisation.' ) );
+    $messageArray['email']        = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'Email'),
+                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'You must provide a valid email address.' ) );
     $messageArray['generic']      = array( 'field_key'   => '',
-                                           'message'     => ezi18n( 'cjw_newsletter/subscription', 'Please fill in all required fields') );
+                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'Please fill in all required fields') );
 
 
     $requiredSubscriptionFields = array( 'list_array', 'email' );
