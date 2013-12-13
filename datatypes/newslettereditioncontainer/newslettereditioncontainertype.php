@@ -1,6 +1,6 @@
 <?php
 /**
- * File containing the NewsletterListType class
+ * File containing the NewsletterEditionContainerType class
  *
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
@@ -20,19 +20,19 @@
 
 require_once( 'kernel/common/i18n.php' );
 
-class NewsletterListType extends eZDataType
+class NewsletterEditionContainerType extends eZDataType
 {
 
-    const DATA_TYPE_STRING = 'newsletterlist';
+    const DATA_TYPE_STRING = 'newslettereditioncontainer';
 
     /**
      * Constructor
      *
      * @return void
      */
-    function NewsletterListType()
+    function NewsletterEditionContainerType()
     {
-        $this->eZDataType( self::DATA_TYPE_STRING, ezpI18n::tr( 'newsletter/datatypes', ' Newsletter List', 'Datatype name' ),
+        $this->eZDataType( self::DATA_TYPE_STRING, ezpI18n::tr( 'newsletter/datatypes', ' Newsletter Edition Container', 'Datatype name' ),
         array( 'serialize_supported' => true, 'translation_allowed' => false ) );
     }
 
@@ -99,11 +99,11 @@ class NewsletterListType extends eZDataType
         $validationErrorMesssageArray = array();
 
 
-        $prefix = $base . '_NewsletterList_';
+        $prefix = $base . '_NewsletterEditionContainer_';
         $postfix =  '_'. $contentObjectAttribute->attribute( 'id' );
 
 
-        // ContentObjectAttribute_NewsletterList_MainSiteaccess_123
+        // ContentObjectAttribute_NewsletterEditionContainer_MainSiteaccess_123
 
         $postListData = array();
         $postListData['main_siteaccess'] = $http->postVariable(  $prefix . 'MainSiteaccess' . $postfix );
@@ -124,7 +124,7 @@ class NewsletterListType extends eZDataType
                 case 'main_siteaccess':
                     if ( $postListData['main_siteaccess'] == '' )
                     {
-                        $validationErrorMesssageArray[] = ezpI18n::tr( 'newsletter/datatype/newsletterlist', "Main Siteaccess must be set", null , array(  ) );
+                        $validationErrorMesssageArray[] = ezpI18n::tr( 'newsletter/datatype/newslettereditioncontainer', "Main Siteaccess must be set", null , array(  ) );
                     }
                     else
                     {
@@ -137,7 +137,7 @@ class NewsletterListType extends eZDataType
                 case 'siteaccess_array':
                     if ( count( $postListData['siteaccess_array'] ) == 0 )
                     {
-                        $validationErrorMesssageArray[] = ezpI18n::tr( 'newsletter/datatype/newsletterlist', "You have to choose a siteaccess for the list", null , array(  ) );
+                        $validationErrorMesssageArray[] = ezpI18n::tr( 'newsletter/datatype/newslettereditioncontainer', "You have to choose a siteaccess for the list", null , array(  ) );
                     }
                     break;
                 */
@@ -145,20 +145,20 @@ class NewsletterListType extends eZDataType
                 case 'output_format_array':
                     if ( count( $postListData['output_format_array'] ) == 0 )
                     {
-                        $validationErrorMesssageArray[] = ezpI18n::tr( 'newsletter/datatype/newsletterlist', "You have to choose an output format", null , array(  ) );
+                        $validationErrorMesssageArray[] = ezpI18n::tr( 'newsletter/datatype/newslettereditioncontainer', "You have to choose an output format", null , array(  ) );
                     }
                     break;
 
                 case 'email_sender':
                     if ( $postListData['email_sender'] == '' or !eZMail::validate( $postListData['email_sender'] )  )
                     {
-                        $validationErrorMesssageArray[] = ezpI18n::tr( 'newsletter/datatype/newsletterlist', "You have to set a valid email adress", null , array(  ) );
+                        $validationErrorMesssageArray[] = ezpI18n::tr( 'newsletter/datatype/newslettereditioncontainer', "You have to set a valid email adress", null , array(  ) );
                     }
                     break;
                 case 'email_receiver_test':
                     if ( $postListData['email_receiver_test'] == ''  )
                     {
-                        $validationErrorMesssageArray[] = ezpI18n::tr( 'newsletter/datatype/newsletterlist', "You have to set a valid semder email", null , array(  ) );
+                        $validationErrorMesssageArray[] = ezpI18n::tr( 'newsletter/datatype/newslettereditioncontainer', "You have to set a valid semder email", null , array(  ) );
                        }
                        else
                        {
@@ -168,7 +168,7 @@ class NewsletterListType extends eZDataType
                             // check if email
                             if ( eZMail::validate( $reciever ) == false )
                             {
-                                $validationErrorMesssageArray[] = ezpI18n::tr( 'newsletter/datatype/newsletterlist', "You have to set a valid semder email adress >> $reciever", null , array(  ) );
+                                $validationErrorMesssageArray[] = ezpI18n::tr( 'newsletter/datatype/newslettereditioncontainer', "You have to set a valid semder email adress >> $reciever", null , array(  ) );
                             }
                         }
                        }
@@ -180,18 +180,18 @@ class NewsletterListType extends eZDataType
         }
 
 
-       $listObject = new NewsletterList(
+       $listObject = new NewsletterEditionContainer(
                             array(
                             'contentobject_attribute_id' => $contentObjectAttribute->attribute( 'id' ),
                             'contentobject_attribute_version' => $contentObjectAttribute->attribute( 'version' ),
                             'contentobject_id' => $contentObjectAttribute->attribute( 'contentobject_id' ),
                             'contentclass_id' =>  $contentclassAttribute->attribute('contentclass_id'),
                             'main_siteaccess' => $postListData['main_siteaccess'],
-                            'siteaccess_array_string' => NewsletterList::arrayToString( $postListData['siteaccess_array'] ),
+                            'siteaccess_array_string' => NewsletterEditionContainer::arrayToString( $postListData['siteaccess_array'] ),
                             'email_sender_name' => $postListData['email_sender_name'],
                             'email_sender' => $postListData['email_sender'],
                             'email_receiver_test' => $postListData['email_receiver_test'],
-                            'output_format_array_string' => NewsletterList::arrayToString( $postListData['output_format_array'] ),
+                            'output_format_array_string' => NewsletterEditionContainer::arrayToString( $postListData['output_format_array'] ),
                             'auto_approve_registered_user' => $postListData['auto_approve_registered_user'],
                             'skin_name' => $postListData['skin_name'],
                             'personalize_content' => $postListData['personalize_content']
@@ -253,7 +253,7 @@ class NewsletterListType extends eZDataType
         {
             $data = $originalContentObjectAttribute->attribute( 'content' );
 
-            if ( $data instanceof NewsletterList )
+            if ( $data instanceof NewsletterEditionContainer )
             {
                 $data->setAttribute( 'contentobject_attribute_id', $contentObjectAttribute->attribute( 'id' ) );
                 $data->setAttribute( 'contentobject_attribute_version', $contentObjectAttribute->attribute( 'version' ) );
@@ -275,10 +275,10 @@ class NewsletterListType extends eZDataType
         $id = $contentObjectAttribute->attribute( 'id' );
         $version = $contentObjectAttribute->attribute( 'version' );
 
-        $dataObject = NewsletterList::fetch( $id, $version );
+        $dataObject = NewsletterEditionContainer::fetch( $id, $version );
         if ( !is_object( $dataObject ) )
         {
-            $dataObject = new NewsletterList();
+            $dataObject = new NewsletterEditionContainer();
             $dataObject->setAttribute( 'contentobject_attribute_id', $contentObjectAttribute->attribute( 'id' ) );
             $dataObject->setAttribute( 'contentobject_attribute_version', $contentObjectAttribute->attribute( 'version' ) );
             $dataObject->setAttribute( 'contentobject_id', $contentObjectAttribute->attribute( 'contentobject_id' ) );
@@ -294,7 +294,7 @@ class NewsletterListType extends eZDataType
      */
     function classAttributeContent( $classAttribute )
     {
-        $attrValue = array( 'available_output_format_array' => NewsletterList::getAvailableOutputFormatArray() );
+        $attrValue = array( 'available_output_format_array' => NewsletterEditionContainer::getAvailableOutputFormatArray() );
         return $attrValue;
     }
 
@@ -305,7 +305,7 @@ class NewsletterListType extends eZDataType
      */
     function hasObjectAttributeContent( $contentObjectAttribute )
     {
-        if ( NewsletterListType::objectAttributeContent( $contentObjectAttribute ) )
+        if ( NewsletterEditionContainerType::objectAttributeContent( $contentObjectAttribute ) )
             return true;
         else
             return false;
@@ -385,7 +385,7 @@ class NewsletterListType extends eZDataType
      */
     function deleteStoredObjectAttribute( $contentObjectAttribute, $version = null )
     {
-        $object = NewsletterList::fetch( $contentObjectAttribute->attribute( "id" ), $contentObjectAttribute->attribute( "version" ) );
+        $object = NewsletterEditionContainer::fetch( $contentObjectAttribute->attribute( "id" ), $contentObjectAttribute->attribute( "version" ) );
         if ( is_object( $object ) )
             $object->remove();
     }
@@ -426,7 +426,7 @@ class NewsletterListType extends eZDataType
         {
             $NewsletterContent = $objectAttribute->attribute('content');
             $NewsletterContentSerialized = serialize( $NewsletterContent );
-            $dataTextNode = $dom->createElement( 'newsletterlist' );
+            $dataTextNode = $dom->createElement( 'newslettereditioncontainer' );
             $serializedNode = $dom->createCDATASection( $NewsletterContentSerialized );
             $dataTextNode->appendChild( $serializedNode );
             $node->appendChild( $dataTextNode );
@@ -470,17 +470,17 @@ class NewsletterListType extends eZDataType
         }
         else
         {
-            $NewsletterListObjectSerialized = $attributeNode->getElementsByTagName( 'newsletterlist' )->item(0)->textContent;
-            $NewsletterListObject = unserialize( $NewsletterListObjectSerialized );
+            $NewsletterEditionContainerObjectSerialized = $attributeNode->getElementsByTagName( 'newslettereditioncontainer' )->item(0)->textContent;
+            $NewsletterEditionContainerObject = unserialize( $NewsletterEditionContainerObjectSerialized );
 
-            if ( is_object( $NewsletterListObject ) )
+            if ( is_object( $NewsletterEditionContainerObject ) )
             {
-                 $NewsletterListObject->setAttribute( 'contentobject_attribute_id', $objectAttribute->attribute( 'id' ) );
-                 $NewsletterListObject->setAttribute( 'contentobject_attribute_version', $objectAttribute->attribute( 'version' ) );
-                 $NewsletterListObject->setAttribute( 'contentobject_id', $objectAttribute->attribute( 'contentobject_id' ) );
-                 $NewsletterListObject->setAttribute( 'contentclass_id',  $contentclassAttribute->attribute('contentclass_id') );
-                 $NewsletterListObject->store();
-                 $objectAttribute->setAttribute( 'content', $NewsletterListObject );
+                 $NewsletterEditionContainerObject->setAttribute( 'contentobject_attribute_id', $objectAttribute->attribute( 'id' ) );
+                 $NewsletterEditionContainerObject->setAttribute( 'contentobject_attribute_version', $objectAttribute->attribute( 'version' ) );
+                 $NewsletterEditionContainerObject->setAttribute( 'contentobject_id', $objectAttribute->attribute( 'contentobject_id' ) );
+                 $NewsletterEditionContainerObject->setAttribute( 'contentclass_id',  $contentclassAttribute->attribute('contentclass_id') );
+                 $NewsletterEditionContainerObject->store();
+                 $objectAttribute->setAttribute( 'content', $NewsletterEditionContainerObject );
             }
             else
             {
@@ -505,6 +505,6 @@ class NewsletterListType extends eZDataType
     }
 }
 
-eZDataType::register( NewsletterListType::DATA_TYPE_STRING, 'NewsletterListType' );
+eZDataType::register( NewsletterEditionContainerType::DATA_TYPE_STRING, 'NewsletterEditionContainerType' );
 
 ?>

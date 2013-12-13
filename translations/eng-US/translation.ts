@@ -725,7 +725,7 @@
     </message>
 </context>
 <context>
-    <name>newsletter/datatype/newsletterlist</name>
+    <name>newsletter/datatype/newslettereditioncontainer</name>
     <message>
         <source>Main Siteaccess must be set</source>
         <translation type="unfinished"></translation>

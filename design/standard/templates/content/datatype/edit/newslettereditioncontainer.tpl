@@ -44,12 +44,12 @@
 
 <hr>
 
-<label>* {'List options'|i18n('newsletter/datatype/newsletterlist')}</label>
+<label>* {'List options'|i18n('newsletter/datatype/newslettereditioncontainer')}</label>
 <table class="list" cellspacing="0">
 <tr>
-    <th>{'Render output'|i18n('newsletter/datatype/newsletterlist')}</th>
-    <th>{'Can subscribe'|i18n('newsletter/datatype/newsletterlist')}</th>
-    <th>{'Siteaccess'|i18n('newsletter/datatype/newsletterlist')}</th>
+    <th>{'Render output'|i18n('newsletter/datatype/newslettereditioncontainer')}</th>
+    <th>{'Can subscribe'|i18n('newsletter/datatype/newslettereditioncontainer')}</th>
+    <th>{'Siteaccess'|i18n('newsletter/datatype/newslettereditioncontainer')}</th>
 </tr>
 {foreach $available_siteaccess_list as $sitaccess_name => $siteaccess_info sequence array('bglight','bgdark') as $style}
 <tr class="{$style}">
@@ -61,7 +61,7 @@
 </table>
 
 <hr>
-<label>{'Available newsletter output formats'|i18n('newsletter/datatype/newsletterlist')}</label>
+<label>{'Available newsletter output formats'|i18n('newsletter/datatype/newslettereditioncontainer')}</label>
 <ul>
 {foreach $available_output_format_list as $output_format_id => $output_format_name}
 <li><input type="checkbox" name="{$attribute_base}_NewsletterList_OutputFormatArray_{$attribute.id}[]" value="{$output_format_id}" {if is_set( $output_format_array[ $output_format_id ] )}checked{/if}> {$output_format_name|wash}</li>
@@ -70,23 +70,23 @@
 
 <hr>
 {* auto_approve_registerd_user *}
-<label>{'Automatically approve subscription after user registration?'|i18n('newsletter/datatype/newsletterlist')}</label>
-<input type="radio" name="{$attribute_base}_NewsletterList_AutoApproveRegisterdUser_{$attribute.id}" value="0"{$auto_approve_registered_user|choose(' checked', '')}/> {'no'|i18n('newsletter/datatype/newsletterlist')}
-<input type="radio" name="{$attribute_base}_NewsletterList_AutoApproveRegisterdUser_{$attribute.id}" value="1"{$auto_approve_registered_user|choose('', ' checked')}/> {'yes'|i18n('newsletter/datatype/newsletterlist')}
+<label>{'Automatically approve subscription after user registration?'|i18n('newsletter/datatype/newslettereditioncontainer')}</label>
+<input type="radio" name="{$attribute_base}_NewsletterList_AutoApproveRegisterdUser_{$attribute.id}" value="0"{$auto_approve_registered_user|choose(' checked', '')}/> {'no'|i18n('newsletter/datatype/newslettereditioncontainer')}
+<input type="radio" name="{$attribute_base}_NewsletterList_AutoApproveRegisterdUser_{$attribute.id}" value="1"{$auto_approve_registered_user|choose('', ' checked')}/> {'yes'|i18n('newsletter/datatype/newslettereditioncontainer')}
 
 
 <hr>
 {* email_sender *}
-<label>* {'Newsletter sender email'|i18n('newsletter/datatype/newsletterlist')}</label>
+<label>* {'Newsletter sender email'|i18n('newsletter/datatype/newslettereditioncontainer')}</label>
 <input type="text" class="halfbox" name="{$attribute_base}_NewsletterList_EmailSender_{$attribute.id}" value="{$email_sender}" />
 
 {* email_sender_name *}
-<label>{'Newsletter sender name'|i18n('newsletter/datatype/newsletterlist')}</label>
+<label>{'Newsletter sender name'|i18n('newsletter/datatype/newslettereditioncontainer')}</label>
 <input type="text" class="halfbox" name="{$attribute_base}_NewsletterList_EmailSenderName_{$attribute.id}" value="{$email_sender_name}" />
 
 <hr>
 {* email_reciever_test *}
-<label>{'Newsletter default test receiver email'|i18n('newsletter/datatype/newsletterlist')}</label>
+<label>{'Newsletter default test receiver email'|i18n('newsletter/datatype/newslettereditioncontainer')}</label>
 <input type="text" class="halfbox" name="{$attribute_base}_NewsletterList_EmailReceiverTest_{$attribute.id}" value="{$email_receiver_test}" />
 
 <hr>
@@ -94,16 +94,16 @@
 
 {*def $available_skin_array=array('default', 'uemis_com', 'uemis_org')*}
 
-<label>{'Newsletter skin name'|i18n('newsletter/datatype/newsletterlist')}</label>
+<label>{'Newsletter skin name'|i18n('newsletter/datatype/newslettereditioncontainer')}</label>
 
 {foreach $available_skin_array as $skin_name_2}
 <input type="radio" name="{$attribute_base}_NewsletterList_SkinName_{$attribute.id}" value="{$skin_name_2}" {if or( eq( $skin_name, $skin_name_2), eq( $available_skin_array|count(), 1) ) }checked="checked"{/if} />{$skin_name_2|wash}
 {/foreach}
 
 <hr>
-<label>{'Personalize newsletter if data are available?'|i18n('newsletter/datatype/newsletterlist')} {*# {$personalize_content} #*}</label>
-<input type="radio" name="{$attribute_base}_NewsletterList_PersonalizeContent_{$attribute.id}" value="0"{$personalize_content|choose(' checked', '')} /> {'no'|i18n('newsletter/datatype/newsletterlist')}
-<input type="radio" name="{$attribute_base}_NewsletterList_PersonalizeContent_{$attribute.id}" value="1"{$personalize_content|choose('', ' checked')} /> {'yes'|i18n('newsletter/datatype/newsletterlist')}
+<label>{'Personalize newsletter if data are available?'|i18n('newsletter/datatype/newslettereditioncontainer')} {*# {$personalize_content} #*}</label>
+<input type="radio" name="{$attribute_base}_NewsletterList_PersonalizeContent_{$attribute.id}" value="0"{$personalize_content|choose(' checked', '')} /> {'no'|i18n('newsletter/datatype/newslettereditioncontainer')}
+<input type="radio" name="{$attribute_base}_NewsletterList_PersonalizeContent_{$attribute.id}" value="1"{$personalize_content|choose('', ' checked')} /> {'yes'|i18n('newsletter/datatype/newslettereditioncontainer')}
 
 {*
 
