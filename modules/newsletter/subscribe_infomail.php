@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -41,7 +41,7 @@ if ( $module->isCurrentAction( 'SubscribeInfoMail' ) )
         {
 
             // ansonsten tue nix
-            $newsletterUser = CjwNewsletterUser::fetchByEmail( $email );
+            $newsletterUser = NewsletterUser::fetchByEmail( $email );
 
             if ( $newsletterUser )
             {
@@ -56,8 +56,8 @@ if ( $module->isCurrentAction( 'SubscribeInfoMail' ) )
         }
         else
         {
-            $warningArr[] = array( 'field_key' => ezpI18n::tr( 'cjw_newsletter/subscribe_infomail','email'),
-                                   'message' => ezpI18n::tr( 'cjw_newsletter/subscribe_infomail', 'Please input a valid e-mail address!' ) );
+            $warningArr[] = array( 'field_key' => ezpI18n::tr( 'newsletter/subscribe_infomail','email'),
+                                   'message' => ezpI18n::tr( 'newsletter/subscribe_infomail', 'Please input a valid e-mail address!' ) );
         }
     }
 
@@ -71,7 +71,7 @@ $Result = array();
 
 $Result['content'] = $tpl->fetch( $templateFile );
 $Result['path'] = array( array( 'url' => false,
-                                'text' => ezpI18n::tr( 'cjw_newsletter/subscribe_info', 'Get subscribe information' ) ) );
+                                'text' => ezpI18n::tr( 'newsletter/subscribe_info', 'Get subscribe information' ) ) );
 
 
 ?>

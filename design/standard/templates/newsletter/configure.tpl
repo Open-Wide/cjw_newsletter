@@ -5,20 +5,20 @@
     <div class="border-tl"><div class="border-tr"><div class="border-tc"></div></div></div>
     <div class="border-ml"><div class="border-mr"><div class="border-mc float-break">
 
-    <h1>{'Configure newsletter settings'|i18n( 'cjw_newsletter/configure' )}</h1>
+    <h1>{'Configure newsletter settings'|i18n( 'newsletter/configure' )}</h1>
 
-    {def $newsletter_root_node_id = ezini( 'NewsletterSettings', 'RootFolderNodeId', 'cjw_newsletter.ini' )
+    {def $newsletter_root_node_id = ezini( 'NewsletterSettings', 'RootFolderNodeId', 'newsletter.ini' )
          $available_output_formats = 2} {* for tables *}
 
     {if is_set( $confirm_all_result )}
     <div class="message-feedback">
-         <h2>{'Newsletter confirmation successful'|i18n( 'cjw_newsletter/configure' )}</h2>
+         <h2>{'Newsletter confirmation successful'|i18n( 'newsletter/configure' )}</h2>
     </div>
     {/if}
 
     {if is_set( $changes_saved )}
     <div class="message-feedback">
-        <h2>{'Changes saved'|i18n( 'cjw_newsletter/configure' )}</h2>
+        <h2>{'Changes saved'|i18n( 'newsletter/configure' )}</h2>
     </div>
     {/if}
 
@@ -26,7 +26,7 @@
     {if and( is_set( $warning_array ), $warning_array|count|ne( 0 ) )}
     <div class="block">
         <div class="message-warning">
-            <h2>{'Input did not validate'|i18n('cjw_newsletter/subscribe')}</h2>
+            <h2>{'Input did not validate'|i18n('newsletter/subscribe')}</h2>
             <ul>
             {foreach $warning_array as $index => $messageArrayItem}
                 <li><span class="key">{$messageArrayItem.field_key|wash}: </span><span class="text">{$messageArrayItem.message|wash()}</span></li>
@@ -41,23 +41,23 @@
     {* fetch all available newsletter systems *}
     {def $newsletter_system_node_list = fetch( 'content', 'tree', hash('parent_node_id', $newsletter_root_node_id,
                                                             'class_filter_type', 'include',
-                                                            'class_filter_array', array('cjw_newsletter_system'),
+                                                            'class_filter_array', array('newsletter_system'),
                                                             'sort_by', array( 'name', true() ),
                                                             'limitation', hash( ) )) }
 
     {* check if a newsletter_system is available *}
     {if $newsletter_system_node_list|count|eq(0)}
         <p>
-            {'No newsletters available.'|i18n( 'cjw_newsletter/configure' )}
+            {'No newsletters available.'|i18n( 'newsletter/configure' )}
         </p>
     {else}
     {* for every newsletter_system check if there are newsletter_list where a subscription for current siteaccess is possible *}
         {def $newsletter_list_node_list = fetch( 'content', 'tree', hash('parent_node_id', $newsletter_system_node_list.0.node_id,
                                                                 'extended_attribute_filter',
-                                                                      hash( 'id', 'CjwNewsletterListFilter',
+                                                                      hash( 'id', 'NewsletterListFilter',
                                                                             'params', hash( 'siteaccess', array( 'current_siteaccess' ) ) ),
                                                                 'class_filter_type', 'include',
-                                                                'class_filter_array', array('cjw_newsletter_list'),
+                                                                'class_filter_array', array('newsletter_list'),
                                                                 'limitation', hash() ))
              $newsletter_available=false()
         }
@@ -65,10 +65,10 @@
         {foreach $newsletter_system_node_list as $system_node}
             {set $newsletter_list_node_list = fetch( 'content', 'tree', hash('parent_node_id', $system_node.node_id,
                                                                 'extended_attribute_filter',
-                                                                      hash( 'id', 'CjwNewsletterListFilter',
+                                                                      hash( 'id', 'NewsletterListFilter',
                                                                             'params', hash( 'siteaccess', array( 'current_siteaccess' ) ) ),
                                                                 'class_filter_type', 'include',
-                                                                'class_filter_array', array('cjw_newsletter_list'),
+                                                                'class_filter_array', array('newsletter_list'),
                                                                 'limitation', hash( ) )) }
             {if $newsletter_list_node_list|count()|gt(0)}
                 {set $newsletter_available=true()}
@@ -79,23 +79,23 @@
         {* no nl_list available *}
         {if $newsletter_available|not()}
             <p>
-                {'No newsletters available.'|i18n( 'cjw_newsletter/configure' )}
+                {'No newsletters available.'|i18n( 'newsletter/configure' )}
             </p>
         {* nl_list available *}
         {else}
-                <p>{'Here you can edit your newsletter attributes.'|i18n( 'cjw_newsletter/configure' )}</p>
-                <p>{'Please select the newsletter you wish to subscribe to. Deselect to unsubscribe.'|i18n( 'cjw_newsletter/configure' )}</p>
-                <p>{'You can also edit the small boxes "first name" and "last name".'|i18n( 'cjw_newsletter/configure' )}</p>
-                <p>{'Please register another email address to subscribe to the same newsletter twice.'|i18n( 'cjw_newsletter/configure' )}</p>
+                <p>{'Here you can edit your newsletter attributes.'|i18n( 'newsletter/configure' )}</p>
+                <p>{'Please select the newsletter you wish to subscribe to. Deselect to unsubscribe.'|i18n( 'newsletter/configure' )}</p>
+                <p>{'You can also edit the small boxes "first name" and "last name".'|i18n( 'newsletter/configure' )}</p>
+                <p>{'Please register another email address to subscribe to the same newsletter twice.'|i18n( 'newsletter/configure' )}</p>
 
                 {foreach $newsletter_system_node_list as $system_node}
                     {def $newsletter_list_node_list = fetch( 'content', 'tree',
                                                                 hash('parent_node_id', $system_node.node_id,
                                                                      'extended_attribute_filter',
-                                                                          hash( 'id', 'CjwNewsletterListFilter',
+                                                                          hash( 'id', 'NewsletterListFilter',
                                                                                 'params', hash( 'siteaccess', array( 'current_siteaccess' ) ) ),
                                                                      'class_filter_type', 'include',
-                                                                     'class_filter_array', array('cjw_newsletter_list'),
+                                                                     'class_filter_array', array('newsletter_list'),
                                                                      'limitation', hash( ) )) }
                 {if $newsletter_list_node_list|count|ne(0)}
                 <div class="newsletter-system-design">
@@ -175,7 +175,7 @@
 
                 {* salutation *}
                 <div class="block" id="nl-salutation">
-                    <label>{"Salutation"|i18n( 'cjw_newsletter/configure' )}:</label>
+                    <label>{"Salutation"|i18n( 'newsletter/configure' )}:</label>
                     {foreach $available_saluation_array as $saluation_id => $salutataion_name}
                         <input type="radio" name="Subscription_Salutation" value="{$saluation_id}"{if $newsletter_user.salutation|eq($saluation_id)} checked="checked"{/if} title="{$salutataion_name|wash}" />{$salutataion_name|wash}
                     {/foreach}
@@ -183,28 +183,28 @@
 
                 {* First name. *}
                 <div class="block">
-                    <label for="Subscription_FirstName">{"First name"|i18n( 'cjw_newsletter/configure' )}:</label>
-                    <input class="halfbox" id="Subscription_FirstName" type="text" name="Subscription_FirstName" value="{$newsletter_user.first_name|wash}" title="{'First name of the subscriber.'|i18n( 'cjw_newsletter/configure' )}"{*cond( is_set( $user ), 'disabled="disabled"', '')*} />
+                    <label for="Subscription_FirstName">{"First name"|i18n( 'newsletter/configure' )}:</label>
+                    <input class="halfbox" id="Subscription_FirstName" type="text" name="Subscription_FirstName" value="{$newsletter_user.first_name|wash}" title="{'First name of the subscriber.'|i18n( 'newsletter/configure' )}"{*cond( is_set( $user ), 'disabled="disabled"', '')*} />
                 </div>
 
                 {* Last name. *}
                 <div class="block">
-                    <label for="Subscription_LastName">{"Last name"|i18n( 'cjw_newsletter/configure' )}:</label>
+                    <label for="Subscription_LastName">{"Last name"|i18n( 'newsletter/configure' )}:</label>
                     <input class="halfbox" id="Subscription_LastName" type="text" name="Subscription_LastName" value="{$newsletter_user.last_name|wash}"{*cond( is_set( $user ), 'disabled="disabled"', '')*} />
                 </div>
 
                 {* Email. *}
                 <div class="block">
-                    <label for="Subscription_Email">{"Email"|i18n( 'cjw_newsletter/configure' )}*:</label>
-                    <input class="halfbox" id="Subscription_Email" type="text" name="Subscription_Email" value="{$newsletter_user.email|wash}" title="{'Email of the subscriber.'|i18n( 'cjw_newsletter/configure' )}" {cond( is_set( $newsletter_user ), 'disabled="disabled"', '')} />
+                    <label for="Subscription_Email">{"Email"|i18n( 'newsletter/configure' )}*:</label>
+                    <input class="halfbox" id="Subscription_Email" type="text" name="Subscription_Email" value="{$newsletter_user.email|wash}" title="{'Email of the subscriber.'|i18n( 'newsletter/configure' )}" {cond( is_set( $newsletter_user ), 'disabled="disabled"', '')} />
                 </div>
 
                 <div class="block">
-                    <input class="button" type="submit" name="ConfirmButton" value="{'Confirm'|i18n( 'cjw_newsletter/configure' )}" title="{'Add to subscription.'|i18n( 'cjw_newsletter/configure' )}" />
+                    <input class="button" type="submit" name="ConfirmButton" value="{'Confirm'|i18n( 'newsletter/configure' )}" title="{'Add to subscription.'|i18n( 'newsletter/configure' )}" />
                 </div>
 
                 <div class="block">
-                {'* mandatory fields'|i18n( 'cjw_newsletter/configure' )}
+                {'* mandatory fields'|i18n( 'newsletter/configure' )}
                 </div>
             </form>
 

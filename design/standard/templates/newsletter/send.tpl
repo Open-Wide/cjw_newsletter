@@ -37,7 +37,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{"Send out newsletter"|i18n("cjw_newsletter/send")} - {$node_name|wash}</h1>
+                                <h1 class="context-title">{"Send out newsletter"|i18n("newsletter/send")} - {$node_name|wash}</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -56,7 +56,7 @@
                         <div class="block float-break">
 
                             {if $has_message|not}
-                                {'Do you really want to send out this newsletter?'|i18n( 'cjw_newsletter/send.tpl' )}
+                                {'Do you really want to send out this newsletter?'|i18n( 'newsletter/send.tpl' )}
                             {/if}
 
                         </div>
@@ -82,10 +82,10 @@
                                                 <input type="hidden" name="ContentObjectID" value="{$node_id}" />
                                                 <input type="hidden" name="mail_newsletter" value="true" />
                                                 <input type="hidden" name="SendOutConfirmationInput" value="true" />
-                                                <input class="defaultbutton" type="submit" name="SendNewsletterButton" value="{"Send Newsletter"|i18n("cjw_newsletter/send")}" />
+                                                <input class="defaultbutton" type="submit" name="SendNewsletterButton" value="{"Send Newsletter"|i18n("newsletter/send")}" />
                                             </form>
 
-                                            <a href={$node_url|ezurl}><input type="button" class="button" value="{"Cancel"|i18n("cjw_newsletter/send")}" /></a>
+                                            <a href={$node_url|ezurl}><input type="button" class="button" value="{"Cancel"|i18n("newsletter/send")}" /></a>
 
                                         </div>
                                     </div>{* DESIGN: Control bar END *}

@@ -12,12 +12,12 @@
     <div class="border-tl"><div class="border-tr"><div class="border-tc"></div></div></div>
     <div class="border-ml"><div class="border-mr"><div class="border-mc float-break">
 
-    {def $newsletter_root_node_id = ezini( 'NewsletterSettings', 'RootFolderNodeId', 'cjw_newsletter.ini' )
+    {def $newsletter_root_node_id = ezini( 'NewsletterSettings', 'RootFolderNodeId', 'newsletter.ini' )
          $available_output_formats = 2
 
          $newsletter_system_node_list = fetch( 'content', 'tree', hash( 'parent_node_id', $newsletter_root_node_id,
                                                                         'class_filter_type', 'include',
-                                                                        'class_filter_array', array( 'cjw_newsletter_system' ),
+                                                                        'class_filter_array', array( 'newsletter_system' ),
                                                                         'sort_by', array( 'name', true() ),
                                                                         'limitation', hash( )
                                                                       )
@@ -25,21 +25,21 @@
          $newsletter_list_count = fetch( 'content', 'tree_count',
                                                             hash('parent_node_id', $newsletter_root_node_id,
                                                                  'extended_attribute_filter',
-                                                                      hash( 'id', 'CjwNewsletterListFilter',
+                                                                      hash( 'id', 'NewsletterListFilter',
                                                                             'params', hash( 'siteaccess', array( 'current_siteaccess' ) ) ),
                                                                  'class_filter_type', 'include',
-                                                                 'class_filter_array', array('cjw_newsletter_list'),
+                                                                 'class_filter_array', array('newsletter_list'),
                                                                  'limitation', hash() )
                                                        )}
 
-    <h1>{'Newsletter subscribe'|i18n( 'cjw_newsletter/subscribe' )}</h1>
+    <h1>{'Newsletter subscribe'|i18n( 'newsletter/subscribe' )}</h1>
 
 
     {* check if nl system is available *}
     {if or( $newsletter_system_node_list|count()|eq(0), $newsletter_list_count|eq(0) )}
         <div class="block">
             <p>
-                {'No newsletters available.'|i18n( 'cjw_newsletter/subscribe' )}
+                {'No newsletters available.'|i18n( 'newsletter/subscribe' )}
             </p>
         </div>
     {else}
@@ -50,7 +50,7 @@
             {if and( is_set( $warning_array ), $warning_array|count|ne( 0 ) )}
             <div class="block">
                 <div class="message-warning">
-                    <h2>{'Input did not validate'|i18n('cjw_newsletter/subscribe')}</h2>
+                    <h2>{'Input did not validate'|i18n('newsletter/subscribe')}</h2>
                     <ul>
                     {foreach $warning_array as $message_array_item}
                         <li>{if $message_array_item.field_key|eq('')|not}<span class="key">{$message_array_item.field_key|wash}: </span>{/if}<span class="text">{$message_array_item.message|wash()}</span></li>
@@ -62,10 +62,10 @@
 
             <div class="block header">
                 <p>
-                    {'Here you can subscribe to one of our newsletters.'|i18n( 'cjw_newsletter/subscribe' )}
+                    {'Here you can subscribe to one of our newsletters.'|i18n( 'newsletter/subscribe' )}
                 </p>
                 <p>
-                    {'Please fill in the boxes "first name" and "last name" and enter your e-mail address in the corresponding field. Then, select the newsletter you are interested in and the format you prefer.'|i18n( 'cjw_newsletter/subscribe' )}
+                    {'Please fill in the boxes "first name" and "last name" and enter your e-mail address in the corresponding field. Then, select the newsletter you are interested in and the format you prefer.'|i18n( 'newsletter/subscribe' )}
                 </p>
             </div>
 
@@ -75,10 +75,10 @@
                     {def $newsletter_list_node_list = fetch( 'content', 'tree',
                                                                 hash('parent_node_id', $system_node.node_id,
                                                                      'extended_attribute_filter',
-                                                                          hash( 'id', 'CjwNewsletterListFilter',
+                                                                          hash( 'id', 'NewsletterListFilter',
                                                                                 'params', hash( 'siteaccess', array( 'current_siteaccess' ) ) ),
                                                                      'class_filter_type', 'include',
-                                                                     'class_filter_array', array('cjw_newsletter_list'),
+                                                                     'class_filter_array', array('newsletter_list'),
                                                                      'limitation', hash() )
                                                            )
                          $newsletter_list_node_list_count = $newsletter_list_node_list|count
@@ -149,7 +149,7 @@
 
             {* salutation *}
             <div class="block" id="nl-salutation">
-                <label>{"Salutation"|i18n( 'cjw_newsletter/subscribe' )}:</label>
+                <label>{"Salutation"|i18n( 'newsletter/subscribe' )}:</label>
                 {foreach $available_salutation_array as $salutation_id => $salutation_name}
                     <input type="radio" name="Subscription_Salutation" value="{$salutation_id|wash}"{if and( is_set( $subscription_data_array['salutation'] ), $subscription_data_array['salutation']|eq( $salutation_id ) )} checked="checked"{/if} title="{$salutation_name|wash}" />{$salutation_name|wash}&nbsp;
                 {/foreach}
@@ -157,47 +157,47 @@
 
             {* First name. *}
             <div class="block">
-                <label for="Subscription_FirstName">{"First name"|i18n( 'cjw_newsletter/subscribe' )}:</label>
-                <input class="halfbox" id="Subscription_FirstName" type="text" name="Subscription_FirstName" value="{cond( and( is_set( $user), $subscription_data_array['first_name']|eq('') ), $user.contentobject.data_map.first_name.content|wash , $subscription_data_array['first_name'] )|wash}" title="{'First name of the subscriber.'|i18n( 'cjw_newsletter/subscribe' )}"
+                <label for="Subscription_FirstName">{"First name"|i18n( 'newsletter/subscribe' )}:</label>
+                <input class="halfbox" id="Subscription_FirstName" type="text" name="Subscription_FirstName" value="{cond( and( is_set( $user), $subscription_data_array['first_name']|eq('') ), $user.contentobject.data_map.first_name.content|wash , $subscription_data_array['first_name'] )|wash}" title="{'First name of the subscriber.'|i18n( 'newsletter/subscribe' )}"
                        {*cond( is_set( $user ), 'disabled="disabled"', '')*} />
             </div>
 
             {* Last name. *}
             <div class="block">
-                <label for="Subscription_LastName">{"Last name"|i18n( 'cjw_newsletter/subscribe' )}:</label>
-                <input class="halfbox" id="Subscription_LastName" type="text" name="Subscription_LastName" value="{cond( and( is_set( $user ), $subscription_data_array['last_name']|eq('') ), $user.contentobject.data_map.last_name.content|wash , $subscription_data_array['last_name'] )|wash}" title="{'Last name of the subscriber.'|i18n( 'cjw_newsletter/subscribe' )}"
+                <label for="Subscription_LastName">{"Last name"|i18n( 'newsletter/subscribe' )}:</label>
+                <input class="halfbox" id="Subscription_LastName" type="text" name="Subscription_LastName" value="{cond( and( is_set( $user ), $subscription_data_array['last_name']|eq('') ), $user.contentobject.data_map.last_name.content|wash , $subscription_data_array['last_name'] )|wash}" title="{'Last name of the subscriber.'|i18n( 'newsletter/subscribe' )}"
                        {*cond( is_set( $user ), 'disabled="disabled"', '')*} />
             </div>
 
             {* Email. *}
             <div class="block">
-                <label for="Subscription_Email">{"E-mail"|i18n( 'cjw_newsletter/subscribe' )}*:</label>
-                <input class="halfbox" id="Subscription_Email" type="text" name="Subscription_Email" value="{cond( and( is_set( $user ), $subscription_data_array['email']|eq('') ), $user.email|wash(), $subscription_data_array['email']|wash )}" title="{'Email of the subscriber.'|i18n( 'cjw_newsletter/subscribe' )}" />
+                <label for="Subscription_Email">{"E-mail"|i18n( 'newsletter/subscribe' )}*:</label>
+                <input class="halfbox" id="Subscription_Email" type="text" name="Subscription_Email" value="{cond( and( is_set( $user ), $subscription_data_array['email']|eq('') ), $user.email|wash(), $subscription_data_array['email']|wash )}" title="{'Email of the subscriber.'|i18n( 'newsletter/subscribe' )}" />
             </div>
 
             <div class="block">
                 <input type="hidden" name="BackUrlInput" value="{cond( ezhttp_hasvariable('BackUrlInput'), ezhttp('BackUrlInput'), 'newsletter/subscribe'|ezurl('no'))}" />
-                <input class="button" type="submit" name="SubscribeButton" value="{'Subscribe'|i18n( 'cjw_newsletter/subscribe' )}" title="{'Add to subscription.'|i18n( 'cjw_newsletter/subscribe' )}" />
-                <a href={$node_url|ezurl}><input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'cjw_newsletter/subscribe' )}" /></a>
+                <input class="button" type="submit" name="SubscribeButton" value="{'Subscribe'|i18n( 'newsletter/subscribe' )}" title="{'Add to subscription.'|i18n( 'newsletter/subscribe' )}" />
+                <a href={$node_url|ezurl}><input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'newsletter/subscribe' )}" /></a>
             </div>
 
 
             <div class="block footer">
-                <h3>{'Data Protection'|i18n( 'cjw_newsletter/subscribe' )}:</h3>
-                <p>{'Your e-mail address will under no circumstances be passed on to unauthorized third parties.'|i18n( 'cjw_newsletter/subscribe' )}</p>
+                <h3>{'Data Protection'|i18n( 'newsletter/subscribe' )}:</h3>
+                <p>{'Your e-mail address will under no circumstances be passed on to unauthorized third parties.'|i18n( 'newsletter/subscribe' )}</p>
 
-                <h3>{'Further Options'|i18n( 'cjw_newsletter/subscribe' )}:</h3>
+                <h3>{'Further Options'|i18n( 'newsletter/subscribe' )}:</h3>
 
                 <p>
                 {def $link = concat('<a href=', '/newsletter/subscribe_infomail'|ezurl() ,'>' ) }
 
-                {"You want to %unsubscribelink or %changesubscribelink your profile?"|i18n('cjw_newsletter/subscribe',, hash( '%unsubscribelink' , concat( $link ,'unsubscribe'|i18n('cjw_newsletter/subscribe'), '</a>'),
-                                                                                                                            '%changesubscribelink' , concat( $link,'change'|i18n('cjw_newsletter/subscribe'), '</a>')
+                {"You want to %unsubscribelink or %changesubscribelink your profile?"|i18n('newsletter/subscribe',, hash( '%unsubscribelink' , concat( $link ,'unsubscribe'|i18n('newsletter/subscribe'), '</a>'),
+                                                                                                                            '%changesubscribelink' , concat( $link,'change'|i18n('newsletter/subscribe'), '</a>')
                                                                                                                             ))}
                 {undef $link}
                 </p>
 
-                <p>{'* mandatory fields'|i18n( 'cjw_newsletter/subscribe' )}</p>
+                <p>{'* mandatory fields'|i18n( 'newsletter/subscribe' )}</p>
             </div>
         </form>
     {/if}

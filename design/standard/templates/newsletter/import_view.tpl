@@ -12,7 +12,7 @@ full view of an newsletter user - with all related data
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{$import_object.id|wash} [{'Import details'|i18n( 'cjw_newsletter/import_view',, hash() )|wash}]</h1>
+                                <h1 class="context-title">{$import_object.id|wash} [{'Import details'|i18n( 'newsletter/import_view',, hash() )|wash}]</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -33,7 +33,7 @@ full view of an newsletter user - with all related data
                             <table class="list">
                                 <tr>
                                     <th>
-                                        {'Id'|i18n( 'cjw_newsletter/import_view' )}
+                                        {'Id'|i18n( 'newsletter/import_view' )}
                                     </th>
                                     <td>
                                         {$import_object.id|wash}
@@ -41,7 +41,7 @@ full view of an newsletter user - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Subscription list'|i18n( 'cjw_newsletter/import_view' )}
+                                        {'Subscription list'|i18n( 'newsletter/import_view' )}
                                     </th>
                                     <td title="{$import_object.list_contentobject_id|wash}">
 
@@ -53,10 +53,10 @@ full view of an newsletter user - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Import type'|i18n( 'cjw_newsletter/import_view' )}
+                                        {'Import type'|i18n( 'newsletter/import_view' )}
                                     </th>
                                     <td>
-                                        {if and( $import_object.type|eq( 'cjwnl_csv' ), is_object( $list_contentobject ))}
+                                        {if and( $import_object.type|eq( 'nl_csv' ), is_object( $list_contentobject ))}
                                             <a href={concat('newsletter/subscription_list_csvimport/', $list_contentobject.main_node_id, '/', $import_object.id )|ezurl}>{$import_object.type|wash}</a>
                                         {else}
                                             {$import_object.type|wash}
@@ -65,7 +65,7 @@ full view of an newsletter user - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Created'|i18n( 'cjw_newsletter/import_view' )}
+                                        {'Created'|i18n( 'newsletter/import_view' )}
                                     </th>
                                     <td>
                                         {$import_object.created|l10n( shortdatetime )}
@@ -73,7 +73,7 @@ full view of an newsletter user - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Creator'|i18n( 'cjw_newsletter/import_view' )}
+                                        {'Creator'|i18n( 'newsletter/import_view' )}
                                     </th>
                                     <td title="{$import_object.creator.id|wash}">
                                         {$import_object.creator.name|wash}
@@ -81,7 +81,7 @@ full view of an newsletter user - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Import note'|i18n( 'cjw_newsletter/import_view' )}
+                                        {'Import note'|i18n( 'newsletter/import_view' )}
                                     </th>
                                     <td>
                                         {$import_object.note|wash}
@@ -89,7 +89,7 @@ full view of an newsletter user - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Data text'|i18n( 'cjw_newsletter/import_view' )}
+                                        {'Data text'|i18n( 'newsletter/import_view' )}
                                     </th>
                                     <td>
                                         {$import_object.data_text|wash}
@@ -97,7 +97,7 @@ full view of an newsletter user - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Remote id'|i18n( 'cjw_newsletter/import_view' )}
+                                        {'Remote id'|i18n( 'newsletter/import_view' )}
                                     </th>
                                     <td>
                                         {$import_object.remote_id|wash}
@@ -105,7 +105,7 @@ full view of an newsletter user - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Imported'|i18n( 'cjw_newsletter/import_view' )}
+                                        {'Imported'|i18n( 'newsletter/import_view' )}
                                     </th>
                                     <td>
                                         {if $import_object.imported|gt(0)}{$import_object.imported|l10n( shortdatetime )|wash}{/if}
@@ -114,22 +114,22 @@ full view of an newsletter user - with all related data
                                 <tr>
                                     {def $imported_subscription_count_live_approved = $import_object.imported_subscription_count_live_approved}
                                     <th>
-                                        {'Imported subscription count'|i18n( 'cjw_newsletter/import_view' )} | {'Live count'|i18n( 'cjw_newsletter/import_view' )} | {'Live count approved'|i18n( 'cjw_newsletter/import_view' )}
+                                        {'Imported subscription count'|i18n( 'newsletter/import_view' )} | {'Live count'|i18n( 'newsletter/import_view' )} | {'Live count approved'|i18n( 'newsletter/import_view' )}
                                     </th>
                                     <td>
-                                        <span title="{'Subscription count after import'|i18n( 'cjw_newsletter/import_view',, hash('%importId', $import_object.id ) )}">{$import_object.imported_subscription_count|wash}</span> |
-                                        <span title="{'Subscriptions in current system with import id %importId'|i18n( 'cjw_newsletter/import_view',, hash('%importId', $import_object.id ) )}">{$import_object.imported_subscription_count_live|wash}</span> |
-                                        <span title="{'Approved subscriptions in current system with import id %importId'|i18n( 'cjw_newsletter/import_view',, hash('%importId', $import_object.id ) )}"><b>{$import_object.imported_subscription_count_live_approved|wash}</b></span>
+                                        <span title="{'Subscription count after import'|i18n( 'newsletter/import_view',, hash('%importId', $import_object.id ) )}">{$import_object.imported_subscription_count|wash}</span> |
+                                        <span title="{'Subscriptions in current system with import id %importId'|i18n( 'newsletter/import_view',, hash('%importId', $import_object.id ) )}">{$import_object.imported_subscription_count_live|wash}</span> |
+                                        <span title="{'Approved subscriptions in current system with import id %importId'|i18n( 'newsletter/import_view',, hash('%importId', $import_object.id ) )}"><b>{$import_object.imported_subscription_count_live_approved|wash}</b></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Imported user count'|i18n( 'cjw_newsletter/import_view' )} | {'Live count'|i18n( 'cjw_newsletter/import_view' )} | {'Live count confirmed'|i18n( 'cjw_newsletter/import_view' )}
+                                        {'Imported user count'|i18n( 'newsletter/import_view' )} | {'Live count'|i18n( 'newsletter/import_view' )} | {'Live count confirmed'|i18n( 'newsletter/import_view' )}
                                     </th>
                                     <td>
-                                        <span title="{'Newsletter user count after import'|i18n( 'cjw_newsletter/import_view',, hash('%importId', $import_object.id ) )}">{$import_object.imported_user_count|wash}</span> |
-                                        <span title="{'Newsletter user in current system with import id %importId'|i18n( 'cjw_newsletter/import_view',, hash('%importId', $import_object.id ) )}">{$import_object.imported_user_count_live|wash}</span> |
-                                        <span title="{'Confirmed Newsletter user in current system with import id %importId'|i18n( 'cjw_newsletter/import_view',, hash('%importId', $import_object.id ) )}"><b>{$import_object.imported_user_count_live_confirmed|wash}</b></span>
+                                        <span title="{'Newsletter user count after import'|i18n( 'newsletter/import_view',, hash('%importId', $import_object.id ) )}">{$import_object.imported_user_count|wash}</span> |
+                                        <span title="{'Newsletter user in current system with import id %importId'|i18n( 'newsletter/import_view',, hash('%importId', $import_object.id ) )}">{$import_object.imported_user_count_live|wash}</span> |
+                                        <span title="{'Confirmed Newsletter user in current system with import id %importId'|i18n( 'newsletter/import_view',, hash('%importId', $import_object.id ) )}"><b>{$import_object.imported_user_count_live_confirmed|wash}</b></span>
                                     </td>
                                 </tr>
                             </table>
@@ -152,7 +152,7 @@ full view of an newsletter user - with all related data
                                         {* Edit *}
 
                                         <div class="left">
-                                            <input class="button" type="submit" name="RemoveSubsciptionsByAdminButton" value="{'Remove %count_active_subscriptions active subscriptions by admin'|i18n( 'cjw_newsletter/import_view', ,hash( '%count_active_subscriptions', $imported_subscription_count_live_approved))}" onclick="return confirm('{'Do you really want to set status removed by admin to all active subscriptions (%count_active_subscriptions)?'|i18n( 'cjw_newsletter/import_view', ,hash( '%count_active_subscriptions', $imported_subscription_count_live_approved ) )}')" />
+                                            <input class="button" type="submit" name="RemoveSubsciptionsByAdminButton" value="{'Remove %count_active_subscriptions active subscriptions by admin'|i18n( 'newsletter/import_view', ,hash( '%count_active_subscriptions', $imported_subscription_count_live_approved))}" onclick="return confirm('{'Do you really want to set status removed by admin to all active subscriptions (%count_active_subscriptions)?'|i18n( 'newsletter/import_view', ,hash( '%count_active_subscriptions', $imported_subscription_count_live_approved ) )}')" />
                                         </div>
                                         <div class="right">
                                         </div>
@@ -185,7 +185,7 @@ full view of an newsletter user - with all related data
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h2 class="context-title">{'Subscriptions created by import'|i18n( 'cjw_newsletter/import_view',, hash(  ) )} [{$import_subscription_list_count|wash}]</h2>
+                                <h2 class="context-title">{'Subscriptions created by import'|i18n( 'newsletter/import_view',, hash(  ) )} [{$import_subscription_list_count|wash}]</h2>
                                 {* DESIGN: Subline *}
                                 <div class="header-subline">
                                 </div>
@@ -206,34 +206,34 @@ full view of an newsletter user - with all related data
                             <table class="list" cellspacing="0">
                             <tr>
                                 <th class="tight">
-                                    {'Id'|i18n( 'cjw_newsletter/subscription_list' )}
+                                    {'Id'|i18n( 'newsletter/subscription_list' )}
                                 </th>
                                 <th class="tight">
-                                    {'List name'|i18n( 'cjw_newsletter/subscription_list' )}
+                                    {'List name'|i18n( 'newsletter/subscription_list' )}
                                 </th>
                                 <th class="tight">
-                                    {'Newsletter User'|i18n( 'cjw_newsletter/subscription_list' )}
+                                    {'Newsletter User'|i18n( 'newsletter/subscription_list' )}
                                 </th>
                                 <th>
-                                    {'Format'|i18n( 'cjw_newsletter/subscription_list' )}
+                                    {'Format'|i18n( 'newsletter/subscription_list' )}
                                 </th>
                                 <th>
-                                    {'Status'|i18n( 'cjw_newsletter/subscription_list' )}
+                                    {'Status'|i18n( 'newsletter/subscription_list' )}
                                 </th>
                                 <th>
-                                    {'Created'|i18n( 'cjw_newsletter/subscription_list' )}
+                                    {'Created'|i18n( 'newsletter/subscription_list' )}
                                 </th>
                                 <th>
-                                    {'Modified'|i18n( 'cjw_newsletter/subscription_list' )}
+                                    {'Modified'|i18n( 'newsletter/subscription_list' )}
                                 </th>
                                 <th>
-                                    {'Remote id'|i18n( 'cjw_newsletter/subscription_list' )}
+                                    {'Remote id'|i18n( 'newsletter/subscription_list' )}
                                 </th>
                                 <th>
-                                    {'Import Id'|i18n( 'cjw_newsletter/subscription_list' )}
+                                    {'Import Id'|i18n( 'newsletter/subscription_list' )}
                                 </th>
                                 <th>
-                                    {'NL user import id'|i18n( 'cjw_newsletter/subscription_list' )}
+                                    {'NL user import id'|i18n( 'newsletter/subscription_list' )}
                                 </th>
                             </tr>
 
@@ -256,10 +256,10 @@ full view of an newsletter user - with all related data
                                     {$subscription.status_string|wash}
                                 </td>
                                 <td>
-                                    {cond( $subscription.created|gt(0), $subscription.created|l10n( shortdatetime ), 'n/a'|i18n( 'cjw_newsletter/import_view' ) )}
+                                    {cond( $subscription.created|gt(0), $subscription.created|l10n( shortdatetime ), 'n/a'|i18n( 'newsletter/import_view' ) )}
                                 </td>
                                 <td>
-                                    {cond( $subscription.modified|gt(0), $subscription.modified|l10n( shortdatetime ), 'n/a'|i18n( 'cjw_newsletter/import_view' ) )}
+                                    {cond( $subscription.modified|gt(0), $subscription.modified|l10n( shortdatetime ), 'n/a'|i18n( 'newsletter/import_view' ) )}
                                 </td>
                                 <td>
                                     {$subscription.remote_id|wash}

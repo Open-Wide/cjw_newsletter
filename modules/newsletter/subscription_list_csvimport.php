@@ -8,7 +8,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -87,13 +87,13 @@ elseif ( $http->hasPostVariable( 'ImportButton' ) )
 if ( eZHTTPFile::canFetch( 'UploadCsvFile' ) && $importId == 0 )
 {
 
-    $importType = 'cjwnl_csv';
+    $importType = 'nl_csv';
     $dataText = '';
     $remoteId = false;
     //$remoteId = 'csv:' . md5( $csvFilePath );
 
     // create new Import Object
-    $importObject = CjwNewsletterImport::create( $listContentObjectId,
+    $importObject = NewsletterImport::create( $listContentObjectId,
                                                  $importType,
                                                  $note,
                                                  $dataText,
@@ -106,7 +106,7 @@ if ( eZHTTPFile::canFetch( 'UploadCsvFile' ) && $importId == 0 )
     $fileSep = eZSys::fileSeparator();
     // $fileSize = filesize( $filePathUpload );
     //$siteDir =  eZSys::siteDir();
-    $dir = eZSys::varDirectory() . $fileSep . 'cjw_newsletter' . $fileSep . 'csvimport';
+    $dir = eZSys::varDirectory() . $fileSep . 'newsletter' . $fileSep . 'csvimport';
 
     $importId = $importObject->attribute('id');
     $fileName = $importId .'-'. date( "Ymd-His", $importObject->attribute('created') ) .'-'. $binaryFile->attribute( 'original_filename' );
@@ -128,7 +128,7 @@ else
 {
     if ( $importId != 0 )
     {
-        $importObject = CjwNewsletterImport::fetch( $importId );
+        $importObject = NewsletterImport::fetch( $importId );
         if ( !is_object( $importObject ) )
         {
             return $module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
@@ -142,14 +142,14 @@ else
 if ( file_exists( getImportResultFilePath( $importId ) ) )
 {
     $listSubscriptionArray = getImportResultFromFile( $importId );
-    $csvParserObject = new CjwNewsletterCsvParser( $csvFilePath, $csvDelimiter, $firstRowIsLabel );
+    $csvParserObject = new NewsletterCsvParser( $csvFilePath, $csvDelimiter, $firstRowIsLabel );
     $csvDataArray = $csvParserObject->getCsvDataArray();
 }
 else
 {
     if ( file_exists( $csvFilePath )  )
     {
-        $csvParserObject = new CjwNewsletterCsvParser( $csvFilePath, $csvDelimiter, $firstRowIsLabel );
+        $csvParserObject = new NewsletterCsvParser( $csvFilePath, $csvDelimiter, $firstRowIsLabel );
         $csvDataArray = $csvParserObject->getCsvDataArray();
     }
 }
@@ -158,13 +158,13 @@ else
 
 //if ( file_exists( $csvFilePath )  )
 //{
-    //$csvParserObject = new CjwNewsletterCsvParser( $csvFilePath, $csvDelimiter, $firstRowIsLabel );
+    //$csvParserObject = new NewsletterCsvParser( $csvFilePath, $csvDelimiter, $firstRowIsLabel );
     //$csvDataArray = $csvParserObject->getCsvDataArray();
 
     // start data import
     if ( $importCsvFile == true )
     {
-        CjwNewsletterLog::writeNotice(
+        NewsletterLog::writeNotice(
                                             'subscription_list_csvimport',
                                             'import',
                                             'start',
@@ -223,7 +223,7 @@ else
                 //    no   -> create new one with status """confirmed"""
                 //         -> subscribe to nl list with status """approved"""
                 //    yes  -> subscribe to nl list with status """approved"""
-                $existingNewsletterUserObject = CjwNewsletterUser::fetchByEmail( $email );
+                $existingNewsletterUserObject = NewsletterUser::fetchByEmail( $email );
 
                 // update existing
                 if ( is_object( $existingNewsletterUserObject ) )
@@ -257,10 +257,10 @@ else
                         if ( $lastName != '' )
                             $userObject->setAttribute( 'last_name', $lastName );
 
-                        $userObject->setAttribute( 'status', CjwNewsletterUser::STATUS_CONFIRMED );
+                        $userObject->setAttribute( 'status', NewsletterUser::STATUS_CONFIRMED );
                         $userObject->setAttribute( 'import_id', $importId );
                         // set new remote_id
-                        $userObject->setAttribute( 'remote_id', 'cjwnl:csvimport:'. CjwNewsletterUtils::generateUniqueMd5Hash( $userObject->attribute( 'id' ) ) );
+                        $userObject->setAttribute( 'remote_id', 'nl:csvimport:'. NewsletterUtils::generateUniqueMd5Hash( $userObject->attribute( 'id' ) ) );
                         $userObject->store();
 
                         $newUserStatus = $userObject->attribute('status');
@@ -270,15 +270,15 @@ else
                 else
                 {
                     $createNewUser = 1;
-                    $userObject = CjwNewsletterUser::createUpdateNewsletterUser( $email,
+                    $userObject = NewsletterUser::createUpdateNewsletterUser( $email,
                                                              $salutation,
                                                              $firstName,
                                                              $lastName,
                                                              $eZUserId,
-                                                             CjwNewsletterUser::STATUS_CONFIRMED );
+                                                             NewsletterUser::STATUS_CONFIRMED );
                     $userObject->setAttribute( 'import_id', $importId );
                     // set new remote_id
-                    $userObject->setAttribute( 'remote_id', 'cjwnl:csvimport:'. CjwNewsletterUtils::generateUniqueMd5Hash( $userObject->attribute( 'id' ) ) );
+                    $userObject->setAttribute( 'remote_id', 'nl:csvimport:'. NewsletterUtils::generateUniqueMd5Hash( $userObject->attribute( 'id' ) ) );
                     $userObject->store();
                     $newUserStatus = $userObject->attribute('status');
                 }
@@ -289,7 +289,7 @@ else
                 if ( $newsletterUserId != null &&
                      $userIsBlacklistedOrRemoved === false )
                 {
-                    $existingSubscription = CjwNewsletterSubscription::fetchByListIdAndNewsletterUserId( $listContentObjectId, $newsletterUserId );
+                    $existingSubscription = NewsletterSubscription::fetchByListIdAndNewsletterUserId( $listContentObjectId, $newsletterUserId );
                     // if subscription exists do nothing
                     if ( is_object( $existingSubscription )  )
                     {
@@ -309,10 +309,10 @@ else
                             $createNewSubscription = 2;
                             $subscriptionObject = $existingSubscription;
 
-                            $subscriptionObject->setAttribute( 'status', CjwNewsletterSubscription::STATUS_APPROVED );
+                            $subscriptionObject->setAttribute( 'status', NewsletterSubscription::STATUS_APPROVED );
                             $subscriptionObject->setAttribute( 'import_id', $importId );
                             // set new remote_id
-                            $subscriptionObject->setAttribute( 'remote_id', 'cjwnl:csvimport:'. CjwNewsletterUtils::generateUniqueMd5Hash( $newsletterUserId . $importId ) );
+                            $subscriptionObject->setAttribute( 'remote_id', 'nl:csvimport:'. NewsletterUtils::generateUniqueMd5Hash( $newsletterUserId . $importId ) );
                             $subscriptionObject->store();
                         }
                     }
@@ -320,14 +320,14 @@ else
                     else
                     {
                         $createNewSubscription = 1;
-                        $newListSubscription =  CjwNewsletterSubscription::create(
+                        $newListSubscription =  NewsletterSubscription::create(
                                                  $listContentObjectId,
                                                  $newsletterUserId,
                                                  $outputFormatArray,
-                                                 CjwNewsletterSubscription::STATUS_APPROVED );
+                                                 NewsletterSubscription::STATUS_APPROVED );
                         $newListSubscription->setAttribute( 'import_id', $importId );
                         // set new remote_id
-                        $newListSubscription->setAttribute( 'remote_id', 'cjwnl:csvimport:'. CjwNewsletterUtils::generateUniqueMd5Hash( $newsletterUserId . $importId ) );
+                        $newListSubscription->setAttribute( 'remote_id', 'nl:csvimport:'. NewsletterUtils::generateUniqueMd5Hash( $newsletterUserId . $importId ) );
                         $newListSubscription->store();
                         $subscriptionObject = $newListSubscription;
                         $newSubscriptionStatus = $subscriptionObject->attribute( 'status' );
@@ -350,7 +350,7 @@ else
         // imported timestamp + set count for imported users + subscriptions
         $importObject->setImported();
 
-        CjwNewsletterLog::writeNotice(
+        NewsletterLog::writeNotice(
                                             'subscription_list_csvimport',
                                             'import',
                                             'end',
@@ -392,7 +392,7 @@ if ( isset( $warning ) )
 $Result = array();
 $Result['content'] = $tpl->fetch( 'design:newsletter/subscription_list_csvimport.tpl' );
 $Result['path'] =  array( array( 'url'  => 'newsletter/index',
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/path', 'Newsletter' ) ),
 
                           array( 'url'  => $systemNode->attribute( 'url_alias' ),
                                  'text' => $systemNode->attribute( 'name' ) ),
@@ -401,10 +401,10 @@ $Result['path'] =  array( array( 'url'  => 'newsletter/index',
                                  'text' => $listNode->attribute( 'name' ) ),
 
                           array( 'url'  => 'newsletter/subscription_list/' . $nodeId,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/subscription_list', 'Subscriptions' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/subscription_list', 'Subscriptions' ) ),
 
                           array( 'url'  => false,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/subscription_list_csvimport', 'CSV import' ) ) );
+                                 'text' => ezpI18n::tr( 'newsletter/subscription_list_csvimport', 'CSV import' ) ) );
 
 
 
@@ -441,7 +441,7 @@ function getImportResultFromFile( $importId )
 function getImportResultFilePath( $importId )
 {
     $fileSep = eZSys::fileSeparator();
-    $dir = eZSys::varDirectory() . $fileSep . 'cjw_newsletter' . $fileSep . 'csvimport';
+    $dir = eZSys::varDirectory() . $fileSep . 'newsletter' . $fileSep . 'csvimport';
     $file = $importId.'-import_result.serialize';
 
     return $dir. $fileSep . $file;

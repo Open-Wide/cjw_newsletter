@@ -1,4 +1,4 @@
-CREATE TABLE cjwnl_blacklist_item (
+CREATE TABLE nl_blacklist_item (
   id int(11) NOT NULL AUTO_INCREMENT,
   email_hash varchar(255) DEFAULT NULL,
   email varchar(255) DEFAULT NULL,
@@ -7,11 +7,11 @@ CREATE TABLE cjwnl_blacklist_item (
   creator_contentobject_id int(11) DEFAULT NULL,
   note text,
   PRIMARY KEY (id),
-  KEY cjwnewsletter_user_id (newsletter_user_id)
+  KEY newsletter_user_id (newsletter_user_id)
 ) COMMENT='table with blacklisted user emails' ENGINE=InnoDB;
 
 
-CREATE TABLE cjwnl_edition (
+CREATE TABLE nl_edition (
   contentobject_attribute_id int(11) NOT NULL,
   contentobject_attribute_version int(11) NOT NULL,
   contentobject_id int(11) NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE cjwnl_edition (
 ) ENGINE=InnoDB;
 
 
-CREATE TABLE cjwnl_edition_send (
+CREATE TABLE nl_edition_send (
   id int(11) NOT NULL AUTO_INCREMENT,
   list_contentobject_id int(11) NOT NULL,
   edition_contentobject_id int(11) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE cjwnl_edition_send (
 ) ENGINE=InnoDB;
 
 
-CREATE TABLE cjwnl_edition_send_item (
+CREATE TABLE nl_edition_send_item (
   id int(11) NOT NULL AUTO_INCREMENT,
   edition_send_id int(11) NOT NULL,
   newsletter_user_id int(11) NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE cjwnl_edition_send_item (
 ) ENGINE=InnoDB;
 
 
-CREATE TABLE cjwnl_import (
+CREATE TABLE nl_import (
   id int(11) NOT NULL AUTO_INCREMENT,
   type varchar(255) NOT NULL COMMENT 'import type',
   list_contentobject_id int(11) DEFAULT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE cjwnl_import (
 ) ENGINE=InnoDB;
 
 
-CREATE TABLE cjwnl_list (
+CREATE TABLE nl_list (
   contentobject_attribute_id int(11) NOT NULL,
   contentobject_attribute_version int(11) NOT NULL,
   contentobject_id int(11) NOT NULL,
@@ -106,7 +106,7 @@ CREATE TABLE cjwnl_list (
 ) ENGINE=InnoDB;
 
 
-CREATE TABLE cjwnl_mailbox (
+CREATE TABLE nl_mailbox (
   id int(11) NOT NULL AUTO_INCREMENT,
   email varchar(255) DEFAULT NULL,
   server varchar(255) DEFAULT NULL,
@@ -122,7 +122,7 @@ CREATE TABLE cjwnl_mailbox (
 ) ENGINE=InnoDB;
 
 
-CREATE TABLE cjwnl_mailbox_item (
+CREATE TABLE nl_mailbox_item (
   id int(11) NOT NULL AUTO_INCREMENT,
   mailbox_id int(11) DEFAULT NULL,
   message_id int(11) DEFAULT NULL,
@@ -145,7 +145,7 @@ CREATE TABLE cjwnl_mailbox_item (
 ) ENGINE=InnoDB;
 
 
-CREATE TABLE cjwnl_subscription (
+CREATE TABLE nl_subscription (
   id int(11) NOT NULL AUTO_INCREMENT,
   list_contentobject_id int(11) NOT NULL,
   newsletter_user_id int(11) NOT NULL,
@@ -168,7 +168,7 @@ CREATE TABLE cjwnl_subscription (
 ) ENGINE=InnoDB;
 
 
-CREATE TABLE cjwnl_user (
+CREATE TABLE nl_user (
   id int(11) NOT NULL AUTO_INCREMENT,
   email varchar(255) DEFAULT NULL,
   salutation tinyint(4) DEFAULT NULL COMMENT '0-no, 1-Mr, 2-Ms',

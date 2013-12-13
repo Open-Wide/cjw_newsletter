@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -20,7 +20,7 @@ $templateFile = 'design:newsletter/mailbox_item_view.tpl';
 
 $mailboxItemId = (int) $Params['MailboxItemId'];
 
-$mailboxItemObject = CjwNewsletterMailboxItem::fetch( $mailboxItemId );
+$mailboxItemObject = NewsletterMailboxItem::fetch( $mailboxItemId );
 
 if( !is_object( $mailboxItemObject ) )
 {
@@ -39,11 +39,11 @@ elseif ( $http->hasVariable( 'DownloadRawMailContent' ) )
 }
 else
 {
-    $cjwNewsletterMailParserObject = new CjwNewsletterMailParser( $mailboxItemObject );
+    $NewsletterMailParserObject = new NewsletterMailParser( $mailboxItemObject );
 
-    if ( is_object( $cjwNewsletterMailParserObject ) )
+    if ( is_object( $NewsletterMailParserObject ) )
     {
-        $parseHeaderArray = $cjwNewsletterMailParserObject->parse();
+        $parseHeaderArray = $NewsletterMailParserObject->parse();
     }
 
     $tpl = eZTemplate::factory();
@@ -56,9 +56,9 @@ else
 
     $Result['content'] = $tpl->fetch( $templateFile );
     $Result['path'] = array( array( 'url' => 'newsletter/mailbox_item_list',
-                                    'text' => ezpI18n::tr( 'cjw_newsletter/mailbox_item_view', 'Mailbox item list' ) ),
+                                    'text' => ezpI18n::tr( 'newsletter/mailbox_item_view', 'Mailbox item list' ) ),
                                 array( 'url' => false,
-                                    'text' => ezpI18n::tr( 'cjw_newsletter/mailbox_item_view', 'Mailbox item view' ) ) );
+                                    'text' => ezpI18n::tr( 'newsletter/mailbox_item_view', 'Mailbox item view' ) ) );
 }
 
 

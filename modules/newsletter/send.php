@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -18,7 +18,7 @@ $viewParameters = array();
 $message_warning = '';
 $message_feedback = '';
 $templateFile = 'design:newsletter/send.tpl';
-$pathString = ezpI18n::tr( 'cjw_newsletter/send', 'Send' );
+$pathString = ezpI18n::tr( 'newsletter/send', 'Send' );
 
 if( isSet( $Params['NodeId'] ) )
 {
@@ -61,12 +61,12 @@ else
 if ( $module->isCurrentAction( 'SendNewsletterTest' ) )
 {
     $templateFile = 'design:newsletter/send_newsletter_test_result.tpl';
-    $pathString = ezpI18n::tr( 'cjw_newsletter/send', 'Send test newsletter' );
+    $pathString = ezpI18n::tr( 'newsletter/send', 'Send test newsletter' );
 
     if ( $module->hasActionParameter('EmailReseiverTest') )
     {
         $emailReceiverTest = $module->actionParameter('EmailReseiverTest');
-        $newsletterMail = new CjwNewsletterMail();
+        $newsletterMail = new NewsletterMail();
 
         $forceSettingImageIncludeTo = -1;
         if( $http->hasVariable( 'ForceSettingImageIncludeTo' ) )
@@ -97,18 +97,18 @@ else if ( $module->isCurrentAction( 'SendNewsletter' ) )
 {
     $editionDataMap = $objectVersion->attribute('data_map');
 
-    // TODO check if $node is a cjw_newsletter_edition object
+    // TODO check if $node is a newsletter_edition object
 
     $attributeEdition = $editionDataMap['newsletter_edition'];
     $attributeEditionContent = $attributeEdition->attribute('content');
 
     if ( $attributeEditionContent->attribute('is_process') )
     {
-        $message_warning = ezpI18n::tr( 'cjw_newsletter/datatype/cjwnewsletteredition', "The current edition is already in sending process - to create a new version please stop it first", null , array(  ) );
+        $message_warning = ezpI18n::tr( 'newsletter/datatype/newsletteredition', "The current edition is already in sending process - to create a new version please stop it first", null , array(  ) );
     }
     elseif ( $attributeEditionContent->attribute('is_archive') )
     {
-        $message_warning = ezpI18n::tr( 'cjw_newsletter/datatype/cjwnewsletteredition', "The current edition was already send and is in archive!", null , array(  ) );
+        $message_warning = ezpI18n::tr( 'newsletter/datatype/newsletteredition', "The current edition was already send and is in archive!", null , array(  ) );
     }
     // send out newsletter
     else
@@ -153,7 +153,7 @@ $Result = array();
 $Result['content'] = $tpl->fetch( $templateFile );
 
 $Result['path'] =  array( array( 'url'  => 'newsletter/index',
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/path', 'Newsletter' ) ),
 
                           array( 'url'  => $systemNode->attribute( 'url_alias' ),
                                  'text' => $systemNode->attribute( 'name' ) ),

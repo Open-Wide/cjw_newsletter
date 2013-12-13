@@ -1,9 +1,9 @@
 <?php
 // This array contains the database schema
 $schema = array (
-  'cjwnl_blacklist_item' => 
+  'nl_blacklist_item' => 
   array (
-    'name' => 'cjwnl_blacklist_item',
+    'name' => 'nl_blacklist_item',
     'fields' => 
     array (
       'id' => 
@@ -58,7 +58,7 @@ $schema = array (
           0 => 'id',
         ),
       ),
-      'cjwnewsletter_user_id' => 
+      'newsletter_user_id' => 
       array (
         'type' => 'non-unique',
         'fields' => 
@@ -68,9 +68,9 @@ $schema = array (
       ),
     ),
   ),
-  'cjwnl_edition' => 
+  'nl_edition' => 
   array (
-    'name' => 'cjwnl_edition',
+    'name' => 'nl_edition',
     'fields' => 
     array (
       'contentobject_attribute_id' => 
@@ -139,9 +139,9 @@ $schema = array (
       ),
     ),
   ),
-  'cjwnl_edition_send' => 
+  'nl_edition_send' => 
   array (
-    'name' => 'cjwnl_edition_send',
+    'name' => 'nl_edition_send',
     'fields' => 
     array (
       'id' => 
@@ -304,9 +304,9 @@ $schema = array (
       ),
     ),
   ),
-  'cjwnl_edition_send_item' => 
+  'nl_edition_send_item' => 
   array (
-    'name' => 'cjwnl_edition_send_item',
+    'name' => 'nl_edition_send_item',
     'fields' => 
     array (
       'id' => 
@@ -414,9 +414,9 @@ $schema = array (
       ),
     ),
   ),
-  'cjwnl_import' => 
+  'nl_import' => 
   array (
-    'name' => 'cjwnl_import',
+    'name' => 'nl_import',
     'fields' => 
     array (
       'id' => 
@@ -507,9 +507,9 @@ $schema = array (
       ),
     ),
   ),
-  'cjwnl_list' => 
+  'nl_list' => 
   array (
-    'name' => 'cjwnl_list',
+    'name' => 'nl_list',
     'fields' => 
     array (
       'contentobject_attribute_id' => 
@@ -647,9 +647,9 @@ $schema = array (
       ),
     ),
   ),
-  'cjwnl_mailbox' => 
+  'nl_mailbox' => 
   array (
-    'name' => 'cjwnl_mailbox',
+    'name' => 'nl_mailbox',
     'fields' => 
     array (
       'id' => 
@@ -732,9 +732,9 @@ $schema = array (
       ),
     ),
   ),
-  'cjwnl_mailbox_item' => 
+  'nl_mailbox_item' => 
   array (
-    'name' => 'cjwnl_mailbox_item',
+    'name' => 'nl_mailbox_item',
     'fields' => 
     array (
       'id' => 
@@ -865,9 +865,9 @@ $schema = array (
       ),
     ),
   ),
-  'cjwnl_subscription' => 
+  'nl_subscription' => 
   array (
-    'name' => 'cjwnl_subscription',
+    'name' => 'nl_subscription',
     'fields' => 
     array (
       'id' => 
@@ -1010,9 +1010,9 @@ $schema = array (
       ),
     ),
   ),
-  'cjwnl_user' => 
+  'nl_user' => 
   array (
-    'name' => 'cjwnl_user',
+    'name' => 'nl_user',
     'fields' => 
     array (
       'id' => 

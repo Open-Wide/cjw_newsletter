@@ -1,12 +1,12 @@
 /* newsletter_admin.css */
 
 
-div#cjw_newsletter_list table.list th.name
+div#newsletter_list table.list th.name
 {
     width: 70%;
 }
 
-div#cjw_newsletter_list table.list th.published
+div#newsletter_list table.list th.published
 {
     width: 20%;
 }

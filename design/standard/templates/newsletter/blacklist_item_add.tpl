@@ -26,9 +26,9 @@
                             <div class="box-tr">
                                 <h1 class="context-title">
                                     {if is_set( $mailbox.email )}
-                                        {$mailbox.email|class_icon( normal, $mailbox.email )}&nbsp;{'Edit <%mailbox.email> '|i18n( 'cjw_newsletter/blacklist_item_add',, hash( '%mailbox.email', $mailbox.email ) )|wash}
+                                        {$mailbox.email|class_icon( normal, $mailbox.email )}&nbsp;{'Edit <%mailbox.email> '|i18n( 'newsletter/blacklist_item_add',, hash( '%mailbox.email', $mailbox.email ) )|wash}
                                     {else}
-                                        {'Add a new Blacklist item '|i18n( 'cjw_newsletter/blacklist_item_add' )}
+                                        {'Add a new Blacklist item '|i18n( 'newsletter/blacklist_item_add' )}
                                     {/if}
                                 </h1>
 
@@ -51,16 +51,16 @@
                 <div class="box-content">
     {if $is_blacklist_done|not}
                     <div class="context-attributes">
-                        <label>{'Email'|i18n( 'cjw_newsletter/blacklist_item_add' )}</label>
+                        <label>{'Email'|i18n( 'newsletter/blacklist_item_add' )}</label>
                         <input class="box" type="text" name="Email" value="{$blacklist_item.email}" />
-                        <label>{'Note'|i18n( 'cjw_newsletter/blacklist_item_add' )}</label>
+                        <label>{'Note'|i18n( 'newsletter/blacklist_item_add' )}</label>
                         <textarea class="box" name="Note" cols="50" rows="10">{$blacklist_item.note|wash}</textarea>
                     </div>
     {else}
                     <div class="context-attributes">
-                        <label>{'Email'|i18n( 'cjw_newsletter/blacklist_item_add' )}</label>
+                        <label>{'Email'|i18n( 'newsletter/blacklist_item_add' )}</label>
                         {$blacklist_item.email|wash}
-                        <label>{'Note'|i18n( 'cjw_newsletter/blacklist_item_add' )}</label>
+                        <label>{'Note'|i18n( 'newsletter/blacklist_item_add' )}</label>
                         <p>{$blacklist_item.note|wash}</p>
                     </div>
     {/if}
@@ -79,10 +79,10 @@
                                 <div class="box-br">
                                     <div class="block">
                                     {if $is_blacklist_done|not}
-                                        <input class="button" type="submit" name="AddButton" value="{'Add to Blacklist'|i18n( 'cjw_newsletter/blacklist_item_add' )}" title="" />
-                                        <input class="button" type="submit" name="DiscardButton" value="{'Discard'|i18n( 'cjw_newsletter/blacklist_item_add' )}" />
+                                        <input class="button" type="submit" name="AddButton" value="{'Add to Blacklist'|i18n( 'newsletter/blacklist_item_add' )}" title="" />
+                                        <input class="button" type="submit" name="DiscardButton" value="{'Discard'|i18n( 'newsletter/blacklist_item_add' )}" />
                                     {else}
-                                        <input class="button" type="submit" name="DiscardButton" value="{'Back'|i18n( 'cjw_newsletter/blacklist_item_add' )}" />
+                                        <input class="button" type="submit" name="DiscardButton" value="{'Back'|i18n( 'newsletter/blacklist_item_add' )}" />
                                     {/if}
                                     </div>
                                     {* DESIGN: Control bar END *}

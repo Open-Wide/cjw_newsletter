@@ -1,15 +1,15 @@
 {* 2_newsletter_system_tree.tpl
     alle systeme
 *}
-    {let $newsletter_root_node_id = ezini( 'NewsletterSettings', 'RootFolderNodeId', 'cjw_newsletter.ini' )
+    {let $newsletter_root_node_id = ezini( 'NewsletterSettings', 'RootFolderNodeId', 'newsletter.ini' )
          children       = fetch( 'content', 'tree', hash('parent_node_id', $newsletter_root_node_id,
                                                         'class_filter_type', 'include',
-                                                        'class_filter_array', array('cjw_newsletter_system'),
+                                                        'class_filter_array', array('newsletter_system'),
                                                         'sort_by', array( 'name', true() ), ))
          numChildren    = fetch( 'content', 'tree_count', hash('parent_node_id', $newsletter_root_node_id,
                                                         'class_filter_type', 'include',
                                                         'class_filter_array',
-                                                        array('cjw_newsletter_system') ))
+                                                        array('newsletter_system') ))
          haveChildren   = $numChildren|gt(0)
          showToolTips   = ezini( 'TreeMenu', 'ToolTips' , 'contentstructuremenu.ini' )
          translation    = ezini( 'URLTranslator', 'Translation', 'site.ini' )
@@ -31,7 +31,7 @@
         <li id="n0_{$newsletter_root_node_id}" {cond( $:last_item, 'class="lastli"', '' )}>
 
             {* Fold/Unfold/Empty: [-]/[+]/[ ] *}
-                   <a class="openclose" href="#" title="{'Fold/Unfold'|i18n('cjw_newsletter/contentstructuremenu')}"
+                   <a class="openclose" href="#" title="{'Fold/Unfold'|i18n('newsletter/contentstructuremenu')}"
                       onclick="ezpopmenu_hideAll(); ezcst_onFoldClicked( this.parentNode ); return false;"></a>
 
             {* Label *}

@@ -34,7 +34,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{"Abort newsletter send out process"|i18n( 'cjw_newsletter/send_abort' )}</h1>
+                                <h1 class="context-title">{"Abort newsletter send out process"|i18n( 'newsletter/send_abort' )}</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -53,23 +53,23 @@
                         <div class="block float-break">
 
                             {if $has_message|not}
-                                 {'Do you really want to abort the send out process?'|i18n( 'cjw_newsletter/send_abort.tpl' )}
+                                 {'Do you really want to abort the send out process?'|i18n( 'newsletter/send_abort.tpl' )}
                             {/if}
 
                         </div>
 
                         <div class="block">
 
-                        <h2 class="context-title">{'Statistics'|i18n( 'cjw_newsletter/cjw_newsletter_edition_send_statistic' )}</h2>
+                        <h2 class="context-title">{'Statistics'|i18n( 'newsletter/newsletter_edition_send_statistic' )}</h2>
                          <table class="list" cellspacing="0">
                                 <tr>
-                                    <th>{'Id'|i18n( 'cjw_newsletter/cjw_newsletter_edition_send_statistic' )}</th>
-                                    <th>{'Emails count'|i18n( 'cjw_newsletter/cjw_newsletter_edition_send_statistic' )}</th>
-                                    <th>{'Emails sent'|i18n( 'cjw_newsletter/cjw_newsletter_edition_send_statistic' )}</th>
-                                    <th>{'Emails opened'|i18n( 'cjw_newsletter/cjw_newsletter_edition_send_statistic' )}</th>
-                                    <th>{'Emails not sent'|i18n( 'cjw_newsletter/cjw_newsletter_edition_send_statistic' )}</th>
-                                    <th>{'Emails bounced'|i18n( 'cjw_newsletter/cjw_newsletter_edition_send_statistic' )}</th>
-                                  {*  <th>{'Creator'|i18n( 'cjw_newsletter/cjw_newsletter_edition_send_statistic' )}</th>*}
+                                    <th>{'Id'|i18n( 'newsletter/newsletter_edition_send_statistic' )}</th>
+                                    <th>{'Emails count'|i18n( 'newsletter/newsletter_edition_send_statistic' )}</th>
+                                    <th>{'Emails sent'|i18n( 'newsletter/newsletter_edition_send_statistic' )}</th>
+                                    <th>{'Emails opened'|i18n( 'newsletter/newsletter_edition_send_statistic' )}</th>
+                                    <th>{'Emails not sent'|i18n( 'newsletter/newsletter_edition_send_statistic' )}</th>
+                                    <th>{'Emails bounced'|i18n( 'newsletter/newsletter_edition_send_statistic' )}</th>
+                                  {*  <th>{'Creator'|i18n( 'newsletter/newsletter_edition_send_statistic' )}</th>*}
                                 </tr>
                                  <tr>
                                     <td>{$edition_send_object.id}</td>
@@ -88,7 +88,7 @@
  <div class="block">
                         <table class="list" cellspacing="0">
                         <tr>
-                        <th width="99%">{'Cronjob status'|i18n( 'cjw_newsletter/cjw_newsletter_edition_send_statistic' )}</th>
+                        <th width="99%">{'Cronjob status'|i18n( 'newsletter/newsletter_edition_send_statistic' )}</th>
 
                         </tr>
 
@@ -124,11 +124,11 @@
 
                                             <form action={concat( 'newsletter/send_abort/', $edition_send_id)|ezurl()}  method="post" style="display: inline;">
                                                 {if $has_message|not}
-                                                <input class="defaultbutton" type="submit" name="AbortSendOutButton" value="{"Abort send out process"|i18n("cjw_newsletter/send_abort")}" />
-                                                <input class="button" type="submit" name="CancelButton" value="{"Cancel"|i18n("cjw_newsletter/send_abort")}" />
+                                                <input class="defaultbutton" type="submit" name="AbortSendOutButton" value="{"Abort send out process"|i18n("newsletter/send_abort")}" />
+                                                <input class="button" type="submit" name="CancelButton" value="{"Cancel"|i18n("newsletter/send_abort")}" />
 
                                                 {else}
-                                                <input class="button" type="submit" name="CancelButton" value="{"Back"|i18n("cjw_newsletter/send_abort")}" />
+                                                <input class="button" type="submit" name="CancelButton" value="{"Back"|i18n("newsletter/send_abort")}" />
                                                 {/if}
                                             </form>
 

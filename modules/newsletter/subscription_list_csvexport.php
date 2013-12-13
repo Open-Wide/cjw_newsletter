@@ -7,7 +7,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -69,14 +69,14 @@ if ( $http->hasVariable( 'CsvDelimiter' ) && $http->variable( 'CsvDelimiter' ) !
 $arrPreviewCsvData = getDataForCsv( $listContentObjectId, 10 );
 
 // create csv string for preview
-$objCjwNLCsvPreview = new CjwNewsletterCsvExport( $arrPreviewCsvData, $delimiter, $arrDisplayItems );
+$objNLCsvPreview = new NewsletterCsvExport( $arrPreviewCsvData, $delimiter, $arrDisplayItems );
 
 // write csv string
-$resWrite = $objCjwNLCsvPreview->writeCsv();
+$resWrite = $objNLCsvPreview->writeCsv();
 
 // save csv string ( if exists ) in local var
-if ( isset( $objCjwNLCsvPreview->CsvResult ) && $objCjwNLCsvPreview->CsvResult != '' )
-    $strPreviewCsvData = $objCjwNLCsvPreview->CsvResult;
+if ( isset( $objNLCsvPreview->CsvResult ) && $objNLCsvPreview->CsvResult != '' )
+    $strPreviewCsvData = $objNLCsvPreview->CsvResult;
 
 /**
  * Actions
@@ -100,14 +100,14 @@ elseif ( $http->hasPostVariable( 'ExportButton' ) )
     $arrCsvData = getDataForCsv( $listContentObjectId );
 
     // export data in csv format for download in webbrowser
-    $objCjwNLCsvExport = new CjwNewsletterCsvExport( $arrCsvData, $delimiter, $arrDisplayItems );
+    $objNLCsvExport = new NewsletterCsvExport( $arrCsvData, $delimiter, $arrDisplayItems );
 
-    // write csv string => $objCjwNLCsvExport->CsvResult
-    $resWrite = $objCjwNLCsvExport->writeCsv();
+    // write csv string => $objNLCsvExport->CsvResult
+    $resWrite = $objNLCsvExport->writeCsv();
 
     // create download csv file
-    if ( $objCjwNLCsvExport->CsvResult != '' )
-        $resExport = $objCjwNLCsvExport->downloadCsvFile( $listContentObjectId );
+    if ( $objNLCsvExport->CsvResult != '' )
+        $resExport = $objNLCsvExport->downloadCsvFile( $listContentObjectId );
     else
         return $module->handleError( eZError::KERNEL_ACCESS_DENIED, 'kernel' );
 
@@ -131,10 +131,10 @@ $tpl->setVariable( 'str_preview_csv_data', $strPreviewCsvData );
 $Result = array();
 $Result[ 'content' ] = $tpl->fetch( 'design:newsletter/subscription_list_csvexport.tpl' );
 $Result[ 'path' ]    = array( array( 'url' => false,
-                                     'text' => ezpI18n::tr( 'cjw_newsletter/subscription_list_csvexport', 'Subscription list CSV export' ) ) );
+                                     'text' => ezpI18n::tr( 'newsletter/subscription_list_csvexport', 'Subscription list CSV export' ) ) );
 
 $Result['path'] =  array( array( 'url'  => 'newsletter/index',
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/path', 'Newsletter' ) ),
 
                           array( 'url'  => $systemNode->attribute( 'url_alias' ),
                                  'text' => $systemNode->attribute( 'name' ) ),
@@ -143,10 +143,10 @@ $Result['path'] =  array( array( 'url'  => 'newsletter/index',
                                  'text' => $listNode->attribute( 'name' ) ),
 
                           array( 'url'  => 'newsletter/subscription_list/' . $nodeId,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/subscription_list', 'Subscriptions' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/subscription_list', 'Subscriptions' ) ),
 
                           array( 'url'  => false,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/subscription_list_csvexport', 'CSV export' ) ) );
+                                 'text' => ezpI18n::tr( 'newsletter/subscription_list_csvexport', 'CSV export' ) ) );
 
 
 
@@ -186,7 +186,7 @@ function getDataForCsv( $listContentObjectId, $limit = 0 )
                               s.newsletter_user_id,
                               s.output_format_array_string
 
-                       FROM cjwnl_subscription s, cjwnl_user u
+                       FROM nl_subscription s, nl_user u
                        WHERE s.list_contentobject_id=$listContentObjectId
                        AND s.newsletter_user_id=u.id
                        $qryLimit";

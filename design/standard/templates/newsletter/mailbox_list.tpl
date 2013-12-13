@@ -12,7 +12,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{'Manage mail accounts'|i18n( 'cjw_newsletter/mailbox_list',, hash() )}</h1>
+                                <h1 class="context-title">{'Manage mail accounts'|i18n( 'newsletter/mailbox_list',, hash() )}</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -28,7 +28,7 @@
             <div class="box-mr">
                 <div class="box-content">
                     <div class="context-attributes">
-                        <p>{'Define mail accounts that will collect mails for bounce handling'|i18n( 'cjw_newsletter/mailbox_list',, hash() )}</p>
+                        <p>{'Define mail accounts that will collect mails for bounce handling'|i18n( 'newsletter/mailbox_list',, hash() )}</p>
                     </div>
                     {* DESIGN: Content END *}
                 </div>
@@ -46,7 +46,7 @@
                                     {* Edit *}
                                     <div class="left">
                                         <a href={concat( '/newsletter/mailbox_edit/', 0, '/(redirect)', $view_parameters.redirect_uri )|ezurl}>
-                                            <input class="button" type="submit" name="AddMailbox" value="{'Add mail account'|i18n( 'cjw_newsletter/mailbox_list' )}" title="{'Add new mailbox.'|i18n( 'cjw_newsletter/mailbox_list' )}" />
+                                            <input class="button" type="submit" name="AddMailbox" value="{'Add mail account'|i18n( 'newsletter/mailbox_list' )}" title="{'Add new mailbox.'|i18n( 'newsletter/mailbox_list' )}" />
                                         </a>
                                     </div>
                                 </div>{* DESIGN: Control bar END *}
@@ -65,7 +65,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h2 class="context-title">{'Mail accounts'|i18n( 'cjw_newsletter/mailbox_list',, hash() )} [{$mailbox_list_count}]</h2>
+                                <h2 class="context-title">{'Mail accounts'|i18n( 'newsletter/mailbox_list',, hash() )} [{$mailbox_list_count}]</h2>
                                 {* DESIGN: Subline *}
                                 <div class="header-subline"></div>
                                 {* DESIGN: Header END *}
@@ -111,40 +111,40 @@
                             <table class="list" cellspacing="0">
                                 <tr>
                                     <th class="tight">
-                                        <img src={'toggle-button-16x16.gif'|ezimage}  alt="{'Invert selection'|i18n( 'cjw_newsletter/mailbox_list' )}" title="{'Invert selection'|i18n( 'cjw_newsletter/mailbox_list' )}" onclick="ezjs_toggleCheckboxes( document.user_list, 'SubscriptionIDArray[]' ); return false;" />
+                                        <img src={'toggle-button-16x16.gif'|ezimage}  alt="{'Invert selection'|i18n( 'newsletter/mailbox_list' )}" title="{'Invert selection'|i18n( 'newsletter/mailbox_list' )}" onclick="ezjs_toggleCheckboxes( document.user_list, 'SubscriptionIDArray[]' ); return false;" />
                                     </th>
                                     <th class="tight">
-                                        {'ID'|i18n('cjw_newsletter/mailbox_list')}</a>
+                                        {'ID'|i18n('newsletter/mailbox_list')}</a>
                                     </th>
                                     <th>
-                                        {'Email'|i18n( 'cjw_newsletter/mailbox_edit' )}
+                                        {'Email'|i18n( 'newsletter/mailbox_edit' )}
                                     </th>
                                     <th>
-                                        {'Server'|i18n( 'cjw_newsletter/mailbox_edit' )}
+                                        {'Server'|i18n( 'newsletter/mailbox_edit' )}
                                     </th>
                                     <th>
-                                        {'Port'|i18n( 'cjw_newsletter/mailbox_edit' )}
+                                        {'Port'|i18n( 'newsletter/mailbox_edit' )}
                                     </th>
                                     <th>
-                                        {'User'|i18n( 'cjw_newsletter/mailbox_edit' )}
+                                        {'User'|i18n( 'newsletter/mailbox_edit' )}
                                     </th>
                                     <th>
-                                        {'Password'|i18n( 'cjw_newsletter/mailbox_edit' )}
+                                        {'Password'|i18n( 'newsletter/mailbox_edit' )}
                                     </th>
                                     <th>
-                                        {'Type'|i18n( 'cjw_newsletter/mailbox_edit' )}
+                                        {'Type'|i18n( 'newsletter/mailbox_edit' )}
                                     </th>
                                     <th>
-                                        {'Active'|i18n( 'cjw_newsletter/mailbox_edit' )}
+                                        {'Active'|i18n( 'newsletter/mailbox_edit' )}
                                     </th>
                                     <th>
-                                        {'SSL'|i18n( 'cjw_newsletter/mailbox_edit' )}
+                                        {'SSL'|i18n( 'newsletter/mailbox_edit' )}
                                     </th>
                                     <th>
-                                        {'Delete mails from server'|i18n( 'cjw_newsletter/mailbox_edit' )}
+                                        {'Delete mails from server'|i18n( 'newsletter/mailbox_edit' )}
                                     </th>
                                     <th>
-                                        {'Last connect'|i18n( 'cjw_newsletter/mailbox_list' )}
+                                        {'Last connect'|i18n( 'newsletter/mailbox_list' )}
                                     </th>
                                     <th>
                                     </th>
@@ -152,7 +152,7 @@
                                 {foreach $mailbox_list as $mailbox_item sequence array( bglight, bgdark ) as $style}
                                 <tr class="{$style}">
                                     <td>
-                                        <input type="checkbox" name="SubscriptionIDArray[]" value="{$mailbox_item.id}" title="{'Select subscriber for removal'|i18n( 'cjw_newsletter/mailbox_list' )}" />
+                                        <input type="checkbox" name="SubscriptionIDArray[]" value="{$mailbox_item.id}" title="{'Select subscriber for removal'|i18n( 'newsletter/mailbox_list' )}" />
                                     </td>
                                     <td class="number" align="right">
                                         {$mailbox_item.id|wash}
@@ -186,13 +186,13 @@
                                     </td>
                                     <td>
                                         {if eq( $mailbox_item.last_server_connect, 0 )}
-                                            {'n/a'|i18n( 'cjw_newsletter/mailbox_list' )}
+                                            {'n/a'|i18n( 'newsletter/mailbox_list' )}
                                         {else}
                                             {$mailbox_item.last_server_connect|l10n( shortdatetime )}
                                         {/if}
                                     </td>
                                     <td>
-                                        <a href={concat( '/newsletter/mailbox_edit/', $mailbox_item.id, '/(redirect)' , $view_parameters.redirect_uri )|ezurl}><img src={'edit.gif'|ezimage}  alt="{'Edit'|i18n( 'cjw_newsletter/mailbox_list' )}" title="{'Edit mailbox.'|i18n( 'cjw_newsletter/mailbox_list' )}" /></a>
+                                        <a href={concat( '/newsletter/mailbox_edit/', $mailbox_item.id, '/(redirect)' , $view_parameters.redirect_uri )|ezurl}><img src={'edit.gif'|ezimage}  alt="{'Edit'|i18n( 'newsletter/mailbox_list' )}" title="{'Edit mailbox.'|i18n( 'newsletter/mailbox_list' )}" /></a>
                                     </td>
                                 </tr>
                                 {/foreach}

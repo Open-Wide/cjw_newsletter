@@ -1,13 +1,13 @@
 <!DOCTYPE TS><TS>
 <context>
-    <name>cjw_newsletter</name>
+    <name>newsletter</name>
     <message>
         <source>Newsletter</source>
         <translation>Newsletter</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/blacklist_item_add</name>
+    <name>newsletter/blacklist_item_add</name>
     <message>
         <source>Edit &lt;%mailbox.email&gt; </source>
         <translation>&lt;%mailbox.email&gt; bearbeiten </translation>
@@ -54,7 +54,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/blacklist_item_list</name>
+    <name>newsletter/blacklist_item_list</name>
     <message>
         <source>Add an email to blacklist</source>
         <translation type="obsolete">Eine E-Mail zur Blacklist hinzufügen</translation>
@@ -141,14 +141,14 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/cjw_newsletter_edition_preview</name>
+    <name>newsletter/newsletter_edition_preview</name>
     <message>
         <source>Do you really want to send out this newsletter to all recipients of this Newsletterlist?</source>
         <translation>Möchten Sie den Newsletter wirklich an alle Abonnenten der Newsletterliste verschicken?</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/cjw_newsletter_edition_send_statistic</name>
+    <name>newsletter/newsletter_edition_send_statistic</name>
     <message>
         <source>Current Date</source>
         <translation>Aktuelles Datum</translation>
@@ -219,7 +219,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/cjw_newsletter_edition_status</name>
+    <name>newsletter/newsletter_edition_status</name>
     <message>
         <source>Edition State</source>
         <translation>Bearbeitungsstatus</translation>
@@ -274,7 +274,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/cjw_newsletter_list</name>
+    <name>newsletter/newsletter_list</name>
     <message>
         <source>Create newsletter here</source>
         <translation>Newsletter hier erstellen</translation>
@@ -293,7 +293,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/cjw_newsletter_list_children</name>
+    <name>newsletter/newsletter_list_children</name>
     <message>
         <source>Up one level.</source>
         <translation>Eine Ebene nach oben.</translation>
@@ -448,7 +448,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/cjw_newsletter_list_children_list</name>
+    <name>newsletter/newsletter_list_children_list</name>
     <message>
         <source>Invert selection.</source>
         <translation>Auswahl umkehren.</translation>
@@ -507,7 +507,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/cjw_newsletter_list_window_controls</name>
+    <name>newsletter/newsletter_list_window_controls</name>
     <message>
         <source>Hide preview of content.</source>
         <translation>Inhaltsvorschau ausblenden.</translation>
@@ -570,7 +570,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/cjwnewsletteredition_preview</name>
+    <name>newsletter/newsletteredition_preview</name>
     <message>
         <source>Preview</source>
         <translation>Vorschau</translation>
@@ -589,14 +589,14 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/cjwnewsletteredition_preview_archive</name>
+    <name>newsletter/newsletteredition_preview_archive</name>
     <message>
         <source>Archive view</source>
         <translation>Archivansicht</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/configure</name>
+    <name>newsletter/configure</name>
     <message>
         <source>Configure newsletter settings</source>
         <translation>Konfiguration der Newslettereinstellungen</translation>
@@ -663,7 +663,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/contentstructuremenu</name>
+    <name>newsletter/contentstructuremenu</name>
     <message>
         <source>Fold/Unfold</source>
         <translation>Auf/Zuklappen</translation>
@@ -710,7 +710,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/datatype/cjwnewsletteredition</name>
+    <name>newsletter/datatype/newsletteredition</name>
     <message>
         <source>The current edition is already in sending process - to create a new version please stop it first</source>
         <translation>Die aktuelle Newsletterausgabe wird gerade verschickt - stoppen Sie sie zuerst, um eine neue zu erstellen</translation>
@@ -725,7 +725,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/datatype/cjwnewsletterlist</name>
+    <name>newsletter/datatype/newsletterlist</name>
     <message>
         <source>Main Siteaccess must be set</source>
         <translation>Der Hauptsiteaccess muß gesetzt werden</translation>
@@ -844,7 +844,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/datatype/cjwnewslettersubcription/validation_error</name>
+    <name>newsletter/datatype/newslettersubcription/validation_error</name>
     <message>
         <source>Datatype can not be used here - user_account required.</source>
         <translation>Der Datentyp kann hier nicht genutzt werden - Datentyp user_account wird vorausgesetzt.</translation>
@@ -855,7 +855,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/datatype/cjwnewslettersubscription</name>
+    <name>newsletter/datatype/newslettersubscription</name>
     <message>
         <source>No newsletters available.</source>
         <translation>Zur Zeit ist kein Newsletter zur Anmeldung verfügbar.</translation>
@@ -874,32 +874,32 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/datatypes</name>
+    <name>newsletter/datatypes</name>
     <message>
-        <source>CJW Newsletter Edition</source>
+        <source> Newsletter Edition</source>
         <comment>Datatype name</comment>
-        <translation>CJW Newsletter Ausgabe</translation>
+        <translation> Newsletter Ausgabe</translation>
     </message>
     <message>
-        <source>CJW Newsletter List</source>
+        <source> Newsletter List</source>
         <comment>Datatype name</comment>
-        <translation>CJW Newsletter Liste</translation>
+        <translation> Newsletter Liste</translation>
     </message>
     <message>
-        <source>CJW Newsletter Subscription</source>
+        <source> Newsletter Subscription</source>
         <comment>Datatype name</comment>
-        <translation>CJW Newsletter Anmeldung</translation>
+        <translation> Newsletter Anmeldung</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/design/admin/node/view/full</name>
+    <name>newsletter/design/admin/node/view/full</name>
     <message>
         <source>The edition %child_name is already in sending process.</source>
         <translation>Die Newsletterausgabe %child_name ist gerade im Versand.</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/editionsenditem/status</name>
+    <name>newsletter/editionsenditem/status</name>
     <message>
         <source>New</source>
         <translation>Neu</translation>
@@ -914,7 +914,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/import_list</name>
+    <name>newsletter/import_list</name>
     <message>
         <source>Import overview</source>
         <translation type="obsolete">Importüberblick</translation>
@@ -997,7 +997,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/import_view</name>
+    <name>newsletter/import_view</name>
     <message>
         <source>Import details</source>
         <translation>Einzelheiten zum Import</translation>
@@ -1108,7 +1108,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/index</name>
+    <name>newsletter/index</name>
     <message>
         <source>Structure</source>
         <translation type="obsolete">Struktur</translation>
@@ -1183,7 +1183,7 @@
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/mail/subscription_confirmation</name>
+    <name>newsletter/mail/subscription_confirmation</name>
     <message>
         <source>Hello %name
 
@@ -1205,7 +1205,7 @@ Zur Aktivierung bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/mail/subscription_information</name>
+    <name>newsletter/mail/subscription_information</name>
     <message>
         <source>Hello %name
 
@@ -1223,7 +1223,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/mailbox_edit</name>
+    <name>newsletter/mailbox_edit</name>
     <message>
         <source>Edit &lt;%mailbox.email&gt; </source>
         <translation>Bearbeiten &lt;%mailbox.email&gt;</translation>
@@ -1294,7 +1294,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/mailbox_item_list</name>
+    <name>newsletter/mailbox_item_list</name>
     <message>
         <source>Mailbox collect mail result</source>
         <translation>Ergebnis E-Mail abrufen </translation>
@@ -1441,7 +1441,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/mailbox_item_view</name>
+    <name>newsletter/mailbox_item_view</name>
     <message>
         <source>Mailbox Item Database Infos</source>
         <translation>E-Mail-Informationen</translation>
@@ -1488,7 +1488,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/mailbox_list</name>
+    <name>newsletter/mailbox_list</name>
     <message>
         <source>Mailbox list</source>
         <translation type="obsolete">E-Mail-Konten</translation>
@@ -1599,7 +1599,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/menu</name>
+    <name>newsletter/menu</name>
     <message>
         <source>Settings</source>
         <translation>Einstellungen</translation>
@@ -1682,7 +1682,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/newsletter_list_subscription</name>
+    <name>newsletter/newsletter_list_subscription</name>
     <message>
         <source>Import contact from CSV file.</source>
         <translation>Abonnenten aus CSV Datei importieren.</translation>
@@ -1693,7 +1693,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/newsletter_menu</name>
+    <name>newsletter/newsletter_menu</name>
     <message>
         <source>Change the left menu width to small size.</source>
         <translation>Inhaltsstruktur schmal anzeigen.</translation>
@@ -1720,7 +1720,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/outputformat</name>
+    <name>newsletter/outputformat</name>
     <message>
         <source>HTML</source>
         <translation>HTML</translation>
@@ -1731,14 +1731,14 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/path</name>
+    <name>newsletter/path</name>
     <message>
         <source>Newsletter</source>
         <translation>Newsletter</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/preview</name>
+    <name>newsletter/preview</name>
     <message>
         <source>Newsletter preview</source>
         <translation>Newslettervorschau</translation>
@@ -1753,7 +1753,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/send</name>
+    <name>newsletter/send</name>
     <message>
         <source>Send Test Newsletter</source>
         <translation>Testnewsletter versenden</translation>
@@ -1920,14 +1920,14 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/send.tpl</name>
+    <name>newsletter/send.tpl</name>
     <message>
         <source>Do you really want to send out this newsletter?</source>
         <translation>Wollen Sie den Newsletter wirklich verschicken?</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/send_abort</name>
+    <name>newsletter/send_abort</name>
     <message>
         <source>Abort newsletter send out process</source>
         <translation>Newsletter-Versendeprozess abbrechen</translation>
@@ -1966,14 +1966,14 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/send_abort.tpl</name>
+    <name>newsletter/send_abort.tpl</name>
     <message>
         <source>Do you really want to abort the send out process?</source>
         <translation>Wollen Sie den Newsletter-Versendeprozess wirklich abbrechen?</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/skin/default</name>
+    <name>newsletter/skin/default</name>
     <message>
         <source>unsubscribe</source>
         <translation>Abonnent beenden</translation>
@@ -1988,7 +1988,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscribe</name>
+    <name>newsletter/subscribe</name>
     <message>
         <source>Salutation</source>
         <translation>Anrede</translation>
@@ -2091,14 +2091,14 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscribe_info</name>
+    <name>newsletter/subscribe_info</name>
     <message>
         <source>Get subscribe information</source>
         <translation>Newsletterabonnement bearbeiten</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscribe_infomail</name>
+    <name>newsletter/subscribe_infomail</name>
     <message>
         <source>Newsletter - Edit profile</source>
         <translation>Newsletter - Profil bearbeiten</translation>
@@ -2133,7 +2133,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscribe_infomail_success</name>
+    <name>newsletter/subscribe_infomail_success</name>
     <message>
         <source>Newsletter</source>
         <translation>Newsletter</translation>
@@ -2152,7 +2152,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscribe_success</name>
+    <name>newsletter/subscribe_success</name>
     <message>
         <source>Newsletter - subscribe success</source>
         <translation>Newsletter - Abonnent erfolgreich</translation>
@@ -2179,7 +2179,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscribe_success_not</name>
+    <name>newsletter/subscribe_success_not</name>
     <message>
         <source>Newsletter - subscribe unsuccessfull</source>
         <translation>Das Abonnieren des Newsletters war nicht erfolgreich</translation>
@@ -2194,7 +2194,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscription</name>
+    <name>newsletter/subscription</name>
     <message>
         <source>Newsletter</source>
         <translation>Newsletter</translation>
@@ -2245,7 +2245,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscription/status</name>
+    <name>newsletter/subscription/status</name>
     <message>
         <source>Pending</source>
         <translation>Wartend</translation>
@@ -2280,21 +2280,21 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscription_confirmation</name>
+    <name>newsletter/subscription_confirmation</name>
     <message>
         <source>Subscription verification</source>
         <translation>Anmeldebestätigung</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscription_information</name>
+    <name>newsletter/subscription_information</name>
     <message>
         <source>Subscription information</source>
         <translation>Anmeldeinformation</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscription_list</name>
+    <name>newsletter/subscription_list</name>
     <message>
         <source>Subscription list &lt;%subscription_list_name&gt;</source>
         <translation>Abonnentenliste  &lt;%subscription_list_name&gt;</translation>
@@ -2481,7 +2481,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscription_list_csvexport</name>
+    <name>newsletter/subscription_list_csvexport</name>
     <message>
         <source>Subscription CSV export</source>
         <translation>Abonnenten als CSV exportieren</translation>
@@ -2520,7 +2520,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscription_list_csvimport</name>
+    <name>newsletter/subscription_list_csvimport</name>
     <message>
         <source>Subscription list CSV import</source>
         <translation type="obsolete">Abonnementenliste als CSV exportierenEmpfängerliste CSV Import</translation>
@@ -2651,7 +2651,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/subscription_view</name>
+    <name>newsletter/subscription_view</name>
     <message>
         <source>Newsletter subscription view</source>
         <translation type="obsolete">Details Eintrag Newsletteranmeldung</translation>
@@ -2758,7 +2758,7 @@ Zur Bearbeitung der Newslettereinstellungen bitte auf folgenden Link klicken:
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/unsubscribe</name>
+    <name>newsletter/unsubscribe</name>
     <message>
         <source>Unsubscribe</source>
         <translation>Abonnent beenden</translation>
@@ -2803,7 +2803,7 @@ müssen Sie diese Seite bestätigen.</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/user/salutation</name>
+    <name>newsletter/user/salutation</name>
     <message>
         <source>Mr</source>
         <translation>Herr</translation>
@@ -2818,7 +2818,7 @@ müssen Sie diese Seite bestätigen.</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/user/status</name>
+    <name>newsletter/user/status</name>
     <message>
         <source>Pending</source>
         <translation>Wartend</translation>
@@ -2853,7 +2853,7 @@ müssen Sie diese Seite bestätigen.</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/user_create</name>
+    <name>newsletter/user_create</name>
     <message>
         <source>Create a new newsletter user</source>
         <translation>Neuen Newsletterbenutzer anlegen</translation>
@@ -2876,7 +2876,7 @@ müssen Sie diese Seite bestätigen.</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/user_edit</name>
+    <name>newsletter/user_edit</name>
     <message>
         <source>First name of newsletter user.</source>
         <translation>Vorname des Newsletterbenutzers.</translation>
@@ -2923,7 +2923,7 @@ müssen Sie diese Seite bestätigen.</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/user_list</name>
+    <name>newsletter/user_list</name>
     <message>
         <source>User list</source>
         <translation type="obsolete">Benutzerliste</translation>
@@ -3070,7 +3070,7 @@ müssen Sie diese Seite bestätigen.</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/user_remove</name>
+    <name>newsletter/user_remove</name>
     <message>
         <source>Remove newsletter user</source>
         <translation>Newsletter Benutzer löschen</translation>
@@ -3093,7 +3093,7 @@ müssen Sie diese Seite bestätigen.</translation>
     </message>
 </context>
 <context>
-    <name>cjw_newsletter/user_view</name>
+    <name>newsletter/user_view</name>
     <message>
         <source>Id</source>
         <translation>Id</translation>
@@ -3685,8 +3685,8 @@ müssen Sie diese Seite bestätigen.</translation>
 <context>
     <name>kernel/navigationpart</name>
     <message>
-        <source>CJW Newsletter</source>
-        <translation>CJW Newsletter</translation>
+        <source> Newsletter</source>
+        <translation> Newsletter</translation>
     </message>
 </context>
 </TS>

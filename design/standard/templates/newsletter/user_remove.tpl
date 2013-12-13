@@ -14,7 +14,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{'Remove newsletter user'|i18n( 'cjw_newsletter/user_remove',, hash() )|wash}</h1>
+                                <h1 class="context-title">{'Remove newsletter user'|i18n( 'newsletter/user_remove',, hash() )|wash}</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -46,30 +46,30 @@
                              <table class="list">
                                 <tr>
                                     <th>
-                                        {'Id'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Id'|i18n( 'newsletter/user_view' )}
                                     </th>
 
                                     <th>
-                                        {'Email'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Email'|i18n( 'newsletter/user_view' )}
                                     </th>
 
                                     <th>
-                                        {'Salutation'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Salutation'|i18n( 'newsletter/user_view' )}
                                     </th>
 
                                     <th>
-                                        {'First name'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'First name'|i18n( 'newsletter/user_view' )}
                                     </th>
 
                                     <th>
-                                        {'Last name'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Last name'|i18n( 'newsletter/user_view' )}
                                     </th>
 
                                     <th>
-                                        {'Status'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Status'|i18n( 'newsletter/user_view' )}
                                     </th>
-                                    <th title="{'Subscription count'|i18n( 'cjw_newsletter/user_remove' )}">
-                                        {'S'|i18n( 'cjw_newsletter/user_remove' )}
+                                    <th title="{'Subscription count'|i18n( 'newsletter/user_remove' )}">
+                                        {'S'|i18n( 'newsletter/user_remove' )}
                                     </th>
                                 </tr>
                                 <tr>
@@ -120,9 +120,9 @@
                                                 <input type="hidden" name="RedirectUrlActionRemove" value="{$redirect_url_action_remove}" />
                                                 <input type="hidden" name="RedirectUrlActionCancel" value="{$redirect_url_action_cancel}" />
 
-                                                <input class="button" type="submit" name="RemoveButton" value="{'Remove'|i18n( 'cjw_newsletter/user_remove' )}" title="{'Remove'|i18n( 'cjw_newsletter/user_remove' )}" />
+                                                <input class="button" type="submit" name="RemoveButton" value="{'Remove'|i18n( 'newsletter/user_remove' )}" title="{'Remove'|i18n( 'newsletter/user_remove' )}" />
 
-                                                <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'cjw_newsletter/user_remove' )}" title="{'Cancel'|i18n( 'cjw_newsletter/user_remove' )}" />
+                                                <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'newsletter/user_remove' )}" title="{'Cancel'|i18n( 'newsletter/user_remove' )}" />
 
                                             </div>
                                         </div>{* DESIGN: Control bar END *}

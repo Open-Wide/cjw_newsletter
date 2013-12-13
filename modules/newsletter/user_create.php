@@ -7,7 +7,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -145,13 +145,13 @@ if ( $module->isCurrentAction( 'CreateEdit' ) )
             {
                 if ( !eZMail::validate( $subscriptionDataArr['email'] ) || $subscriptionDataArr['email'] == '' )
                 {
-                    $warningArr['email'] = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'Email'),
-                                                  'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'You must provide a valid email address.' ) );
+                    $warningArr['email'] = array( 'field_key'   => ezpI18n::tr( 'newsletter/subscription', 'Email'),
+                                                  'message'     => ezpI18n::tr( 'newsletter/subscription', 'You must provide a valid email address.' ) );
                 }
                 else
                 {
                     // check if email already exists
-                    $existingNewsletterUserObject = CjwNewsletterUser::fetchByEmail( $subscriptionDataArr['email'] );
+                    $existingNewsletterUserObject = NewsletterUser::fetchByEmail( $subscriptionDataArr['email'] );
 
                     if( is_object( $existingNewsletterUserObject ) )
                     {
@@ -159,8 +159,8 @@ if ( $module->isCurrentAction( 'CreateEdit' ) )
                         $newsletterUserId = $existingNewsletterUserObject->attribute( 'id' );
                         $msg = 'edit_existing';
 
-                     /*   $warningArr['email'] = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'Email' ),
-                                                'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'Email is already used by an other newsletter user.' ) );
+                     /*   $warningArr['email'] = array( 'field_key'   => ezpI18n::tr( 'newsletter/subscription', 'Email' ),
+                                                'message'     => ezpI18n::tr( 'newsletter/subscription', 'Email is already used by an other newsletter user.' ) );
                                                 */
                     }
 
@@ -209,11 +209,11 @@ $Result = array();
 
 $Result['content'] = $tpl->fetch( $templateFile );
 $Result['path'] =  array( array( 'url'  => 'newsletter/index',
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/path', 'Newsletter' ) ),
                           array( 'url'  => 'newsletter/user_list',
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/user_list', 'Users' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/user_list', 'Users' ) ),
                           array( 'url'  => false,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/user_create', 'Create' ) ) );
+                                 'text' => ezpI18n::tr( 'newsletter/user_create', 'Create' ) ) );
 
 
 ?>

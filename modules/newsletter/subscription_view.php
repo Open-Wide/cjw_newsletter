@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -17,7 +17,7 @@ $tpl = eZTemplate::factory();
 $templateFile = 'design:newsletter/subscription_view.tpl';
 
 $subscriptionId = (int) $Params['SubscriptionId'];
-$subscriptionObject = CjwNewsletterSubscription::fetch( $subscriptionId );
+$subscriptionObject = NewsletterSubscription::fetch( $subscriptionId );
 
 if( !is_object( $subscriptionObject ) )
 {
@@ -29,13 +29,13 @@ $message = '';
 if( $http->hasVariable( 'SubscriptionApproveButton' ) )
 {
     $subscriptionObject->approveByAdmin();
-    $message = ezpI18n::tr( 'cjw_newsletter/subscription_view','Subscription successfully approved!' );
+    $message = ezpI18n::tr( 'newsletter/subscription_view','Subscription successfully approved!' );
 }
 
 if( $http->hasVariable( 'SubscriptionRemoveButton' ) )
 {
     $subscriptionObject->removeByAdmin();
-    $message = ezpI18n::tr( 'cjw_newsletter/subscription_view','Subscription successfully removed!' );
+    $message = ezpI18n::tr( 'newsletter/subscription_view','Subscription successfully removed!' );
 }
 
 $viewParameters = array();
@@ -73,7 +73,7 @@ if ( is_object( $newsletter_user) )
 
 
 $Result['path'] =  array( array( 'url'  => 'newsletter/index',
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/path', 'Newsletter' ) ),
 
                           array( 'url'  => $systemNode->attribute( 'url_alias' ),
                                  'text' => $systemNode->attribute( 'name' ) ),
@@ -82,7 +82,7 @@ $Result['path'] =  array( array( 'url'  => 'newsletter/index',
                                  'text' => $listNode->attribute( 'name' ) ),
 
                           array( 'url'  => 'newsletter/subscription_list/' .$listNodeId,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/subscription_list', 'Subscriptions' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/subscription_list', 'Subscriptions' ) ),
 
                           array( 'url'  => false,
                                  'text' => $name ) );

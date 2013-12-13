@@ -9,7 +9,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -29,7 +29,7 @@ if( $Params['NewsletterUserId'] )
     $newsletterUserId = $Params['NewsletterUserId'];
 
 
-$editionSendObject = CjwNewsletterEditionSend::fetch( $editionSendId );
+$editionSendObject = NewsletterEditionSend::fetch( $editionSendId );
 
 if( !is_object( $editionSendObject  ) )
 {
@@ -64,7 +64,7 @@ else
 }
 
 
-$mailSubjectLabel = ezpI18n::tr( 'cjw_newsletter/preview', 'Email subject' );
+$mailSubjectLabel = ezpI18n::tr( 'newsletter/preview', 'Email subject' );
 
 $subjectStyle = 'style="background-color:#dddddd;border-color: #cccccc;border-width: 0 0 1px 0;border-style: solid;color:#333333;"';
 

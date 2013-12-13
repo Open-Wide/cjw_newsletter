@@ -4,7 +4,7 @@
 *}
 <div class="newsletter newsletter-subscription_list">
 
-{if $node.class_identifier|eq( 'cjw_newsletter_list' )}
+{if $node.class_identifier|eq( 'newsletter_list' )}
 
 
 {def $subscription_icon_css_class_array = hash( '0', 'icon12 icon_s_pending',
@@ -76,7 +76,7 @@
 
 <div class="context-block">
 {* DESIGN: Header START *}<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
-<h1 class="context-title"><img src={'images/newsletter/icons/crystal-newsletter/32x32/newsletter_user.png'|ezdesign} width="32" height="32" /> {'Subscription list <%subscription_list_name>'|i18n( 'cjw_newsletter/subscription_list',, hash( '%subscription_list_name', $newsletter_list_node.name ) )|wash}</h1>
+<h1 class="context-title"><img src={'images/newsletter/icons/crystal-newsletter/32x32/newsletter_user.png'|ezdesign} width="32" height="32" /> {'Subscription list <%subscription_list_name>'|i18n( 'newsletter/subscription_list',, hash( '%subscription_list_name', $newsletter_list_node.name ) )|wash}</h1>
 
 {* DESIGN: Mainline *}<div class="header-mainline"></div>
 
@@ -87,7 +87,7 @@
 
 
     {*<div class="block float-break">
-        <p><b>{"Subscriptions statistic"|i18n( 'cjw_newsletter/subscription_list' )}</b></p>
+        <p><b>{"Subscriptions statistic"|i18n( 'newsletter/subscription_list' )}</b></p>
 
         {def $user_count_statistic = $node.data_map.newsletter_list.content.user_count_statistic}
         <table class="list">
@@ -104,7 +104,7 @@
         </table>
     </div>*}
 
-    {include uri='design:cjw_newsletter_list_statistic.tpl'
+    {include uri='design:newsletter_list_statistic.tpl'
              name='Statistic'
              list_node=$node
              icons=true()}
@@ -120,15 +120,15 @@
                 <input type="hidden" name="AddSubscriptionForListId" value="{$node.contentobject_id}" />
                 <input type="hidden" name="RedirectUrlActionCancel" value="newsletter/subscription_list/{$node.node_id}" />
                 <input type="hidden" name="RedirectUrlActionStore" value="newsletter/subscription_list/{$node.node_id}" />
-                <input class="defaultbutton" type="submit" name="NewSubscriptionButton" value="{'Create new Subscription'|i18n( 'cjw_newsletter/subscription_list' )}" />
+                <input class="defaultbutton" type="submit" name="NewSubscriptionButton" value="{'Create new Subscription'|i18n( 'newsletter/subscription_list' )}" />
             </form>
 
             <form name="CsvImport" method="post" action={$uri_csv_import|ezurl} style="display:inline">
-                <input class="button" type="submit" name="importcsv" value="{'Import CSV'|i18n( 'cjw_newsletter/subscription_list' )}" title="{'Import contact from CSV file.'|i18n( 'cjw_newsletter/newsletter_list_subscription' )}" />
+                <input class="button" type="submit" name="importcsv" value="{'Import CSV'|i18n( 'newsletter/subscription_list' )}" title="{'Import contact from CSV file.'|i18n( 'newsletter/newsletter_list_subscription' )}" />
             </form>
 
             <form name="CsvExport" method="post" action={$uri_csv_export|ezurl} style="display:inline">
-                <input class="button" type="submit" name="importcsv" value="{'Export CSV'|i18n( 'cjw_newsletter/subscription_list' )}" title="{'Export to CSV file.'|i18n( 'cjw_newsletter/newsletter_list_subscription' )}" />
+                <input class="button" type="submit" name="importcsv" value="{'Export CSV'|i18n( 'newsletter/subscription_list' )}" title="{'Export to CSV file.'|i18n( 'newsletter/newsletter_list_subscription' )}" />
             </form>
 
 
@@ -144,7 +144,7 @@
 <div class="context-block">
 
 {* DESIGN: Header START *}<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
-<h2 class="context-title">{'Subscribers'|i18n( 'cjw_newsletter/subscription_list' )} [{$subscription_list_count}]</h2>
+<h2 class="context-title">{'Subscribers'|i18n( 'newsletter/subscription_list' )} [{$subscription_list_count}]</h2>
 {* DESIGN: Subline *}<div class="header-subline"></div>
 {* DESIGN: Header END *}</div></div></div></div></div></div>
 {* DESIGN:  START *}<div class="box-ml"><div class="box-mr"><div class="box-content">
@@ -180,67 +180,67 @@
 
             {if $status|eq('')}
                 <span class="current">
-                    {'All'|i18n('cjw_newsletter/subscription_list')}
+                    {'All'|i18n('newsletter/subscription_list')}
                 </span>
             {else}
                 <a href={concat( $base_uri,'')|ezurl}>
-                    {'All'|i18n('cjw_newsletter/subscription_list')}
+                    {'All'|i18n('newsletter/subscription_list')}
                 </a>
             {/if}
 
             {if $status|eq('pending')}
                 <span class="current">
-                   <img src={'1x1.gif'|ezimage} alt="{'Pending'|i18n('cjw_newsletter/subscription_list')}" title="{'Pending'|i18n('cjw_newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[0]}" /> {'Pending'|i18n('cjw_newsletter/subscription_list')}
+                   <img src={'1x1.gif'|ezimage} alt="{'Pending'|i18n('newsletter/subscription_list')}" title="{'Pending'|i18n('newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[0]}" /> {'Pending'|i18n('newsletter/subscription_list')}
                 </span>
             {else}
                 <a href={concat($base_uri, '/(status)/pending' )|ezurl}>
-                    <img src={'1x1.gif'|ezimage} alt="{'Pending'|i18n('cjw_newsletter/subscription_list')}" title="{'Pending'|i18n('cjw_newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[0]}" /> {'Pending'|i18n('cjw_newsletter/subscription_list')}
+                    <img src={'1x1.gif'|ezimage} alt="{'Pending'|i18n('newsletter/subscription_list')}" title="{'Pending'|i18n('newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[0]}" /> {'Pending'|i18n('newsletter/subscription_list')}
                 </a>
             {/if}
 
             {if $status|eq('confirmed')}
                 <span class="current">
-                    <img src={'1x1.gif'|ezimage} alt="{'Confirmed'|i18n('cjw_newsletter/subscription_list')}" title="{'Confirmed'|i18n('cjw_newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[1]}" /> {'Confirmed'|i18n('cjw_newsletter/subscription_list')}
+                    <img src={'1x1.gif'|ezimage} alt="{'Confirmed'|i18n('newsletter/subscription_list')}" title="{'Confirmed'|i18n('newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[1]}" /> {'Confirmed'|i18n('newsletter/subscription_list')}
                 </span>
             {else}
                 <a href={concat($base_uri, '/(status)/confirmed' )|ezurl}>
-                    <img src={'1x1.gif'|ezimage} alt="{'Confirmed'|i18n('cjw_newsletter/subscription_list')}" title="{'Confirmed'|i18n('cjw_newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[1]}" /> {'Confirmed'|i18n('cjw_newsletter/subscription_list')}
+                    <img src={'1x1.gif'|ezimage} alt="{'Confirmed'|i18n('newsletter/subscription_list')}" title="{'Confirmed'|i18n('newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[1]}" /> {'Confirmed'|i18n('newsletter/subscription_list')}
                 </a>
             {/if}
             {if $status|eq('approved')}
                 <span class="current">
-                    <img src={'1x1.gif'|ezimage} alt="{'Approved'|i18n('cjw_newsletter/subscription_list')}" title="{'Approved'|i18n('cjw_newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[2]}" /> {'Approved'|i18n('cjw_newsletter/subscription_list')}
+                    <img src={'1x1.gif'|ezimage} alt="{'Approved'|i18n('newsletter/subscription_list')}" title="{'Approved'|i18n('newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[2]}" /> {'Approved'|i18n('newsletter/subscription_list')}
                 </span>
             {else}
                 <a href={concat($base_uri, '/(status)/approved' )|ezurl}>
-                    <img src={'1x1.gif'|ezimage} alt="{'Approved'|i18n('cjw_newsletter/subscription_list')}" title="{'Approved'|i18n('cjw_newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[2]}" /> {'Approved'|i18n('cjw_newsletter/subscription_list')}
+                    <img src={'1x1.gif'|ezimage} alt="{'Approved'|i18n('newsletter/subscription_list')}" title="{'Approved'|i18n('newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[2]}" /> {'Approved'|i18n('newsletter/subscription_list')}
                 </a>
             {/if}
             {if $status|eq('bounced')}
                 <span class="current">
-                    <img src={'1x1.gif'|ezimage} alt="{'Bounced'|i18n('cjw_newsletter/subscription_list')}" title="{'Bounced'|i18n('cjw_newsletter/subscription_list')}" class="{$subscription_icon_css_class_array['bounced']}" /> {'Bounced'|i18n('cjw_newsletter/subscription_list')}
+                    <img src={'1x1.gif'|ezimage} alt="{'Bounced'|i18n('newsletter/subscription_list')}" title="{'Bounced'|i18n('newsletter/subscription_list')}" class="{$subscription_icon_css_class_array['bounced']}" /> {'Bounced'|i18n('newsletter/subscription_list')}
                 </span>
             {else}
                 <a href={concat($base_uri, '/(status)/bounced' )|ezurl}>
-                    <img src={'1x1.gif'|ezimage} alt="{'Bounced'|i18n('cjw_newsletter/subscription_list')}" title="{'Bounced'|i18n('cjw_newsletter/subscription_list')}" class="{$subscription_icon_css_class_array['bounced']}" /> {'Bounced'|i18n('cjw_newsletter/subscription_list')}
+                    <img src={'1x1.gif'|ezimage} alt="{'Bounced'|i18n('newsletter/subscription_list')}" title="{'Bounced'|i18n('newsletter/subscription_list')}" class="{$subscription_icon_css_class_array['bounced']}" /> {'Bounced'|i18n('newsletter/subscription_list')}
                 </a>
             {/if}
             {if $status|eq('removed')}
                 <span class="current">
-                    <img src={'1x1.gif'|ezimage} alt="{'Removed'|i18n('cjw_newsletter/subscription_list')}" title="{'Removed'|i18n('cjw_newsletter/subscription_list')}" class="{$subscription_icon_css_class_array['removed']}" /> {'Removed'|i18n('cjw_newsletter/subscription_list')}
+                    <img src={'1x1.gif'|ezimage} alt="{'Removed'|i18n('newsletter/subscription_list')}" title="{'Removed'|i18n('newsletter/subscription_list')}" class="{$subscription_icon_css_class_array['removed']}" /> {'Removed'|i18n('newsletter/subscription_list')}
                 </span>
             {else}
                 <a href={concat($base_uri, '/(status)/removed' )|ezurl}>
-                    <img src={'1x1.gif'|ezimage} alt="{'Removed'|i18n('cjw_newsletter/subscription_list')}" title="{'Removed'|i18n('cjw_newsletter/subscription_list')}" class="{$subscription_icon_css_class_array['removed']}" /> {'Removed'|i18n('cjw_newsletter/subscription_list')}
+                    <img src={'1x1.gif'|ezimage} alt="{'Removed'|i18n('newsletter/subscription_list')}" title="{'Removed'|i18n('newsletter/subscription_list')}" class="{$subscription_icon_css_class_array['removed']}" /> {'Removed'|i18n('newsletter/subscription_list')}
                 </a>
             {/if}
             {if $status|eq('blacklisted')}
                 <span class="current">
-                    <img src={'1x1.gif'|ezimage} alt="{'Blacklisted'|i18n('cjw_newsletter/subscription_list')}" title="{'Blacklisted'|i18n('cjw_newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[8]}" /> {'Blacklisted'|i18n('cjw_newsletter/subscription_list')}
+                    <img src={'1x1.gif'|ezimage} alt="{'Blacklisted'|i18n('newsletter/subscription_list')}" title="{'Blacklisted'|i18n('newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[8]}" /> {'Blacklisted'|i18n('newsletter/subscription_list')}
                 </span>
             {else}
                 <a href={concat($base_uri, '/(status)/blacklisted' )|ezurl}>
-                    <img src={'1x1.gif'|ezimage} alt="{'Blacklisted'|i18n('cjw_newsletter/subscription_list')}" title="{'Blacklisted'|i18n('cjw_newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[8]}" /> {'Blacklisted'|i18n('cjw_newsletter/subscription_list')}
+                    <img src={'1x1.gif'|ezimage} alt="{'Blacklisted'|i18n('newsletter/subscription_list')}" title="{'Blacklisted'|i18n('newsletter/subscription_list')}" class="{$subscription_icon_css_class_array[8]}" /> {'Blacklisted'|i18n('newsletter/subscription_list')}
                 </a>
             {/if}
 
@@ -259,16 +259,16 @@
         <table class="list" cellspacing="0">
         <tr>
         {*
-            <th class="tight"><img src={'toggle-button-16x16.gif'|ezimage} alt="{'Invert selection'|i18n( 'cjw_newsletter/subscription_list' )}" title="{'Invert selection'|i18n( 'cjw_newsletter/subscription_list' )}" onclick="ezjs_toggleCheckboxes( document.subscription_list, 'SubscriptionIDArray[]' ); return false;" /></th>
+            <th class="tight"><img src={'toggle-button-16x16.gif'|ezimage} alt="{'Invert selection'|i18n( 'newsletter/subscription_list' )}" title="{'Invert selection'|i18n( 'newsletter/subscription_list' )}" onclick="ezjs_toggleCheckboxes( document.subscription_list, 'SubscriptionIDArray[]' ); return false;" /></th>
         *}
-            <th class="tight">{'ID'|i18n('cjw_newsletter/subscription_list')}</th>
-            <th>{'Email'|i18n( 'cjw_newsletter/subscription_list' )}</th>
-            <th>{'First name'|i18n( 'cjw_newsletter/subscription_list' )}</th>
-            <th>{'Last name'|i18n( 'cjw_newsletter/subscription_list' )}</th>
-            <th>{'eZ Publish User'|i18n('cjw_newsletter/subscription_list')}</th>
-            <th>{'Format'|i18n( 'cjw_newsletter/subscription_list' )}</th>
-            <th>{'Status'|i18n( 'cjw_newsletter/subscription_list' )}</th>
-            <th>{'Modified'|i18n( 'cjw_newsletter/subscription_list' )}</th>
+            <th class="tight">{'ID'|i18n('newsletter/subscription_list')}</th>
+            <th>{'Email'|i18n( 'newsletter/subscription_list' )}</th>
+            <th>{'First name'|i18n( 'newsletter/subscription_list' )}</th>
+            <th>{'Last name'|i18n( 'newsletter/subscription_list' )}</th>
+            <th>{'eZ Publish User'|i18n('newsletter/subscription_list')}</th>
+            <th>{'Format'|i18n( 'newsletter/subscription_list' )}</th>
+            <th>{'Status'|i18n( 'newsletter/subscription_list' )}</th>
+            <th>{'Modified'|i18n( 'newsletter/subscription_list' )}</th>
             <th class="tight">&nbsp;</th>
         </tr>
 
@@ -277,7 +277,7 @@
 
         <tr class="{$style}">
         {*
-            <td><input type="checkbox" name="SubscriptionIDArray[]" value="{$subscription.id|wash}" title="{'Select subscriber for removal'|i18n( 'cjw_newsletter/subscription_list' )}" /></td>
+            <td><input type="checkbox" name="SubscriptionIDArray[]" value="{$subscription.id|wash}" title="{'Select subscriber for removal'|i18n( 'newsletter/subscription_list' )}" /></td>
         *}
             <td>{$subscription.id|wash}</td>
             <td><a href={concat('newsletter/user_view/',$subscription.newsletter_user.id)|ezurl} title="{$subscription.newsletter_user.first_name} {$subscription.newsletter_user.last_name}">{$subscription.newsletter_user.email}</a></td>
@@ -294,16 +294,16 @@
             </td>
             <td>{$subscription.output_format_array|implode(', ')}</td>
             <td><img src={'16x16.gif'|ezimage} alt="{$subscription.status_string|wash}" class="{$subscription_icon_css_class_array[$subscription.status]}" title="{$subscription.status_string|wash} ({$subscription.status|wash})" /></td>
-            <td>{cond( $subscription.modified|gt(0), $subscription.modified|l10n( shortdatetime ), 'n/a'|i18n( 'cjw_newsletter/subscription_list' ) )}</td>
+            <td>{cond( $subscription.modified|gt(0), $subscription.modified|l10n( shortdatetime ), 'n/a'|i18n( 'newsletter/subscription_list' ) )}</td>
             <td class="tight" style="white-space: nowrap;">
                 <form class="inline" action="{concat('newsletter/subscription_view/', $subscription.id )|ezurl( 'no' )}">
-                    <input class="button" type="submit" value="{'Details'|i18n( 'cjw_newsletter/user_list' )}" title="{'Subscription details'|i18n( 'cjw_newsletter/user_list' )}" name="SubscriptionDetails" />
+                    <input class="button" type="submit" value="{'Details'|i18n( 'newsletter/user_list' )}" title="{'Subscription details'|i18n( 'newsletter/user_list' )}" name="SubscriptionDetails" />
                 </form>
                 <form class="inline" action="{concat( '/newsletter/subscription_view/', $subscription.id )|ezurl( 'no' )}" method="post">
-                    <input  {if or( $subscription.status|eq(2), $subscription.status|eq(3), $subscription.status|eq(8) )}class="button-disabled" disabled="disabled"{else}class="button"{/if} type="submit" value="{'Approve'|i18n( 'cjw_newsletter/subscription_list' )}" name="SubscriptionApproveButton" title="{'Approve subscription'|i18n( 'cjw_newsletter/subscription_list' )}" />
+                    <input  {if or( $subscription.status|eq(2), $subscription.status|eq(3), $subscription.status|eq(8) )}class="button-disabled" disabled="disabled"{else}class="button"{/if} type="submit" value="{'Approve'|i18n( 'newsletter/subscription_list' )}" name="SubscriptionApproveButton" title="{'Approve subscription'|i18n( 'newsletter/subscription_list' )}" />
                 </form>
                 <form class="inline" action="{concat( 'newsletter/user_edit/', $subscription.newsletter_user.id, '?RedirectUrl=', $base_uri, '/(offset)/', $view_parameters.offset )|ezurl( 'no' )}" method="post">
-                    <input class="button" type="submit" value="{'Edit'|i18n( 'cjw_newsletter/user_list' )}" title="{'Edit newsletter user'|i18n( 'cjw_newsletter/user_list' )}" name="EditNewsletterUser" />
+                    <input class="button" type="submit" value="{'Edit'|i18n( 'newsletter/user_list' )}" title="{'Edit newsletter user'|i18n( 'newsletter/user_list' )}" name="EditNewsletterUser" />
                 </form>
             </td>
         </tr>
@@ -328,8 +328,8 @@
 {* DESIGN: Control bar START *}<div class="box-bc"><div class="box-ml"><div class="box-mr"><div class="box-tc"><div class="box-bl"><div class="box-br">
 
 {*
-    <input class="button" type="submit" name="RemoveSubscriptionButton" value="{'Remove selected'|i18n( 'cjw_newsletter/subscription_list' )}" title="{'Remove selected subscription.'|i18n( 'cjw_newsletter/subscription_list' )}" />
-    <input class="button" type="submit" name="CreateSubscriptionButton" value="{'New subscription'|i18n( 'cjw_newsletter/subscription_list' )}" title="{'Create a new subscription.'|i18n( 'cjw_newsletter/subscription_list' )}" />
+    <input class="button" type="submit" name="RemoveSubscriptionButton" value="{'Remove selected'|i18n( 'newsletter/subscription_list' )}" title="{'Remove selected subscription.'|i18n( 'newsletter/subscription_list' )}" />
+    <input class="button" type="submit" name="CreateSubscriptionButton" value="{'New subscription'|i18n( 'newsletter/subscription_list' )}" title="{'Create a new subscription.'|i18n( 'newsletter/subscription_list' )}" />
 *}
 </form>
     </div>

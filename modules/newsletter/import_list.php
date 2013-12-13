@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -38,8 +38,8 @@ if ( isset( $limitArray[ $limitArrayKey ] ) )
     $limit =  $limitArray[ $limitArrayKey ];
 }
 
-$importList = CjwNewsletterImport::fetchAllImportItems( $limit, $viewParameters[ 'offset' ] );
-$importListCount = CjwNewsletterImport::fetchAllImportItemsCount( );
+$importList = NewsletterImport::fetchAllImportItems( $limit, $viewParameters[ 'offset' ] );
+$importListCount = NewsletterImport::fetchAllImportItemsCount( );
 
 $tpl->setVariable( 'view_parameters', $viewParameters );
 
@@ -53,9 +53,9 @@ $Result = array();
 
 $Result['content'] = $tpl->fetch( $templateFile );
 $Result['path'] =  array( array( 'url'  => 'newsletter/index',
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/path', 'Newsletter' ) ),
 
                           array( 'url'  => false,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/import_list', 'Imports' ) ) );
+                                 'text' => ezpI18n::tr( 'newsletter/import_list', 'Imports' ) ) );
 
 ?>

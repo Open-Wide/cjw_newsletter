@@ -7,7 +7,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -17,7 +17,7 @@ $module = $Params['Module'];
 $http = eZHTTPTool::instance();
 $tpl = eZTemplate::factory();
 
-$newsletterUser = CjwNewsletterUser::fetchByHash( $Params['UserHash'] );
+$newsletterUser = NewsletterUser::fetchByHash( $Params['UserHash'] );
 
 if ( !$newsletterUser )
 {
@@ -27,9 +27,9 @@ if ( !$newsletterUser )
 // if user is blacklisted or removed do not show configure view
 switch( $newsletterUser->attribute('status') )
 {
-    case CjwNewsletterUser::STATUS_BLACKLISTED :
-    case CjwNewsletterUser::STATUS_REMOVED_ADMIN :
-    case CjwNewsletterUser::STATUS_REMOVED_SELF :
+    case NewsletterUser::STATUS_BLACKLISTED :
+    case NewsletterUser::STATUS_REMOVED_ADMIN :
+    case NewsletterUser::STATUS_REMOVED_SELF :
         return $module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
     break;
 }
@@ -57,7 +57,7 @@ if( $newsletterUser->attribute('is_confirmed') == false )
     
     $tpl->setVariable( 'confirm_all_result', $confirmAllResult );
 
-    $newsletterUser = CjwNewsletterUser::fetchByHash( $Params['UserHash'] );
+    $newsletterUser = NewsletterUser::fetchByHash( $Params['UserHash'] );
 }
 
 // configure form submitbutton
@@ -114,21 +114,21 @@ if ( $module->isCurrentAction( 'Confirm' ) )
     // required fields
 
     // update subscribe/ remove supscripions
-    $subscriptionResultArray = CjwNewsletterSubscription::createSubscriptionByArray( $subscriptionDataArray,
-                                                                                     CjwNewsletterUser::STATUS_PENDING,
+    $subscriptionResultArray = NewsletterSubscription::createSubscriptionByArray( $subscriptionDataArray,
+                                                                                     NewsletterUser::STATUS_PENDING,
                                                                                      $subscribeOnlyMode = false,
                                                                                      $context = 'configure' );
 
     $tpl->setVariable( 'changes_saved', true );
 }
 
-$newsletterUser = CjwNewsletterUser::fetchByHash( $Params['UserHash'] );
+$newsletterUser = NewsletterUser::fetchByHash( $Params['UserHash'] );
 $tpl->setVariable( 'newsletter_user', $newsletterUser );
 
 $Result = array();
 $Result['content'] = $tpl->fetch( 'design:newsletter/configure.tpl' );
 $Result['path'] = array( array( 'url' => false,
-                                'text' => ezpI18n::tr( 'cjw_newsletter/configure', 'Configure newsletter settings' ) ) );
+                                'text' => ezpI18n::tr( 'newsletter/configure', 'Configure newsletter settings' ) ) );
 
 
 ?>

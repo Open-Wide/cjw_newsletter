@@ -11,7 +11,7 @@ full view of an subscription - with all related data
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{'Newsletter subscription'|i18n( 'cjw_newsletter/subscription_view',, hash() )}</h1>
+                                <h1 class="context-title">{'Newsletter subscription'|i18n( 'newsletter/subscription_view',, hash() )}</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -38,7 +38,7 @@ full view of an subscription - with all related data
                             <table class="list">
                                 <tr>
                                     <th>
-                                        {'Subscription Id'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Subscription Id'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td>
                                         {$subscription.id|wash}
@@ -46,7 +46,7 @@ full view of an subscription - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Subscription list'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Subscription list'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td>
                                         <a href={concat( 'newsletter/subscription_list/',$newsletter_list_node_id )|ezurl}>{$newsletter_list_node.name|wash}</a>
@@ -54,7 +54,7 @@ full view of an subscription - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Newsletter user'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Newsletter user'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td>
                                         <a href={concat('newsletter/user_view/',$subscription.newsletter_user_id )|ezurl} title="{$subscription.newsletter_user_id|wash}">{$subscription.newsletter_user.name|wash} &lt;{$subscription.newsletter_user.email|wash}&gt;</a> ({$subscription.newsletter_user.status_string})
@@ -62,7 +62,7 @@ full view of an subscription - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Status'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Status'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td title="{$subscription.status|wash}">
                                         {$subscription.status_string|wash}
@@ -70,7 +70,7 @@ full view of an subscription - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Format'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Format'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td title="{$subscription.output_format_array_string|wash}">
                                         {$subscription.output_format_array|implode(',')}
@@ -78,7 +78,7 @@ full view of an subscription - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Created'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Created'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td>
                                         {$subscription.created|l10n( shortdatetime )}
@@ -86,7 +86,7 @@ full view of an subscription - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Creator'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Creator'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td title="{$subscription.creator_contentobject_id|wash}">
 
@@ -97,7 +97,7 @@ full view of an subscription - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Modified'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Modified'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td>
                                         {if $subscription.modified|ne(0)}
@@ -107,7 +107,7 @@ full view of an subscription - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Modifier'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Modifier'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td title="{$subscription.modifier_contentobject_id|wash}">
                                         {if $subscription.modifier_contentobject_id|ne(0)}
@@ -119,7 +119,7 @@ full view of an subscription - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Confirmed'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Confirmed'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td>
                                         {if $subscription.confirmed|ne(0)}
@@ -129,7 +129,7 @@ full view of an subscription - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Approved'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Approved'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td>
                                         {if $subscription.approved|ne(0)}
@@ -139,7 +139,7 @@ full view of an subscription - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Removed'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Removed'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td>
                                         {if $subscription.removed|ne(0)}
@@ -150,7 +150,7 @@ full view of an subscription - with all related data
 
                                 <tr>
                                     <th>
-                                        {'Bounced'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Bounced'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td>
                                         {if $subscription.bounced|ne(0)}
@@ -161,7 +161,7 @@ full view of an subscription - with all related data
 
                                 <tr>
                                     <th>
-                                        {'Hash'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Hash'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td>
                                         {$subscription.hash|wash}
@@ -170,7 +170,7 @@ full view of an subscription - with all related data
 
                                 <tr>
                                     <th>
-                                        {'Remote id'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Remote id'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td>
                                         {$subscription.remote_id|wash}
@@ -178,7 +178,7 @@ full view of an subscription - with all related data
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Import id'|i18n( 'cjw_newsletter/subscription_view',, hash() )}
+                                        {'Import id'|i18n( 'newsletter/subscription_view',, hash() )}
                                     </th>
                                     <td>
                                         {if $subscription.import_id|ne(0)}
@@ -207,18 +207,18 @@ full view of an subscription - with all related data
 
                                         {* only can approve if status not approve and not remove_self or blacklisted *}
                                         {if or( $subscription.status|eq(2), $subscription.status|eq(3), $subscription.status|eq(8) )}
-                                            <input class="button-disabled" type="button" name="SubscriptionApproveButton" value="{'Approve subscription'|i18n( 'cjw_newsletter/subscription_view' )}" title="" />
+                                            <input class="button-disabled" type="button" name="SubscriptionApproveButton" value="{'Approve subscription'|i18n( 'newsletter/subscription_view' )}" title="" />
                                         {else}
                                         <form name="ApproveForm" method="post" action=""  style="display:inline">
-                                            <input class="button" type="submit" name="SubscriptionApproveButton" value="{'Approve subscription'|i18n( 'cjw_newsletter/subscription_view' )}" title="" />
+                                            <input class="button" type="submit" name="SubscriptionApproveButton" value="{'Approve subscription'|i18n( 'newsletter/subscription_view' )}" title="" />
                                         </form>
                                         {/if}
                                         {* only can remove if status not remove self / admin 3 our 4, or blacklisted 8 *}
                                         {if or( $subscription.status|eq(3), $subscription.status|eq(4), $subscription.status|eq(8) )}
-                                            <input class="button-disabled" type="button" name="SubscriptionRemoveButton" value="{'Remove subscription'|i18n( 'cjw_newsletter/subscription_view' )}" title="" />
+                                            <input class="button-disabled" type="button" name="SubscriptionRemoveButton" value="{'Remove subscription'|i18n( 'newsletter/subscription_view' )}" title="" />
                                         {else}
                                         <form name="RemoveForm" method="post" action=""  style="display:inline">
-                                            <input class="button" type="submit" name="SubscriptionRemoveButton" value="{'Remove subscription'|i18n( 'cjw_newsletter/subscription_view' )}" title="" />
+                                            <input class="button" type="submit" name="SubscriptionRemoveButton" value="{'Remove subscription'|i18n( 'newsletter/subscription_view' )}" title="" />
                                         </form>
                                         {/if}
 

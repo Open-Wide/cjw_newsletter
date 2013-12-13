@@ -7,7 +7,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -21,7 +21,7 @@ $email = $http->hasVariable( 'Email' ) ? trim( $http->variable( 'Email' ) ) : ''
 
 if ( $email )
 {
-    $itemByEmail = CjwNewsletterBlacklistItem::fetchByEmail( $email );
+    $itemByEmail = NewsletterBlacklistItem::fetchByEmail( $email );
     if( !is_object( $itemByEmail ) )
     {
         eZDebug::writeError( "Given email ($email) isn't blacklisted", 'newsletter/blacklist_item_remove' );
@@ -34,7 +34,7 @@ if ( $deleteIDArray )
 {
     foreach ( $deleteIDArray as $id )
     {
-        $itemByID = CjwNewsletterBlacklistItem::fetch( $id );
+        $itemByID = NewsletterBlacklistItem::fetch( $id );
         if( !is_object( $itemByID ) )
         {
             eZDebug::writeError( "Given id ($id) isn't blacklisted", 'newsletter/blacklist_item_remove' );

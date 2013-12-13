@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -17,7 +17,7 @@ $tpl = eZTemplate::factory();
 $templateFile = 'design:newsletter/user_view.tpl';
 
 $newsLetterUserId = (int) $Params['NewsletterUserId'];
-$newsletterUserObject = CjwNewsletterUser::fetch( $newsLetterUserId );
+$newsletterUserObject = NewsletterUser::fetch( $newsLetterUserId );
 
 if( !is_object( $newsletterUserObject ) )
 {
@@ -38,9 +38,9 @@ $Result = array();
 
 $Result['content'] = $tpl->fetch( $templateFile );
 $Result['path'] =  array( array( 'url'  => 'newsletter/index',
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/path', 'Newsletter' ) ),
                           array( 'url'  => 'newsletter/user_list',
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/user_list', 'Users' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/user_list', 'Users' ) ),
                           array( 'url'  => false,
                                  'text' => $newsletterUserObject->attribute('name') ) );
 

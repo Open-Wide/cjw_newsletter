@@ -8,16 +8,16 @@ $back_url_input
     <div class="border-tl"><div class="border-tr"><div class="border-tc"></div></div></div>
     <div class="border-ml"><div class="border-mr"><div class="border-mc float-break">
 
-    <h1>{'Newsletter'|i18n( 'cjw_newsletter/subscribe_infomail_success' )}</h1>
+    <h1>{'Newsletter'|i18n( 'newsletter/subscribe_infomail_success' )}</h1>
 
     <p class="newsletter-maintext">
-        {'E-mail has been sent!'|i18n( 'cjw_newsletter/subscribe_infomail_success' )}
+        {'E-mail has been sent!'|i18n( 'newsletter/subscribe_infomail_success' )}
     </p>
     <p>
-       {'If you are a valid newsletter user, an e-mail has been sent to you with all information required!'|i18n( 'cjw_newsletter/subscribe_infomail_success' )}
+       {'If you are a valid newsletter user, an e-mail has been sent to you with all information required!'|i18n( 'newsletter/subscribe_infomail_success' )}
     </p>
 
-    <p><a href="{$back_url_input}">{'back'|i18n( 'cjw_newsletter/subscribe_infomail_success' )}</a></p>
+    <p><a href="{$back_url_input}">{'back'|i18n( 'newsletter/subscribe_infomail_success' )}</a></p>
 
 
     </div></div></div>

@@ -1,4 +1,4 @@
-{*?template charset=utf-8?*}{set-block variable=$subject scope=root}{ezini('NewsletterMailSettings', 'EmailSubjectPrefix', 'cjw_newsletter.ini')} {'Subscription verification'|i18n( 'cjw_newsletter/subscription_confirmation' )}{/set-block}
+{*?template charset=utf-8?*}{set-block variable=$subject scope=root}{ezini('NewsletterMailSettings', 'EmailSubjectPrefix', 'newsletter.ini')} {'Subscription verification'|i18n( 'newsletter/subscription_confirmation' )}{/set-block}
 {*
 $newsletter_user
 $hostname
@@ -15,7 +15,7 @@ Thank you for subscribing to the following newsletter:
 To activate or edit your subscription, please visit this link:
 
 %configureLink
-'|i18n( 'cjw_newsletter/mail/subscription_confirmation',,
+'|i18n( 'newsletter/mail/subscription_confirmation',,
                                          hash( '%name', concat( $newsletter_user.first_name, ' ', $newsletter_user.last_name ),
                                                '%subscriptionList', $subscriptionListString,
                                                '%listName', $newsletter_list.name,

@@ -7,7 +7,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -39,11 +39,11 @@ $blacklistItemObject = false;
 
 if( $email != '' )
 {
-    $existingBlacklistItemObject = CjwNewsletterBlacklistItem::fetchByEmail( $email );
+    $existingBlacklistItemObject = NewsletterBlacklistItem::fetchByEmail( $email );
 
     if( !is_object( $existingBlacklistItemObject ) )
     {
-        $blacklistItemObject = CjwNewsletterBlacklistItem::create( $email, $note );
+        $blacklistItemObject = NewsletterBlacklistItem::create( $email, $note );
     }
     else
     {
@@ -67,7 +67,7 @@ if ( $http->hasVariable( 'AddButton' ) )
         if( is_object( $newsletterUserObject ) )
         {
 
-            $message = ezpI18n::tr( 'cjw_newsletter/blacklist_item_add', 'Successfully adding newsletter user %nl_user_id with email %email to blacklist', '',
+            $message = ezpI18n::tr( 'newsletter/blacklist_item_add', 'Successfully adding newsletter user %nl_user_id with email %email to blacklist', '',
                      array( '%nl_user_id' => $newsletterUserObject->attribute('id'),
                             '%email' => $newsletterUserObject->attribute('email') ));
 
@@ -75,7 +75,7 @@ if ( $http->hasVariable( 'AddButton' ) )
         }
         else
         {
-            $message = ezpI18n::tr( 'cjw_newsletter/blacklist_item_add', 'Successfully adding email address %email to blacklist', '',
+            $message = ezpI18n::tr( 'newsletter/blacklist_item_add', 'Successfully adding email address %email to blacklist', '',
                      array( '%email' => $blacklistItemObject->attribute('email') ));
             $isBlacklistDone = true;
         }
@@ -107,7 +107,7 @@ $Result = array();
 $Result[ 'content' ] = $tpl->fetch( $templateFile );
 //$Result[ 'ui_context' ] = 'edit';
 $Result['path'] =  array( array( 'url'  => false,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/path', 'Newsletter' ) ),
                           array( 'url'  => false,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/blacklist_item_add', 'Blacklist add' ) ) );
+                                 'text' => ezpI18n::tr( 'newsletter/blacklist_item_add', 'Blacklist add' ) ) );
 ?>

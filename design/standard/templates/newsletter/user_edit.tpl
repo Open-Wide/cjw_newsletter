@@ -18,7 +18,7 @@
     {if and( is_set( $warning_array ), $warning_array|count|ne( 0 ) )}
     <div class="block">
         <div class="message-warning">
-            <h2>{'Input did not validate'|i18n('cjw_newsletter/subscribe')}</h2>
+            <h2>{'Input did not validate'|i18n('newsletter/subscribe')}</h2>
             <ul>
             {foreach $warning_array as $index => $messageArrayItem}
                 <li><span class="key">{$messageArrayItem.field_key|wash}: </span><span class="text">{$messageArrayItem.message|wash()}</span></li>
@@ -41,7 +41,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{$newsletter_user.name|wash} &lt;{$newsletter_user.email|wash}&gt; [{'Newsletter user'|i18n( 'cjw_newsletter/user_view',, hash() )|wash}]</h1>
+                                <h1 class="context-title">{$newsletter_user.name|wash} &lt;{$newsletter_user.email|wash}&gt; [{'Newsletter user'|i18n( 'newsletter/user_view',, hash() )|wash}]</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -61,7 +61,7 @@
                             <table class="list">
                                 <tr>
                                     <th>
-                                        {'Name'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Name'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.name|wash}
@@ -69,7 +69,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Id'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Id'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.id|wash}
@@ -77,7 +77,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Status'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Status'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td title="{$newsletter_user.status|wash}">
                                         {$newsletter_user.status_string|wash}
@@ -85,7 +85,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Email'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Email'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         <input  class="halfbox" type="text" name="Subscription_Email" value="{$newsletter_user.email|wash}">
@@ -93,9 +93,9 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Salutation'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Salutation'|i18n( 'newsletter/user_view' )}
                                     </th>
-                                    <td title="{'Salutation'|i18n( 'cjw_newsletter/user_view' )}">
+                                    <td title="{'Salutation'|i18n( 'newsletter/user_view' )}">
                                         {foreach $available_salutation_array as $salutation_id => $salutataion_name}
                                             <input type="radio" name="Subscription_Salutation" value="{$salutation_id|wash}"{if $newsletter_user.salutation|eq( $salutation_id )} checked="checked"{/if} title="{$salutataion_name|wash}" />{$salutataion_name|wash}&nbsp;
                                         {/foreach}
@@ -103,31 +103,31 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'First name'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'First name'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
-                                        <input class="halfbox" type="text" name="Subscription_FirstName" value="{$newsletter_user.first_name|wash}" title="{'First name of newsletter user.'|i18n( 'cjw_newsletter/user_edit' )}"
+                                        <input class="halfbox" type="text" name="Subscription_FirstName" value="{$newsletter_user.first_name|wash}" title="{'First name of newsletter user.'|i18n( 'newsletter/user_edit' )}"
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Last name'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Last name'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
-                                        <input class="halfbox" type="text" name="Subscription_LastName" value="{$newsletter_user.last_name|wash}" title="{'Last name of newsletter user.'|i18n( 'cjw_newsletter/user_edit' )}"
+                                        <input class="halfbox" type="text" name="Subscription_LastName" value="{$newsletter_user.last_name|wash}" title="{'Last name of newsletter user.'|i18n( 'newsletter/user_edit' )}"
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Organisation'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Organisation'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
-                                        <input class="halfbox" type="text" name="Subscription_Organisation" value="{$newsletter_user.organisation|wash}" title="{'Organisation of newsletter user.'|i18n( 'cjw_newsletter/user_edit' )}"
+                                        <input class="halfbox" type="text" name="Subscription_Organisation" value="{$newsletter_user.organisation|wash}" title="{'Organisation of newsletter user.'|i18n( 'newsletter/user_edit' )}"
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Note'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Note'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         <textarea class="box" name="Subscription_Note" cols="50" rows="10">{$newsletter_user.note|wash}</textarea>
@@ -136,7 +136,7 @@
 
                                 <tr>
                                     <th>
-                                        {'Subscriptions'|i18n( 'cjw_newsletter/user_edit' )}
+                                        {'Subscriptions'|i18n( 'newsletter/user_edit' )}
                                     </th>
                                     <td>
 
@@ -147,10 +147,10 @@
                                     {def $newsletter_root_node_id = 2
                                          $newsletter_system_node_list = fetch( 'content', 'tree', hash('parent_node_id', $newsletter_root_node_id,
                                                                                             'class_filter_type', 'include',
-                                                                                            'class_filter_array', array( 'cjw_newsletter_system' ),
+                                                                                            'class_filter_array', array( 'newsletter_system' ),
                                                                                             'sort_by', array( 'name', true() ),
                                                                                             'limitation', hash( ) ))
-                                         $available_subscription_status_id_name_array = cjw_newsletter_variable( 'available_subscription_status_id_name_array' )
+                                         $available_subscription_status_id_name_array = newsletter_variable( 'available_subscription_status_id_name_array' )
                                          $status_id_array_enabled =  array()}
 
                                          {* set available status id for status selection list *}
@@ -165,7 +165,7 @@
                                                 {def $newsletter_list_node_list = fetch( 'content', 'tree',
                                                                                                 hash('parent_node_id', $system_node.node_id,
                                                                                                      'class_filter_type', 'include',
-                                                                                                     'class_filter_array', array( 'cjw_newsletter_list' ),
+                                                                                                     'class_filter_array', array( 'newsletter_list' ),
                                                                                                      'limitation', hash( ) )) }
 
                                                 <div class="newsletter-system-design">
@@ -267,7 +267,7 @@
                                                                     {elseif $status_id|eq( 1 )}
                                                                          {set $status_timestamp = $confirmed}
                                                                          {if $list_content.auto_approve_registered_user}
-                                                                             {set $extra_string = concat(' [', 'auto approve'|i18n( 'cjw_newsletter/user_edit' ), ']')}
+                                                                             {set $extra_string = concat(' [', 'auto approve'|i18n( 'newsletter/user_edit' ), ']')}
                                                                              {set $status_is_disabled = true()}
                                                                          {/if}
 
@@ -294,7 +294,7 @@
 
                                                            </td>
                                                            <td>
-                                                                {if $modified|ne(0)}{'Modified'|i18n( 'cjw_newsletter/user_edit' )}: {$modified|datetime( 'custom', '%j.%m.%Y %H:%i' )}{/if}
+                                                                {if $modified|ne(0)}{'Modified'|i18n( 'newsletter/user_edit' )}: {$modified|datetime( 'custom', '%j.%m.%Y %H:%i' )}{/if}
                                                            </td>
 
 
@@ -344,13 +344,13 @@
                                     <div class="left">
                                         {* if blacklisted - do not edit *}
                                         {if $newsletter_user.status|eq(8)}
-                                        <input class="button-disabled" type="button" value="{'Store and exit'|i18n( 'cjw_newsletter/user_edit' )}" />
+                                        <input class="button-disabled" type="button" value="{'Store and exit'|i18n( 'newsletter/user_edit' )}" />
                                         {else}
-                                        <input class="button" type="submit" name="StoreButton" value="{'Store and exit'|i18n( 'cjw_newsletter/user_edit' )}" />
+                                        <input class="button" type="submit" name="StoreButton" value="{'Store and exit'|i18n( 'newsletter/user_edit' )}" />
                                         {/if}
 
-                                        {*  <input class="button" type="submit" name="StoreDraftButton" value="{'Store draft'|i18n( 'cjw_newsletter/user_edit' )}" />*}
-                                        <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'cjw_newsletter/user_edit' )}" />
+                                        {*  <input class="button" type="submit" name="StoreDraftButton" value="{'Store draft'|i18n( 'newsletter/user_edit' )}" />*}
+                                        <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'newsletter/user_edit' )}" />
 
                                     </div>
                                 </div>{* DESIGN: Control bar END *}

@@ -1,4 +1,4 @@
-{set-block variable=$subject scope=root}{ezini('NewsletterMailSettings', 'EmailSubjectPrefix', 'cjw_newsletter.ini')} {$contentobject.name|wash}{/set-block}{set-block variable=$html_mail}<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html>
+{set-block variable=$subject scope=root}{ezini('NewsletterMailSettings', 'EmailSubjectPrefix', 'newsletter.ini')} {$contentobject.name|wash}{/set-block}{set-block variable=$html_mail}<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{$#subject}</title>
@@ -10,7 +10,7 @@
     <td valign="top">
         <table width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff">
             <tr>
-                <td><a href="http://www.cjw-network.com" title="CJW Network - Developers united in eZ Publish"><img src={'images/newsletter/skin/default/cjw-newsletter_header.jpg'|ezdesign()} border="0" width="600" height="100" alt="CJW Network - Developers united in eZ Publish" /></a></td>
+                <td><a href="http://www.-network.com" title=" Network - Developers united in eZ Publish"><img src={'images/newsletter/skin/default/-newsletter_header.jpg'|ezdesign()} border="0" width="600" height="100" alt=" Network - Developers united in eZ Publish" /></a></td>
             </tr>
             <tr>
                 <td style="padding: 20px 0 0 15px">
@@ -32,7 +32,7 @@
             {def $list_items = fetch('content', 'list', hash( 'parent_node_id', $contentobject.contentobject.main_node_id,
                                                               'sort_by', array( 'priority' , true() ),
                                                               'class_filter_type', 'include',
-                                                              'class_filter_array', array( 'cjw_newsletter_article' ) ) )
+                                                              'class_filter_array', array( 'newsletter_article' ) ) )
             }
             {if $list_items|count|ne(0)}
             <tr>
@@ -58,15 +58,15 @@
             </tr>
             {/if}
             <tr>
-                <td><a href="http://www.cjw-network.com" title="CJW Network - Developers united in eZ Publish"><img src={'images/newsletter/skin/default/cjw-newsletter_footer.gif'|ezdesign()} width="600" height="75" border="0" alt="-- www.CJW-Network.com --" /></a></td>
+                <td><a href="http://www.-network.com" title=" Network - Developers united in eZ Publish"><img src={'images/newsletter/skin/default/-newsletter_footer.gif'|ezdesign()} width="600" height="75" border="0" alt="-- www.-Network.com --" /></a></td>
             </tr>
             <tr>
                 <td style="padding: 10px 30px 10px 10px;">
                     <p>
-                    {'To unsubscribe from this newsletter please visit the following link'|i18n('cjw_newsletter/skin/default')}:
-                                <a href="{'/newsletter/unsubscribe/#_hash_unsubscribe_#'|ezurl('no')}">{'unsubscribe'|i18n('cjw_newsletter/skin/default')}</a>
+                    {'To unsubscribe from this newsletter please visit the following link'|i18n('newsletter/skin/default')}:
+                                <a href="{'/newsletter/unsubscribe/#_hash_unsubscribe_#'|ezurl('no')}">{'unsubscribe'|i18n('newsletter/skin/default')}</a>
                     <br />
-                    &copy; {currentdate()|datetime( 'custom', '%Y' )} <a href="http://www.cjw-network.com">www.CJW-Network.com</a>
+                    &copy; {currentdate()|datetime( 'custom', '%Y' )} <a href="http://www.-network.com">www.-Network.com</a>
                     </p>
                 </td>
             </tr>
@@ -75,7 +75,7 @@
 </tr>
 </table>
 </body></html>
-{/set-block}{$html_mail|cjw_newsletter_str_replace(
+{/set-block}{$html_mail|newsletter_str_replace(
                             array( '<body>',
                                    '<table id="table-main">',
                                    '<a',

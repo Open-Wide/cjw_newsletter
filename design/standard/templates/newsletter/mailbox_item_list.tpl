@@ -25,7 +25,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{'Manage bounces'|i18n( 'cjw_newsletter/mailbox_item_list',, hash() )}</h1>
+                                <h1 class="context-title">{'Manage bounces'|i18n( 'newsletter/mailbox_item_list',, hash() )}</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -43,35 +43,35 @@
                     <div class="context-attributes">
 
                         <p>
-                        {'Collect emails from bounce accounts and parse them. You may then accept the detected bounce status or manually adjust it.'|i18n( 'cjw_newsletter/mailbox_item_list',, hash() )}
+                        {'Collect emails from bounce accounts and parse them. You may then accept the detected bounce status or manually adjust it.'|i18n( 'newsletter/mailbox_item_list',, hash() )}
                         </p>
 
                         <div class="block float-break">
-                            {if is_set( $collect_mail_result )}<h3>{'Mailbox collect mail result'|i18n( 'cjw_newsletter/mailbox_item_list',, hash() )}</h3>
+                            {if is_set( $collect_mail_result )}<h3>{'Mailbox collect mail result'|i18n( 'newsletter/mailbox_item_list',, hash() )}</h3>
                             {foreach $collect_mail_result as $mailbox_id => $mailbox_items_status}
-                            {'Collection result for mailbox %mailbox_id.'|i18n( 'cjw_newsletter/mailbox_item_list',,
+                            {'Collection result for mailbox %mailbox_id.'|i18n( 'newsletter/mailbox_item_list',,
                             hash( '%mailbox_id', $mailbox_id ) )}
                             <ul>
                                 {if is_array($collect_mail_result[$mailbox_id])}
                                 <li>
-                                    {'Added'|i18n('cjw_newsletter/mailbox_item_list')}: {$collect_mail_result[$mailbox_id]['added']|count()}
+                                    {'Added'|i18n('newsletter/mailbox_item_list')}: {$collect_mail_result[$mailbox_id]['added']|count()}
                                 </li>
                                 <li>
-                                    {'Already exists'|i18n('cjw_newsletter/mailbox_item_list')}: {$collect_mail_result[$mailbox_id]['exists']|count()}
+                                    {'Already exists'|i18n('newsletter/mailbox_item_list')}: {$collect_mail_result[$mailbox_id]['exists']|count()}
                                 </li>
                                 <li>
-                                    {'Failed'|i18n('cjw_newsletter/mailbox_item_list')}: {$collect_mail_result[$mailbox_id]['failed']|count()}
+                                    {'Failed'|i18n('newsletter/mailbox_item_list')}: {$collect_mail_result[$mailbox_id]['failed']|count()}
                                 </li>
                                 {else}
                                 <li>
-                                    {'Connection failed'|i18n('cjw_newsletter/mailbox_item_list')}
+                                    {'Connection failed'|i18n('newsletter/mailbox_item_list')}
                                 </li>
                                 {/if}
                             </ul>
                             {/foreach}
                             {/if}
-                            {if is_set( $parse_result )}<h3>{'Mailbox item parse result'|i18n( 'cjw_newsletter/mailbox_item_list',, hash() )}</h3>
-                            {'E-mails parsed'|i18n('cjw_newsletter/mailbox_item_list')}: {$parse_result|count() }
+                            {if is_set( $parse_result )}<h3>{'Mailbox item parse result'|i18n( 'newsletter/mailbox_item_list',, hash() )}</h3>
+                            {'E-mails parsed'|i18n('newsletter/mailbox_item_list')}: {$parse_result|count() }
                             {/if}
                         </div>
                     </div>
@@ -92,9 +92,9 @@
                                     <div class="left">
                                         <form action={$page_uri|ezurl} name="connectMailbox" method="get">
                                             {* Connectbutton *}
-                                            <input type="submit" class="button" name="ConnectMailboxButton" value="{'Collect all mails'|i18n( 'cjw_newsletter/mailbox_item_list' )}">
+                                            <input type="submit" class="button" name="ConnectMailboxButton" value="{'Collect all mails'|i18n( 'newsletter/mailbox_item_list' )}">
                                             {* Bouncen *}
-                                            <input type="submit" class="button" name="BounceMailItemButton" value="{'Parse mails'|i18n( 'cjw_newsletter/mailbox_item_list' )}">
+                                            <input type="submit" class="button" name="BounceMailItemButton" value="{'Parse mails'|i18n( 'newsletter/mailbox_item_list' )}">
                                         </form>
                                     </div>
                                 </div>{* DESIGN: Control bar END *}
@@ -113,7 +113,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h2 class="context-title">{'Mailbox items'|i18n( 'cjw_newsletter/mailbox_item_list',, hash() )} [{$mailbox_item_list_count}]</h2>
+                                <h2 class="context-title">{'Mailbox items'|i18n( 'newsletter/mailbox_item_list',, hash() )} [{$mailbox_item_list_count}]</h2>
                                 {* DESIGN: Subline *}
                                 <div class="header-subline"></div>
                                 {* DESIGN: Header END *}
@@ -159,50 +159,50 @@
                             <table class="list" cellspacing="0">
                                 <tr>
                                {*     <th class="tight">
-                                        <img src={'toggle-button-16x16.gif'|ezimage}  alt="{'Invert selection'|i18n( 'cjw_newsletter/mailbox_item_list' )}" title="{'Invert selection'|i18n( 'cjw_newsletter/mailbox_item_list' )}" onclick="ezjs_toggleCheckboxes( document.user_list, 'SubscriptionIDArray[]' ); return false;" />
+                                        <img src={'toggle-button-16x16.gif'|ezimage}  alt="{'Invert selection'|i18n( 'newsletter/mailbox_item_list' )}" title="{'Invert selection'|i18n( 'newsletter/mailbox_item_list' )}" onclick="ezjs_toggleCheckboxes( document.user_list, 'SubscriptionIDArray[]' ); return false;" />
                                     </th>
                                     *}
                                     <th class="tight">
-                                    {'ID'|i18n('cjw_newsletter/mailbox_item_list')}</a>
+                                    {'ID'|i18n('newsletter/mailbox_item_list')}</a>
                                 </th>
                                 <th>
-                                    {'Mb'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                    {'Mb'|i18n( 'newsletter/mailbox_item_list' )}
                                 </th>
                                 <th>
-                                    {'Ms'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                    {'Ms'|i18n( 'newsletter/mailbox_item_list' )}
                                 </th>
                                 <th>
-                                    {'MI'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                    {'MI'|i18n( 'newsletter/mailbox_item_list' )}
                                 </th>
                                 <th>
-                                    {'MSize'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                    {'MSize'|i18n( 'newsletter/mailbox_item_list' )}
                                 </th>
                                 <th>
-                                    {'Bouncecode'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                    {'Bouncecode'|i18n( 'newsletter/mailbox_item_list' )}
                                 </th>
                                 <th>
-                                    {'IsBounce'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                    {'IsBounce'|i18n( 'newsletter/mailbox_item_list' )}
                                 </th>
                                 <th>
-                                    {'Nl user'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                    {'Nl user'|i18n( 'newsletter/mailbox_item_list' )}
                                 </th>
                                 <th>
-                                    {'Subject'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                    {'Subject'|i18n( 'newsletter/mailbox_item_list' )}
                                 </th>
                                 <th>
-                                    {'From'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                    {'From'|i18n( 'newsletter/mailbox_item_list' )}
                                 </th>
                                 <th>
-                                    {'To'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                    {'To'|i18n( 'newsletter/mailbox_item_list' )}
                                 </th>
                                 <th>
-                                    {'Email send date'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                    {'Email send date'|i18n( 'newsletter/mailbox_item_list' )}
                                 </th>
                                 <th>
-                                    {'Created'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                    {'Created'|i18n( 'newsletter/mailbox_item_list' )}
                                 </th>
                                 <th>
-                                    {'Processed'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                    {'Processed'|i18n( 'newsletter/mailbox_item_list' )}
                                 </th>
                                 </tr>
                                 {*$mailbox_item_list|attribute(show)*}
@@ -213,7 +213,7 @@
                                 <tr class="{$style}">
                                     {/if}
                                {*     <td>
-                                        <input type="checkbox" name="SubscriptionIDArray[]" value="{$mailbox_item.id}" title="{'Select mailbox item for removal'|i18n( 'cjw_newsletter/mailbox_item_list' )}" />
+                                        <input type="checkbox" name="SubscriptionIDArray[]" value="{$mailbox_item.id}" title="{'Select mailbox item for removal'|i18n( 'newsletter/mailbox_item_list' )}" />
                                     </td>*}
                                     <td class="number" align="right">
                                         <a href={concat( 'newsletter/mailbox_item_view/', $mailbox_item.id )|ezurl}>{$mailbox_item.id} </a>
@@ -253,7 +253,7 @@
                                     </td>
                                     <td>
                                         {if eq( $mailbox_item.email_send_date, 0 )}
-                                        {'n/a'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                        {'n/a'|i18n( 'newsletter/mailbox_item_list' )}
                                         {else}
                                         {$mailbox_item.email_send_date|l10n( shortdatetime )}
                                         {/if}
@@ -263,7 +263,7 @@
                                     </td>
                                     <td>
                                         {if eq( $mailbox_item.processed, 0 )}
-                                        {'n/a'|i18n( 'cjw_newsletter/mailbox_item_list' )}
+                                        {'n/a'|i18n( 'newsletter/mailbox_item_list' )}
                                         {else}
                                         {$mailbox_item.processed|l10n( shortdatetime )|wash}
                                         {/if}

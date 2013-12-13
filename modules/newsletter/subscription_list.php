@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -42,7 +42,7 @@ $Result = array();
 $Result['node_id'] = $nodeId;
 $Result['content'] = $tpl->fetch( $templateFile );
 $Result['path'] =  array( array( 'url'  => 'newsletter/index',
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/path', 'Newsletter' ) ),
 
                           array( 'url'  => $systemNode->attribute( 'url_alias' ),
                                  'text' => $systemNode->attribute( 'name' ) ),
@@ -51,7 +51,7 @@ $Result['path'] =  array( array( 'url'  => 'newsletter/index',
                                  'text' => $node->attribute( 'name' ) ),
 
                           array( 'url'  => false,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/subscription_list', 'Subscriptions' ) ) );
+                                 'text' => ezpI18n::tr( 'newsletter/subscription_list', 'Subscriptions' ) ) );
 
 
 ?>

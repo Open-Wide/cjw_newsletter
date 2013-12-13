@@ -1,5 +1,5 @@
 {*  newsletter/user_list.tpl
-nur nodeobject vom type  cjw_newsletter_list aktzeptieren
+nur nodeobject vom type  newsletter_list aktzeptieren
 *}
 <div class="newsletter newsletter-user_list">
 {def $limit = 50}
@@ -39,7 +39,7 @@ nur nodeobject vom type  cjw_newsletter_list aktzeptieren
                 <div class="box-mr">
                     <div class="box-tl">
                         <div class="box-tr">
-                            <h1 class="context-title">{'Manage users'|i18n( 'cjw_newsletter/user_list',, hash() )|wash}</h1>
+                            <h1 class="context-title">{'Manage users'|i18n( 'newsletter/user_list',, hash() )|wash}</h1>
                             {* DESIGN: Mainline *}
                             <div class="header-mainline">
                             </div>
@@ -62,8 +62,8 @@ nur nodeobject vom type  cjw_newsletter_list aktzeptieren
                             <br/>
                             *}
                             {*
-                            {'Email'|i18n( 'cjw_newsletter/user_list' )}: 
-                            *}<input type="text" name="SearchUserEmail" value="{if is_set($view_parameters['search_user_email'])}{$view_parameters['search_user_email']}{/if}"><input type="submit" name="SubmitUserSearch" value="{'Search for existing user'|i18n( 'cjw_newsletter/user_list' )}">
+                            {'Email'|i18n( 'newsletter/user_list' )}: 
+                            *}<input type="text" name="SearchUserEmail" value="{if is_set($view_parameters['search_user_email'])}{$view_parameters['search_user_email']}{/if}"><input type="submit" name="SubmitUserSearch" value="{'Search for existing user'|i18n( 'newsletter/user_list' )}">
                         </form>{* Created. *}
                     </div>
                 </div>
@@ -84,15 +84,15 @@ nur nodeobject vom type  cjw_newsletter_list aktzeptieren
                                 <div class="left">
 
                                      <form method="post" style="display:inline;" action={'newsletter/user_create/-1'|ezurl}>
-                                            <input class="button" type="submit" name="CreateNewsletterUserButton" value="{'Create Newsletter user'|i18n( 'cjw_newsletter/user_list' )}" />
+                                            <input class="button" type="submit" name="CreateNewsletterUserButton" value="{'Create Newsletter user'|i18n( 'newsletter/user_list' )}" />
                                      </form>
                                     {*
                                     <form name="edit_user_list" method="post" action={concat( '/newsletter/edit_user_list/', $newsletter_list_node.url_alias )|ezurl}  style="display:inline">
-                                        <input class="button" type="submit" name="EditButton" value="{'Edit'|i18n( 'design/admin/rss/edit_import' )}" title="{'Edit current subscription list.'|i18n( 'cjw_newsletter/user_list' )}" />
+                                        <input class="button" type="submit" name="EditButton" value="{'Edit'|i18n( 'design/admin/rss/edit_import' )}" title="{'Edit current subscription list.'|i18n( 'newsletter/user_list' )}" />
                                     </form>*}
                                     {*
                                     <form name="import_csv" method="post" action={$uri_csv_import|ezurl} style="display:inline">
-                                        <input class="button" type="submit" name="importcsv" value="{'Import CSV'|i18n( 'cjw_newsletter/user_list' )}" title="{'Import contact from CSV file.'|i18n( 'cjw_newsletter/newsletter_list_subscription' )}" />
+                                        <input class="button" type="submit" name="importcsv" value="{'Import CSV'|i18n( 'newsletter/user_list' )}" title="{'Import contact from CSV file.'|i18n( 'newsletter/newsletter_list_subscription' )}" />
                                     </form>*}
                                 </div>
                             </div>{* DESIGN: Control bar END *}
@@ -111,7 +111,7 @@ nur nodeobject vom type  cjw_newsletter_list aktzeptieren
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h2 class="context-title">{'Users'|i18n( 'cjw_newsletter/user_list',, hash( ) )} [{$user_list_count}]</h2>
+                                <h2 class="context-title">{'Users'|i18n( 'newsletter/user_list',, hash( ) )} [{$user_list_count}]</h2>
                                 {* DESIGN: Subline *}
                                 <div class="header-subline">
                                 </div>
@@ -155,34 +155,34 @@ nur nodeobject vom type  cjw_newsletter_list aktzeptieren
                     <table class="list" cellspacing="0">
                         <tr>
                         {*    <th class="tight">
-                                <img src={'toggle-button-16x16.gif'|ezimage}  alt="{'Invert selection'|i18n( 'cjw_newsletter/user_list' )}" title="{'Invert selection'|i18n( 'cjw_newsletter/user_list' )}" onclick="ezjs_toggleCheckboxes( document.user_list, 'SubscriptionIDArray[]' ); return false;" />
+                                <img src={'toggle-button-16x16.gif'|ezimage}  alt="{'Invert selection'|i18n( 'newsletter/user_list' )}" title="{'Invert selection'|i18n( 'newsletter/user_list' )}" onclick="ezjs_toggleCheckboxes( document.user_list, 'SubscriptionIDArray[]' ); return false;" />
                             </th>*}
                         <th class="tight">
-                            {'UID'|i18n('cjw_newsletter/user_list')}</a>
+                            {'UID'|i18n('newsletter/user_list')}</a>
                         </th>
                         <th>
-                            {'Email'|i18n( 'cjw_newsletter/user_list' )}
+                            {'Email'|i18n( 'newsletter/user_list' )}
                         </th>
                   {*      <th>
-                            {'Name'|i18n( 'cjw_newsletter/user_list' )}
+                            {'Name'|i18n( 'newsletter/user_list' )}
                         </th> *}
                         <th>
-                            {'Lists'|i18n( 'cjw_newsletter/user_list' )}
+                            {'Lists'|i18n( 'newsletter/user_list' )}
                         </th>
-                        <th title="{'Confirmed'|i18n( 'cjw_newsletter/user_list' )}">
-                            {'Conf'|i18n( 'cjw_newsletter/user_list' )}
+                        <th title="{'Confirmed'|i18n( 'newsletter/user_list' )}">
+                            {'Conf'|i18n( 'newsletter/user_list' )}
                         </th>
-                        <th title="{'Blacklisted'|i18n( 'cjw_newsletter/user_list' )}">
-                            {'Black'|i18n( 'cjw_newsletter/user_list' )}
-                        </th>
-                        <th>
-                            {'Bounce'|i18n( 'cjw_newsletter/user_list' )}
+                        <th title="{'Blacklisted'|i18n( 'newsletter/user_list' )}">
+                            {'Black'|i18n( 'newsletter/user_list' )}
                         </th>
                         <th>
-                            {'Status'|i18n( 'cjw_newsletter/user_list' )}
+                            {'Bounce'|i18n( 'newsletter/user_list' )}
                         </th>
                         <th>
-                            {'eZ user id'|i18n( 'cjw_newsletter/user_list' )}
+                            {'Status'|i18n( 'newsletter/user_list' )}
+                        </th>
+                        <th>
+                            {'eZ user id'|i18n( 'newsletter/user_list' )}
                         </th>
                         <th class="edit">
                             {* user_edit *}
@@ -191,10 +191,10 @@ nur nodeobject vom type  cjw_newsletter_list aktzeptieren
                         {foreach $user_list as $newsletter_user sequence array( bglight, bgdark ) as $style}
                         <tr class="{$style}">
                           {*  <td>
-                                <input type="checkbox" name="SubscriptionIDArray[]" value="{$newsletter_user.id}" title="{'Select subscriber for removal'|i18n( 'cjw_newsletter/user_list' )}" />
+                                <input type="checkbox" name="SubscriptionIDArray[]" value="{$newsletter_user.id}" title="{'Select subscriber for removal'|i18n( 'newsletter/user_list' )}" />
                             </td> *}
                             <td class="number" align="right">
-                                <a href={concat('newsletter/user_view/',$newsletter_user.id)|ezurl} title="{'Newsletter user id'|i18n( 'cjw_newsletter/user_list' )}">{$newsletter_user.id} </a>
+                                <a href={concat('newsletter/user_view/',$newsletter_user.id)|ezurl} title="{'Newsletter user id'|i18n( 'newsletter/user_list' )}">{$newsletter_user.id} </a>
                             </td>
                             <td>
                                 <a href={concat('newsletter/user_view/',$newsletter_user.id)|ezurl} title="{$newsletter_user.first_name} {$newsletter_user.last_name}">{$newsletter_user.email|wash}</a>
@@ -202,7 +202,7 @@ nur nodeobject vom type  cjw_newsletter_list aktzeptieren
                  {*           <td>
                                 {$newsletter_user.name|wash}
                             </td>*}
-                            <td title="{'Approved'|i18n( 'cjw_newsletter/user_list' )} / {'All'|i18n( 'cjw_newsletter/user_list' )}">
+                            <td title="{'Approved'|i18n( 'newsletter/user_list' )} / {'All'|i18n( 'newsletter/user_list' )}">
                                 {def $approved_subscribtion_count = 0
                                      $subscription_array = $newsletter_user.subscription_array}
                                 {foreach $subscription_array as $subscription}
@@ -221,7 +221,7 @@ nur nodeobject vom type  cjw_newsletter_list aktzeptieren
                             <td>
                                 {cond($newsletter_user.blacklisted|gt(0),'x' , '-' )}
                             </td>
-                            <td title="{'Bounced'|i18n( 'cjw_newsletter/user_list' )} / {'Bounce count'|i18n( 'cjw_newsletter/user_list' )}">
+                            <td title="{'Bounced'|i18n( 'newsletter/user_list' )} / {'Bounce count'|i18n( 'newsletter/user_list' )}">
                                 {cond($newsletter_user.bounced|gt(0),'x' , '-' )} / {$newsletter_user.bounce_count|wash}
                             </td>
                             <td title="{$newsletter_user.status|wash}">
@@ -232,7 +232,7 @@ nur nodeobject vom type  cjw_newsletter_list aktzeptieren
                             </td>
                             <td>
                                 <a href={concat( 'newsletter/user_edit/', $newsletter_user.id, '?RedirectUrl=newsletter/user_list/(offset)/', $view_parameters.offset )|ezurl}>
-                                    <img title="{'Edit newsletter user'|i18n( 'cjw_newsletter/user_list' )}" alt="{'Edit newsletter user'|i18n( 'cjw_newsletter/user_list' )}" src={'edit.gif'|ezimage()} />
+                                    <img title="{'Edit newsletter user'|i18n( 'newsletter/user_list' )}" alt="{'Edit newsletter user'|i18n( 'newsletter/user_list' )}" src={'edit.gif'|ezimage()} />
                                 </a>
                             </td>
 

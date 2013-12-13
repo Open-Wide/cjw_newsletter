@@ -11,7 +11,7 @@ full view of an mailbox item
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{$mailbox_item.id|wash} [{'Mailbox Item Database Infos'|i18n( 'cjw_newsletter/mailbox_item_view',, hash() )|wash}]</h1>
+                                <h1 class="context-title">{$mailbox_item.id|wash} [{'Mailbox Item Database Infos'|i18n( 'newsletter/mailbox_item_view',, hash() )|wash}]</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -228,7 +228,7 @@ full view of an mailbox item
                 <div class="box-mr">
                     <div class="box-tl">
                         <div class="box-tr">
-                            <h2 class="context-title">{'LIVE mailbox item parse infos'|i18n( 'cjw_newsletter/mailbox_item_view',, hash( ) )}</h2>
+                            <h2 class="context-title">{'LIVE mailbox item parse infos'|i18n( 'newsletter/mailbox_item_view',, hash( ) )}</h2>
                             {* DESIGN: Subline *}
                             <div class="header-subline">
                             </div>
@@ -290,7 +290,7 @@ full view of an mailbox item
                 <div class="box-mr">
                     <div class="box-tl">
                         <div class="box-tr">
-                            <h2 class="context-title">{'Raw mail content'|i18n( 'cjw_newsletter/mailbox_item_view',, hash( ) )}</h2>
+                            <h2 class="context-title">{'Raw mail content'|i18n( 'newsletter/mailbox_item_view',, hash( ) )}</h2>
                             {* DESIGN: Subline *}
                             <div class="header-subline">
 
@@ -310,14 +310,14 @@ full view of an mailbox item
                     <div class="overflow-table">
                         <p>{$mailbox_item.file_path}</p>
 
-                        <a href="?GetRawMailContent" target="_blank">{'Full View'|i18n( 'cjw_newsletter/mailbox_item_view',, hash( ) )}</a>
-                        <a href="?DownloadRawMailContent">{'Download'|i18n( 'cjw_newsletter/mailbox_item_view',, hash( ) )}</a>
+                        <a href="?GetRawMailContent" target="_blank">{'Full View'|i18n( 'newsletter/mailbox_item_view',, hash( ) )}</a>
+                        <a href="?DownloadRawMailContent">{'Download'|i18n( 'newsletter/mailbox_item_view',, hash( ) )}</a>
                         <hr />
 
                         {if ezpreference( 'admin_mailbox_item_view_raw_iframe' )|eq(0)}
-                            <a href={'/user/preferences/set/admin_mailbox_item_view_raw_iframe/1'|ezurl}  title="{'Show raw mail content inline.'|i18n( 'cjw_newsletter/mailbox_item_view' )}">{'Show inline'|i18n( 'cjw_newsletter/mailbox_item_view' )}</a>
+                            <a href={'/user/preferences/set/admin_mailbox_item_view_raw_iframe/1'|ezurl}  title="{'Show raw mail content inline.'|i18n( 'newsletter/mailbox_item_view' )}">{'Show inline'|i18n( 'newsletter/mailbox_item_view' )}</a>
                         {else}
-                            <a href={'/user/preferences/set/admin_mailbox_item_view_raw_iframe/0'|ezurl}  title="{'Hide raw mail content inline.'|i18n( 'cjw_newsletter/mailbox_item_view' )}">{'Hide inline'|i18n( 'cjw_newsletter/mailbox_item_view' )}</a>
+                            <a href={'/user/preferences/set/admin_mailbox_item_view_raw_iframe/0'|ezurl}  title="{'Hide raw mail content inline.'|i18n( 'newsletter/mailbox_item_view' )}">{'Hide inline'|i18n( 'newsletter/mailbox_item_view' )}</a>
                             <br /><br />
                             <iframe width="100%" height="300" frameborder="0" name="RawMailConent" src="?GetRawMailContent" marginwidth="0" marginheight="0" />
                         {/if}

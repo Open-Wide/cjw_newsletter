@@ -6,13 +6,13 @@
  *
  * -script to create an newsletter edtion output for a siteaccess<br>
  * -to use the correct locale and SiteUrl<br>
- * -php extension/cjw_newsletter/bin/php/createoutput.php --object_id=102 --object_version=5 --output_format_id=0 --current_hostname=admin.jac-example.de.jac400.fw.lokal --www_dir=tmp/ --skin_name=default -s jac-example_user<br>
+ * -php extension/newsletter/bin/php/createoutput.php --object_id=102 --object_version=5 --output_format_id=0 --current_hostname=admin.jac-example.de.jac400.fw.lokal --www_dir=tmp/ --skin_name=default -s jac-example_user<br>
  * - --current_hostname :  only important for preview ( in testsystem )
  *
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @author Felix Woldt 2008
  * @subpackage phpscript
  * @filesource
@@ -21,7 +21,7 @@
 require 'autoload.php';
 
 $cli = eZCLI::instance();
-$script = eZScript::instance( array( 'description' => ( "CjW Newsletter CreateOutput\n\n" .
+$script = eZScript::instance( array( 'description' => ( " Newsletter CreateOutput\n\n" .
 
                                                         "\n" .
                                                         "createoutput.php -s siteaccess --outputFormat=0" ),
@@ -123,7 +123,7 @@ switch( $outputFormatId )
 {
     default:
     // html 0
-    case CjwNewsletterSubscription::OUTPUT_FORMAT_HTML :
+    case NewsletterSubscription::OUTPUT_FORMAT_HTML :
     {
         // textpart
         $template = 'design:newsletter/skin/'.$skinName.'/outputformat/text.tpl';
@@ -139,13 +139,13 @@ switch( $outputFormatId )
 
         $contentType = 'multipart/alternative';
 
-        if ( CjwNewsletterEdition::imageIncludeIsEnabled() )
+        if ( NewsletterEdition::imageIncludeIsEnabled() )
             $htmlMailImageInclude = 1;
 
     } break;
 
     // text 1
-    case CjwNewsletterSubscription::OUTPUT_FORMAT_TEXT :
+    case NewsletterSubscription::OUTPUT_FORMAT_TEXT :
     {
         $template = 'design:newsletter/skin/'.$skinName.'/outputformat/text.tpl';
         $content = $tpl->fetch( $template );
@@ -407,7 +407,7 @@ function stripAttributes( $content )
  * @param string $content
  * @param string $textLinkFormat here you can define how the html link ist formatted
  * the placeholders %url_link %url_text can be used in the string and will be replaced on demand
- * example: [ %url_text: %url_link ] => [ Newsletter: http://www.cjw-network.com ]
+ * example: [ %url_text: %url_link ] => [ Newsletter: http://www.-network.com ]
  */
 function formatTextLink( $content, $textLinkFormat = "[ %url_text: %url_link ]" )
 {

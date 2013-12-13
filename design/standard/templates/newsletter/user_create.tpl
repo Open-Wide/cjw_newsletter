@@ -9,7 +9,7 @@
     {if and( is_set( $warning_array ), $warning_array|count|ne( 0 ) )}
     <div class="block">
         <div class="message-warning">
-            <h2>{'Input did not validate'|i18n('cjw_newsletter/subscribe')}</h2>
+            <h2>{'Input did not validate'|i18n('newsletter/subscribe')}</h2>
             <ul>
             {foreach $warning_array as $index => $messageArrayItem}
                 <li><span class="key">{$messageArrayItem.field_key|wash}: </span><span class="text">{$messageArrayItem.message|wash()}</span></li>
@@ -34,7 +34,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{'Create a new newsletter user'|i18n( 'cjw_newsletter/user_create',, hash() )|wash}</h1>
+                                <h1 class="context-title">{'Create a new newsletter user'|i18n( 'newsletter/user_create',, hash() )|wash}</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -53,7 +53,7 @@
                         <div class="block float-break">
 
                             <label>
-                                {'Email'|i18n( 'cjw_newsletter/user_view' )}
+                                {'Email'|i18n( 'newsletter/user_view' )}
                             </label>
 
                             <input  class="halfbox" type="text" name="Subscription_Email" value="{$subscription_data_array['email']|wash}">
@@ -75,8 +75,8 @@
                                 <div class="box-br">
                                     {* Edit *}
                                     <div class="left">
-                                        <input class="button" type="submit" name="CreateEditButton" value="{'Create and edit'|i18n( 'cjw_newsletter/user_create' )}" />
-                                        <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'cjw_newsletter/user_create' )}" />
+                                        <input class="button" type="submit" name="CreateEditButton" value="{'Create and edit'|i18n( 'newsletter/user_create' )}" />
+                                        <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'newsletter/user_create' )}" />
                                     </div>
                                 </div>{* DESIGN: Control bar END *}
                             </div>

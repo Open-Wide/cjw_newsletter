@@ -7,7 +7,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -17,8 +17,8 @@ $templateFile = "design:newsletter/mailbox_edit.tpl";
 
 $http = eZHTTPTool::instance();
 
-// create new CjwNewsletterMailbox object
-$mailboxObject = new CjwNewsletterMailbox();
+// create new NewsletterMailbox object
+$mailboxObject = new NewsletterMailbox();
 
 if ( isset( $Params[ 'MailboxId' ] ) )
 {
@@ -83,8 +83,8 @@ $Result = array();
 $Result[ 'content' ] = $tpl->fetch( $templateFile );
 //$Result[ 'ui_context' ] = 'edit';
 $Result['path'] = array( array( 'url'  => false,
-                                'text' => ezpI18n::tr( 'cjw_newsletter', 'Newsletter' ) ),
+                                'text' => ezpI18n::tr( 'newsletter', 'Newsletter' ) ),
                          array( 'url'  => false,
-                                'text' => ezpI18n::tr( 'cjw_newsletter/mailbox_item_list', 'Mail accounts' ) ) );
+                                'text' => ezpI18n::tr( 'newsletter/mailbox_item_list', 'Mail accounts' ) ) );
 
 ?>

@@ -7,7 +7,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -59,19 +59,19 @@ $redirectUrlStore = false;
 if ( $newsletterUserId === -1 )
 {
     $contextCreateNewsletterUser = true;
-    $newsletterUserObject = CjwNewsletterUser::create(     $subscriptionDataArr['email'],
+    $newsletterUserObject = NewsletterUser::create(     $subscriptionDataArr['email'],
                                                            $subscriptionDataArr['salutation'],
                                                            $subscriptionDataArr['first_name'],
                                                            $subscriptionDataArr['last_name'],
                                                            $subscriptionDataArr['organisation'],
                                                            false,
-                                                           CjwNewsletterUser::STATUS_CONFIRMED,
+                                                           NewsletterUser::STATUS_CONFIRMED,
                                                            $context );
 }
 else
 {
     $contextCreateNewsletterUser = false;
-    $newsletterUserObject = CjwNewsletterUser::fetch( $newsletterUserId );
+    $newsletterUserObject = NewsletterUser::fetch( $newsletterUserId );
 }
 
 if ( !is_object( $newsletterUserObject ) )
@@ -87,10 +87,10 @@ if( $http->hasVariable( 'UserCreateMsg' ) )
     switch ( $userCreateMsg )
     {
         case 'edit_new':
-            $messageFeedback = ezpI18n::tr( 'cjw_newsletter/user_edit', 'Creating new newsletter user' );
+            $messageFeedback = ezpI18n::tr( 'newsletter/user_edit', 'Creating new newsletter user' );
             break;
         case 'edit_existing':
-            $messageFeedback =  ezpI18n::tr( 'cjw_newsletter/user_edit', 'Edit existing newsletter user' );
+            $messageFeedback =  ezpI18n::tr( 'newsletter/user_edit', 'Edit existing newsletter user' );
             break;
     }
 }
@@ -191,9 +191,9 @@ $userIsBlacklisted = false;
 // if user is blacklisted
 switch( $newsletterUserObject->attribute('status') )
 {
-    case CjwNewsletterUser::STATUS_BLACKLISTED :
+    case NewsletterUser::STATUS_BLACKLISTED :
         $userIsBlacklisted = true;
-        $messageFeedback = ezpI18n::tr( 'cjw_newsletter/user_edit', 'Can not edit newsletter user because he is blacklisted' );
+        $messageFeedback = ezpI18n::tr( 'newsletter/user_edit', 'Can not edit newsletter user because he is blacklisted' );
        // return $module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
     break;
 }
@@ -203,8 +203,8 @@ if ( $userIsBlacklisted === false
      && ( $module->isCurrentAction( 'Store' )
           || $module->isCurrentAction( 'StoreDraft' ) ) )
 {
-    $messageArray['email']      = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'Email'),
-                                          'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'You must provide a valid email address.' ) );
+    $messageArray['email']      = array( 'field_key'   => ezpI18n::tr( 'newsletter/subscription', 'Email'),
+                                          'message'     => ezpI18n::tr( 'newsletter/subscription', 'You must provide a valid email address.' ) );
 
     $requiredSubscriptionFields = array( 'email' );
     foreach ( $requiredSubscriptionFields as $fieldName )
@@ -220,13 +220,13 @@ if ( $userIsBlacklisted === false
                 else
                 {
                     // check if email already exists
-                    $existingNewsletterUserObject = CjwNewsletterUser::fetchByEmail( $subscriptionDataArr['email'] );
+                    $existingNewsletterUserObject = NewsletterUser::fetchByEmail( $subscriptionDataArr['email'] );
 
                     if( is_object( $existingNewsletterUserObject )
                         && (int) $existingNewsletterUserObject->attribute('id') != (int) $newsletterUserObject->attribute('id') )
                     {
-                        $warningArr['email'] = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'Email' ),
-                                                'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'Email is already used by an other newsletter user.' ) );
+                        $warningArr['email'] = array( 'field_key'   => ezpI18n::tr( 'newsletter/subscription', 'Email' ),
+                                                'message'     => ezpI18n::tr( 'newsletter/subscription', 'Email is already used by an other newsletter user.' ) );
                     }
                 }
 
@@ -259,8 +259,8 @@ if ( $userIsBlacklisted === false
     /*    foreach ( $listArray as $listId )
     {
         $outputFormatArray = $listOutputFormatArray[ $listId ];
-        $status = CjwNewsletterSubscription::STATUS_APPROVED;
-        $newsletter_user_subscription_array[ $listId ] = CjwNewsletterSubscription::createUpdateNewsletterSubscription(
+        $status = NewsletterSubscription::STATUS_APPROVED;
+        $newsletter_user_subscription_array[ $listId ] = NewsletterSubscription::createUpdateNewsletterSubscription(
                                                                                                     $listId,
                                                                                                     $existingNewsletterUserId,
                                                                                                     $outputFormatArray,
@@ -284,7 +284,7 @@ if ( $userIsBlacklisted === false
         // unsubscribe from list by admin
         foreach ( $listRemoveArray as $listId )
         {
-            $newsletter_user_subscription_array[ $listId ] = CjwNewsletterSubscription::removeSubscriptionByAdmin( $listId, $existingNewsletterUserId );
+            $newsletter_user_subscription_array[ $listId ] = NewsletterSubscription::removeSubscriptionByAdmin( $listId, $existingNewsletterUserId );
         }
     }
 */
@@ -305,7 +305,7 @@ if ( $userIsBlacklisted === false
 
         if ( $status >= 0 )
         {
-            $newsletter_user_subscription_array[ $listId ] = CjwNewsletterSubscription::createUpdateNewsletterSubscription(
+            $newsletter_user_subscription_array[ $listId ] = NewsletterSubscription::createUpdateNewsletterSubscription(
                                                                                                         $listId,
                                                                                                         $existingNewsletterUserId,
                                                                                                         $outputFormatArray,
@@ -320,7 +320,7 @@ if ( $module->isCurrentAction( 'Store' ) && count( $warningArr ) == 0 )
 {
     if ( $contextCreateNewsletterUser === true && $redirectUrlStore === false)
     {
-        $newNewsletterUserObject = CjwNewsletterUser::fetchByEmail( $subscriptionDataArr['email'] );
+        $newNewsletterUserObject = NewsletterUser::fetchByEmail( $subscriptionDataArr['email'] );
         if( is_object( $newNewsletterUserObject ) )
             $redirectUrlStore = '/newsletter/user_view/'.$newNewsletterUserObject->attribute( 'id' );
     }
@@ -342,7 +342,7 @@ elseif ( $module->isCurrentAction( 'Cancel' ) )
     $module->redirectTo( $redirectUrlCancel );
 }
 
-//$newsletterUserObject = CjwNewsletterUser::fetch( $newsletterUserId );
+//$newsletterUserObject = NewsletterUser::fetch( $newsletterUserId );
 
 
 $tpl->setVariable( 'add_subscription_for_list_id', $addSubscriptionForListId );
@@ -355,7 +355,7 @@ $tpl->setVariable( 'warning_array', $warningArr );
 $tpl->setVariable( 'message_feedback', $messageFeedback );
 
 $tpl->setVariable( 'newsletter_user', $newsletterUserObject );
-$tpl->setVariable( 'available_salutation_array', CjwNewsletterUser::getAvailableSalutationNameArrayFromIni() );
+$tpl->setVariable( 'available_salutation_array', NewsletterUser::getAvailableSalutationNameArrayFromIni() );
 
 $tpl->setVariable( 'redirect_url_action_cancel', $redirectUrlCancel );
 $tpl->setVariable( 'redirect_url_action_store', $redirectUrlStore );
@@ -365,9 +365,9 @@ $Result = array();
 //$Result[ 'ui_context' ] = 'edit';
 $Result['content'] = $tpl->fetch( $templateFile );
 $Result['path'] =  array( array( 'url'  => false,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/path', 'Newsletter' ) ),
                           array( 'url'  => false,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/user_list', 'Users' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/user_list', 'Users' ) ),
                           array( 'url'  => false,
                                  'text' => $newsletterUserObject->attribute( 'name' ) )  );
 

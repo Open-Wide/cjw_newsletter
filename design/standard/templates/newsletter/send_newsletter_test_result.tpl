@@ -37,7 +37,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{"Test newsletter sent result"|i18n("cjw_newsletter/send")}: {$node_name|wash}</h1>
+                                <h1 class="context-title">{"Test newsletter sent result"|i18n("newsletter/send")}: {$node_name|wash}</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -61,13 +61,13 @@
                                 {* Newsletter test sent result *}
                                 <table class="list">
                                     <tr>
-                                        <th>{"Nr"|i18n("cjw_newsletter/send")}</th>
+                                        <th>{"Nr"|i18n("newsletter/send")}</th>
 
-                                        {*<th>{"Result"|i18n("cjw_newsletter/send")}</th>*}
-                                        <th>{"Subject"|i18n("cjw_newsletter/send")}</th>
-                                        <th>{"Email Sender"|i18n("cjw_newsletter/send")}<br />{"Email Receiver"|i18n("cjw_newsletter/send")}</th>
+                                        {*<th>{"Result"|i18n("newsletter/send")}</th>*}
+                                        <th>{"Subject"|i18n("newsletter/send")}</th>
+                                        <th>{"Email Sender"|i18n("newsletter/send")}<br />{"Email Receiver"|i18n("newsletter/send")}</th>
 
-                                        <th>{"Content Type"|i18n("cjw_newsletter/send")}<br />{"Charset"|i18n("cjw_newsletter/send")}<br />{"Transport"|i18n("cjw_newsletter/send")}</th>
+                                        <th>{"Content Type"|i18n("newsletter/send")}<br />{"Charset"|i18n("newsletter/send")}<br />{"Transport"|i18n("newsletter/send")}</th>
                                     </tr>
                                     {def $i=1}
                                     {foreach $email_test_send_result_array as $result sequence array( 'bglight','bgdark' ) as $style}
@@ -103,7 +103,7 @@
 
                                         <div class="left">
 
-                                            <a href={$node_url|ezurl}><input type="button" class="button" value="{"Back"|i18n("cjw_newsletter/send")}" /></a>
+                                            <a href={$node_url|ezurl}><input type="button" class="button" value="{"Back"|i18n("newsletter/send")}" /></a>
 
                                         </div>
                                     </div>{* DESIGN: Control bar END *}

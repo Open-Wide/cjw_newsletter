@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage ini
  * @filesource
  */
@@ -14,26 +14,26 @@
 /*
 
 #The name of the filter.
-[CjwNewsletterListFilter]
+[NewsletterListFilter]
 
 #The name of the extension where the filtering code is defined.
-ExtensionName=cjw_newsletter
+ExtensionName=newsletter
 
 #The name of the filter class.
-ClassName=CjwNewsletterListFilter
+ClassName=NewsletterListFilter
 
 #The name of the method which is called to generate the SQL parts.
 MethodName=createSqlParts
 
 #The file which should be included (extension/myextension will automatically be prepended).
-FileName=extendedattributefilter/cjwnewsletterlistfilter.php
+FileName=extendedattributefilter/newsletterlistfilter.php
 
 
-[CjwNewsletterEditionFilter]
-ExtensionName=cjw_newsletter
-ClassName=CjwNewsletterEditionFilter
+[NewsletterEditionFilter]
+ExtensionName=newsletter
+ClassName=NewsletterEditionFilter
 MethodName=createSqlParts
-FileName=extendedattributefilter/cjwnewslettereditionfilter.php
+FileName=extendedattributefilter/newslettereditionfilter.php
 
 */ ?>
 

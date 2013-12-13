@@ -23,7 +23,7 @@
 <li id="nt{$newsletter_list_node_id}" {section show=$:last_item} class="lastli"{/section}>
 
 	{* Fold/Unfold/Empty: [-]/[+]/[ ] *}
-	<a class="openclose" href="#" title="{'Fold/Unfold'|i18n('cjw_newsletter/contentstructuremenu')}"
+	<a class="openclose" href="#" title="{'Fold/Unfold'|i18n('newsletter/contentstructuremenu')}"
 	   onclick="ezpopmenu_hideAll();
 							  ezcst_onFoldClicked(this.parentNode);
 							  return false;"></a>
@@ -34,7 +34,7 @@
 
 	{* icon *}
 	{*<img src={'share/icons/crystal-admin/16x16_indexed/actions/view_tree.png'|ezroot} />*}
-	{'cjw_newsletter_list'|class_icon( small )}
+	{'newsletter_list'|class_icon( small )}
 
 	{* Text *}
 	{if or( eq($ui_context, 'browse')|not(), eq($:parentNode.object.is_container, true()))}

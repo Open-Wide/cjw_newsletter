@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -18,13 +18,13 @@ $tpl = eZTemplate::factory();
 
 if( $http->hasVariable( 'ConnectMailboxButton' ) )
 {
-    $collectMailResult = CjwNewsletterMailbox::collectMailsFromActiveMailboxes();
+    $collectMailResult = NewsletterMailbox::collectMailsFromActiveMailboxes();
     $tpl->setVariable( 'collect_mail_result', $collectMailResult );
 }
 
 if( $http->hasVariable( 'BounceMailItemButton' ) )
 {
-    $parseResultArray = CjwNewsletterMailbox::parseActiveMailboxItems();
+    $parseResultArray = NewsletterMailbox::parseActiveMailboxItems();
     $tpl->setVariable( 'parse_result', $parseResultArray );
 }
 
@@ -48,8 +48,8 @@ if ( isset( $limitArray[ $limitArrayKey ] ) )
     $limit =  $limitArray[ $limitArrayKey ];
 }
 
-$mailboxItemList = CjwNewsletterMailboxItem::fetchAllMailboxItems( $limit, $viewParameters[ 'offset' ] );
-$mailboxItemListCount = CjwNewsletterMailboxItem::fetchAllMailboxItemsCount( );
+$mailboxItemList = NewsletterMailboxItem::fetchAllMailboxItems( $limit, $viewParameters[ 'offset' ] );
+$mailboxItemListCount = NewsletterMailboxItem::fetchAllMailboxItemsCount( );
 
 
 $tpl->setVariable( 'view_parameters', $viewParameters );
@@ -64,8 +64,8 @@ $Result = array();
 
 $Result['content'] = $tpl->fetch( $templateFile );
 $Result['path'] =  array( array( 'url'  => 'newsletter/index',
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/path', 'Newsletter' ) ),
                           array( 'url'  => false,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/mailbox_item_list', 'Bounces' ) ) );
+                                 'text' => ezpI18n::tr( 'newsletter/mailbox_item_list', 'Bounces' ) ) );
 
 ?>

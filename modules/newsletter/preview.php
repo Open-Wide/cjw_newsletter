@@ -8,7 +8,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -96,7 +96,7 @@ if( $http->hasVariable( 'Debug' ) && (int) $http->variable( 'Debug' ) == 1 )
 }
 
 $newsletterContent = '';
-$newsletterContentArray = CjwNewsletterEdition::getOutput( $editionContentObjectId, $versionId, $outputFormat, $siteAccess, $skinName, $forceSettingImageIncludeTo );
+$newsletterContentArray = NewsletterEdition::getOutput( $editionContentObjectId, $versionId, $outputFormat, $siteAccess, $skinName, $forceSettingImageIncludeTo );
 
 if( $newsletterContentArray['content_type'] == 'text/html' )
 {
@@ -150,7 +150,7 @@ if( $showRawContent === false )
     // insert email subject in preview after the body tag
     //$mailSubject = '<body${1}><!-- email subject preview start --><span class="newsletter-skin-preview-email-subject"><table <span class="newsletter-skin-preview-email-subject-label"><b>Email subject:</b></span> <span class="newsletter-skin-preview-email-subject-content">'. $newsletterContentArray['subject'] . '</span><br /></span><!-- email subject preview end -->';
 
-    $mailSubjectLabel = ezpI18n::tr( 'cjw_newsletter/preview', 'Email subject' );
+    $mailSubjectLabel = ezpI18n::tr( 'newsletter/preview', 'Email subject' );
 
     $subjectStyle = 'style="background-color:#dddddd;border-color: #cccccc;border-width: 0 0 1px 0;border-style: solid;color:#333333;"';
 

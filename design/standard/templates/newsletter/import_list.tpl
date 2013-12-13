@@ -12,7 +12,7 @@ list all import sets
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{'Manage imports'|i18n( 'cjw_newsletter/import_list',, hash() )}</h1>
+                                <h1 class="context-title">{'Manage imports'|i18n( 'newsletter/import_list',, hash() )}</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -29,7 +29,7 @@ list all import sets
                 <div class="box-content">
                     <div class="context-attributes">
                         <div class="block float-break">
-                        {'Here you find a list of all data imports!'|i18n('cjw_newsletter/import_list')}</a>
+                        {'Here you find a list of all data imports!'|i18n('newsletter/import_list')}</a>
                         </div>
                     </div>
                     {* DESIGN: Content END *}
@@ -64,7 +64,7 @@ list all import sets
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h2 class="context-title">{'Imports (%import_list_count) '|i18n( 'cjw_newsletter/import_list',, hash( '%import_list_count', $import_list_count ))}</h2>
+                                <h2 class="context-title">{'Imports (%import_list_count) '|i18n( 'newsletter/import_list',, hash( '%import_list_count', $import_list_count ))}</h2>
                                 {* DESIGN: Subline *}
                                 <div class="header-subline">
                                 </div>
@@ -109,31 +109,31 @@ list all import sets
                                 <tr>
                                     {*
                                     <th class="tight">
-                                        <img src={'toggle-button-16x16.gif'|ezimage}  alt="{'Invert selection'|i18n( 'cjw_newsletter/import_list' )}" title="{'Invert selection'|i18n( 'cjw_newsletter/import_list' )}" onclick="ezjs_toggleCheckboxes( document.user_list, 'SubscriptionIDArray[]' ); return false;" />
+                                        <img src={'toggle-button-16x16.gif'|ezimage}  alt="{'Invert selection'|i18n( 'newsletter/import_list' )}" title="{'Invert selection'|i18n( 'newsletter/import_list' )}" onclick="ezjs_toggleCheckboxes( document.user_list, 'SubscriptionIDArray[]' ); return false;" />
                                     </th>*}
                                 <th class="tight">
-                                    {'ID'|i18n('cjw_newsletter/import_list')}</a>
+                                    {'ID'|i18n('newsletter/import_list')}</a>
                                 </th>
                                 <th>
-                                    {'Type'|i18n( 'cjw_newsletter/import_list' )}
+                                    {'Type'|i18n( 'newsletter/import_list' )}
                                 </th>
                                 <th>
-                                    {'List Id'|i18n( 'cjw_newsletter/import_list' )}
+                                    {'List Id'|i18n( 'newsletter/import_list' )}
                                 </th>
                                 <th>
-                                    {'Creator'|i18n( 'cjw_newsletter/import_list' )}
+                                    {'Creator'|i18n( 'newsletter/import_list' )}
                                 </th>
                                 <th>
-                                    {'Note'|i18n( 'cjw_newsletter/import_list' )}
+                                    {'Note'|i18n( 'newsletter/import_list' )}
                                 </th>
                                 <th>
-                                    {'Created'|i18n( 'cjw_newsletter/import_list' )}
+                                    {'Created'|i18n( 'newsletter/import_list' )}
                                 </th>
                                 <th>
-                                    {'Imported'|i18n( 'cjw_newsletter/import_list' )}
+                                    {'Imported'|i18n( 'newsletter/import_list' )}
                                 </th>
-                                <th title="{'Imported subscription count'|i18n( 'cjw_newsletter/import_list' )}">
-                                    {'Count'|i18n( 'cjw_newsletter/import_list' )}
+                                <th title="{'Imported subscription count'|i18n( 'newsletter/import_list' )}">
+                                    {'Count'|i18n( 'newsletter/import_list' )}
                                 </th>
                                 </tr>
                                 {*$mailbox_item_list|attribute(show)*}
@@ -141,7 +141,7 @@ list all import sets
                                 <tr class="{$style}">
                                     {*
                                     <td>
-                                        <input type="checkbox" name="SubscriptionIDArray[]" value="{$blacklist_item.id|wash}" title="{'Select items for removal'|i18n( 'cjw_newsletter/import_list' )}" />
+                                        <input type="checkbox" name="SubscriptionIDArray[]" value="{$blacklist_item.id|wash}" title="{'Select items for removal'|i18n( 'newsletter/import_list' )}" />
                                     </td>*}
                                     <td class="number" align="right">
                                         <a href={concat( 'newsletter/import_view/', $import_item.id )|ezurl}>{$import_item.id|wash} </a>
@@ -170,9 +170,9 @@ list all import sets
                                         {if $import_item.imported|gt(0)}{$import_item.imported|l10n( shortdatetime )|wash}{/if}
                                     </td>
                                     <td>
-                                        {if $import_item.is_imported}<span title="{'Subscription count after import'|i18n( 'cjw_newsletter/import_list',, hash('%importId', $import_item.id ) )}">{$import_item.imported_subscription_count|wash}</span>
-                                        | <span title="{'Subscriptions in current system with import id %importId'|i18n( 'cjw_newsletter/import_list',, hash('%importId', $import_item.id ) )}">{$import_item.imported_subscription_count_live|wash}</span>
-                                        | <span title="{'Approved subscriptions in current system with import id %importId'|i18n( 'cjw_newsletter/import_list',, hash('%importId', $import_item.id ) )}"><b>{$import_item.imported_subscription_count_live_approved|wash}</b></span>{/if}
+                                        {if $import_item.is_imported}<span title="{'Subscription count after import'|i18n( 'newsletter/import_list',, hash('%importId', $import_item.id ) )}">{$import_item.imported_subscription_count|wash}</span>
+                                        | <span title="{'Subscriptions in current system with import id %importId'|i18n( 'newsletter/import_list',, hash('%importId', $import_item.id ) )}">{$import_item.imported_subscription_count_live|wash}</span>
+                                        | <span title="{'Approved subscriptions in current system with import id %importId'|i18n( 'newsletter/import_list',, hash('%importId', $import_item.id ) )}"><b>{$import_item.imported_subscription_count_live_approved|wash}</b></span>{/if}
                                     </td>
                                 </tr>
                                 {/foreach}

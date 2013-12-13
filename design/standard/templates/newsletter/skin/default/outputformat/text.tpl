@@ -1,4 +1,4 @@
-{set-block variable=$subject scope=root}{ezini('NewsletterMailSettings', 'EmailSubjectPrefix', 'cjw_newsletter.ini')} {$contentobject.name|wash}{/set-block}
+{set-block variable=$subject scope=root}{ezini('NewsletterMailSettings', 'EmailSubjectPrefix', 'newsletter.ini')} {$contentobject.name|wash}{/set-block}
 {def $edition_data_map = $contentobject.data_map}
 
 {if $edition_data_map.title.has_content}
@@ -13,7 +13,7 @@
 {def $list_items = fetch('content', 'list', hash( 'parent_node_id', $contentobject.contentobject.main_node_id,
                                                   'sort_by', array( 'priority' , true() ),
                                                   'class_filter_type', 'include',
-                                                  'class_filter_array', array( 'cjw_newsletter_article' ) ) )
+                                                  'class_filter_array', array( 'newsletter_article' ) ) )
 }
 {if $list_items|count|ne(0)}
 {* show subarticles *}
@@ -33,8 +33,8 @@
 {/if}
 
 <hr>
-{'To unsubscribe from this newsletter please visit the following link'|i18n('cjw_newsletter/skin/default')}:
+{'To unsubscribe from this newsletter please visit the following link'|i18n('newsletter/skin/default')}:
 url:{'/newsletter/unsubscribe/#_hash_unsubscribe_#'|ezurl('no')}
 <hr>
-&copy; {currentdate()|datetime( 'custom', '%Y' )} www.CJW-Network.com
+&copy; {currentdate()|datetime( 'custom', '%Y' )} www.-Network.com
 

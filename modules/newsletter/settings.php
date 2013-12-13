@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -19,7 +19,7 @@ $viewParameters = array();
 $tpl = eZTemplate::factory();
 $tpl->setVariable( 'view_parameters', $viewParameters );
 
-//http://admin.eldorado-templin.info.jac400.in-mv.com/settings/view/eldorado-templin_admin/cjw_newsletter.ini
+//http://admin.eldorado-templin.info.jac400.in-mv.com/settings/view/eldorado-templin_admin/newsletter.ini
 
 $tpl->setVariable( 'current_siteaccess', $viewParameters );
 
@@ -31,7 +31,7 @@ $tpl->setVariable( 'current_siteaccess', $viewParameters );
 $currentSiteAccess = $GLOBALS['eZCurrentAccess'];
 $currentSiteAccessName = $currentSiteAccess['name'];
 
-$redirectUri = "/settings/view/$currentSiteAccessName/cjw_newsletter.ini";
+$redirectUri = "/settings/view/$currentSiteAccessName/newsletter.ini";
 return $module->redirectTo( $redirectUri );
 
 /*

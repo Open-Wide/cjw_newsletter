@@ -5,12 +5,12 @@
     {let $newsletter_root_node_id = $newsletter_mailing_lists_node.node_id
          children       = fetch( 'content', 'tree', hash('parent_node_id', $newsletter_root_node_id,
                                                         'class_filter_type', 'include',
-                                                        'class_filter_array', array('cjw_newsletter_list'),
+                                                        'class_filter_array', array('newsletter_list'),
                                                         'sort_by', array( 'name', true() ), ))
          numChildren    = fetch( 'content', 'tree_count', hash('parent_node_id', $newsletter_root_node_id,
                                                         'class_filter_type', 'include',
                                                         'class_filter_array',
-                                                        array('cjw_newsletter_list') ))
+                                                        array('newsletter_list') ))
          haveChildren   = $numChildren|gt(0)
          showToolTips   = ezini( 'TreeMenu', 'ToolTips' , 'contentstructuremenu.ini' )
          translation    = ezini( 'URLTranslator', 'Translation', 'site.ini' )
@@ -32,14 +32,14 @@
         <li id="n0_{$newsletter_root_node_id}" {cond( $:last_item, 'class="lastli"', '' )}>
 
             {* Fold/Unfold/Empty: [-]/[+]/[ ] *}
-                   <a class="openclose" href="#" title="{'Fold/Unfold'|i18n('cjw_newsletter/contentstructuremenu')}"
+                   <a class="openclose" href="#" title="{'Fold/Unfold'|i18n('newsletter/contentstructuremenu')}"
                       onclick="ezpopmenu_hideAll(); ezcst_onFoldClicked( this.parentNode ); return false;"></a>
 
             {* Label *}
 				{set toolTip = ''}
 
                 {* Text *}
-				{'cjw_newsletter_system'|class_icon( small )}
+				{'newsletter_system'|class_icon( small )}
                 {if or( eq($ui_context, 'browse')|not(), eq($:parentNode.object.is_container, true()))}
                     <a class="nodetext" href={concat( 'content/view/full/',$newsletter_root_node_id )|ezurl} title="{$:toolTip}"><span class="node-name-normal">{$newsletter_mailing_lists_node.name}</span></a>
                 {else}

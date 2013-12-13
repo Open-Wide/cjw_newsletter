@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -14,7 +14,7 @@ $module = $Params['Module'];
 
 $http = eZHTTPTool::instance();
 $tpl = eZTemplate::factory();
-$subscription = CjwNewsletterSubscription::fetchByHash( $Params['Hash'] );
+$subscription = NewsletterSubscription::fetchByHash( $Params['Hash'] );
 
 if ( !$subscription )
 {
@@ -65,7 +65,7 @@ $tpl->setVariable( 'subscription', $subscription );
 $Result = array();
 $Result['content'] = $tpl->fetch( $tplTemplate );
 $Result['path'] = array( array( 'url' => false,
-                                'text' => ezpI18n::tr( 'cjw_newsletter/unsubscribe', 'Unsubscribe' ) ) );
+                                'text' => ezpI18n::tr( 'newsletter/unsubscribe', 'Unsubscribe' ) ) );
 
 
 ?>

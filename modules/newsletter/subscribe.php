@@ -5,7 +5,7 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage modules
  * @filesource
  */
@@ -104,22 +104,22 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
          }
     }
 
-    $messageArray['list_array']   = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'Newsletter'),
-                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'You must choose a list for subscription.' ) );
-    $messageArray['first_name']   = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'First name'),
-                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'You must enter a first name.' ) );
-    $messageArray['last_name']    = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'Last name'),
-                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'You must enter a last name.' ) );
-    $messageArray['organisation'] = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'Organisation'),
-                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'You must enter an organisation.' ) );
-    $messageArray['email']        = array( 'field_key'   => ezpI18n::tr( 'cjw_newsletter/subscription', 'Email'),
-                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'You must provide a valid email address.' ) );
+    $messageArray['list_array']   = array( 'field_key'   => ezpI18n::tr( 'newsletter/subscription', 'Newsletter'),
+                                           'message'     => ezpI18n::tr( 'newsletter/subscription', 'You must choose a list for subscription.' ) );
+    $messageArray['first_name']   = array( 'field_key'   => ezpI18n::tr( 'newsletter/subscription', 'First name'),
+                                           'message'     => ezpI18n::tr( 'newsletter/subscription', 'You must enter a first name.' ) );
+    $messageArray['last_name']    = array( 'field_key'   => ezpI18n::tr( 'newsletter/subscription', 'Last name'),
+                                           'message'     => ezpI18n::tr( 'newsletter/subscription', 'You must enter a last name.' ) );
+    $messageArray['organisation'] = array( 'field_key'   => ezpI18n::tr( 'newsletter/subscription', 'Organisation'),
+                                           'message'     => ezpI18n::tr( 'newsletter/subscription', 'You must enter an organisation.' ) );
+    $messageArray['email']        = array( 'field_key'   => ezpI18n::tr( 'newsletter/subscription', 'Email'),
+                                           'message'     => ezpI18n::tr( 'newsletter/subscription', 'You must provide a valid email address.' ) );
     $messageArray['generic']      = array( 'field_key'   => '',
-                                           'message'     => ezpI18n::tr( 'cjw_newsletter/subscription', 'Please fill in all required fields') );
+                                           'message'     => ezpI18n::tr( 'newsletter/subscription', 'Please fill in all required fields') );
 
 
     $requiredSubscriptionFields = array( 'list_array', 'email' );
-    $ini = new eZINI('cjw_newsletter.ini');
+    $ini = new eZINI('newsletter.ini');
 	$requiredSubscriptionFields = array_merge($requiredSubscriptionFields , 
 											  $ini->variable('NewsletterUserSettings', 'AdditionalRequiredSubscriptionFields'));
     foreach ( $requiredSubscriptionFields as $fieldName )
@@ -168,7 +168,7 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
     }
 
     // check if email already exists
-    $existingNewsletterUserObject = CjwNewsletterUser::fetchByEmail( $subscriptionDataArr['email'] );
+    $existingNewsletterUserObject = NewsletterUser::fetchByEmail( $subscriptionDataArr['email'] );
 
     $context = 'subscribe';
 
@@ -180,11 +180,11 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
         if ( count( $warningArr ) == 0 )
         {
             // subscribe to all selected lists
-            $subscriptionResultArray = CjwNewsletterSubscription::createSubscriptionByArray( $subscriptionDataArr,
-                                                                                             CjwNewsletterUser::STATUS_PENDING,
+            $subscriptionResultArray = NewsletterSubscription::createSubscriptionByArray( $subscriptionDataArr,
+                                                                                             NewsletterUser::STATUS_PENDING,
                                                                                              true,
                                                                                              $context );
-            $newNewsletterUser = CjwNewsletterUser::fetchByEmail( $subscriptionDataArr['email'] );
+            $newNewsletterUser = NewsletterUser::fetchByEmail( $subscriptionDataArr['email'] );
 
             $tpl->setVariable( 'user_email_already_exists', false );
             $tpl->setVariable( 'mail_send_result', false );
@@ -229,12 +229,12 @@ if ( $module->isCurrentAction( 'Subscribe' ) )
         else if ( count( $warningArr ) == 0 )
         {
             // subscribe to all selected lists
-            $subscriptionResultArray = CjwNewsletterSubscription::createSubscriptionByArray( $subscriptionDataArr,
-                                                                                             CjwNewsletterUser::STATUS_PENDING,
+            $subscriptionResultArray = NewsletterSubscription::createSubscriptionByArray( $subscriptionDataArr,
+                                                                                             NewsletterUser::STATUS_PENDING,
                                                                                              true,
                                                                                              $context );
 
-            $newNewsletterUser = CjwNewsletterUser::fetchByEmail( $subscriptionDataArr['email'] );
+            $newNewsletterUser = NewsletterUser::fetchByEmail( $subscriptionDataArr['email'] );
             $mailSendResult = $newNewsletterUser->sendSubcriptionConfirmationMail();
 
             $tpl->setVariable( 'user_email_already_exists', false );
@@ -264,7 +264,7 @@ $tpl->setVariable( 'subscription_data_array', $subscriptionDataArr );
 
 $tpl->setVariable( 'warning_array', $warningArr );
 
-$salutationArray = CjwNewsletterUser::getAvailableSalutationNameArrayFromIni();
+$salutationArray = NewsletterUser::getAvailableSalutationNameArrayFromIni();
 
 $tpl->setVariable( 'available_salutation_array', $salutationArray );
 // for backwardcompatibility
@@ -277,7 +277,7 @@ $Result = array();
 $Result['content'] = $tpl->fetch( $templateFile );
 
 $Result['path'] =  array( array( 'url'  => false,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/path', 'Newsletter' ) ),
+                                 'text' => ezpI18n::tr( 'newsletter/path', 'Newsletter' ) ),
                           array( 'url'  => false,
-                                 'text' => ezpI18n::tr( 'cjw_newsletter/subscribe', 'Subscription form' ) ) );
+                                 'text' => ezpI18n::tr( 'newsletter/subscribe', 'Subscription form' ) ) );
 ?>

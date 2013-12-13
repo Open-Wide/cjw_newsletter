@@ -12,7 +12,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{$newsletter_user.name|wash} &lt;{$newsletter_user.email|wash}&gt; [{'Newsletter user'|i18n( 'cjw_newsletter/user_view',, hash() )|wash}]</h1>
+                                <h1 class="context-title">{$newsletter_user.name|wash} &lt;{$newsletter_user.email|wash}&gt; [{'Newsletter user'|i18n( 'newsletter/user_view',, hash() )|wash}]</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -32,7 +32,7 @@
                             <table class="list">
                                 <tr>
                                     <th>
-                                        {'Name'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Name'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.name|wash}
@@ -40,7 +40,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Id'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Id'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.id|wash}
@@ -48,7 +48,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Email'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Email'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.email|wash}
@@ -57,7 +57,7 @@
 
                                 <tr>
                                     <th>
-                                        {'Salutation'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Salutation'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td title="{$newsletter_user.salutation|wash}">
                                         {$newsletter_user.salutation_name|wash}
@@ -65,7 +65,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'First name'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'First name'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.first_name|wash}
@@ -73,7 +73,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Last name'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Last name'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.last_name|wash}
@@ -81,7 +81,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Organisation'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Organisation'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.organisation|wash}
@@ -89,7 +89,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Status'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Status'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td title="{$newsletter_user.status|wash}">
                                         {$newsletter_user.status_string|wash}
@@ -97,19 +97,19 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'eZ user id'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'eZ user id'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td title="{$newsletter_user.ez_user_id|wash}">
                                         {if is_object($newsletter_user.ez_user)}
-                                            <a href={concat('content/view/full/', $newsletter_user.ez_user.contentobject.main_node_id )|ezurl}>{$newsletter_user.ez_user.contentobject.name|wash}</a> ({if $newsletter_user.ez_user.is_enabled}{'enabled'|i18n( 'cjw_newsletter/user_view' )}{else}{'disabled'|i18n( 'cjw_newsletter/user_view' )}{/if})
+                                            <a href={concat('content/view/full/', $newsletter_user.ez_user.contentobject.main_node_id )|ezurl}>{$newsletter_user.ez_user.contentobject.name|wash}</a> ({if $newsletter_user.ez_user.is_enabled}{'enabled'|i18n( 'newsletter/user_view' )}{else}{'disabled'|i18n( 'newsletter/user_view' )}{/if})
                                         {elseif $newsletter_user.ez_user_id|ne( 0 )}
-                                            <b> {'Ez user with id %ez_user_id does not exist anymore!'|i18n( 'cjw_newsletter/user_view', '', hash('%ez_user_id', $newsletter_user.ez_user_id ) )}</b>
+                                            <b> {'Ez user with id %ez_user_id does not exist anymore!'|i18n( 'newsletter/user_view', '', hash('%ez_user_id', $newsletter_user.ez_user_id ) )}</b>
                                         {/if}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Creator'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Creator'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td title="{$newsletter_user.creator_contentobject_id|wash}">
 
@@ -120,7 +120,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Created'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Created'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.created|l10n( shortdatetime )}
@@ -128,7 +128,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Modifier'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Modifier'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td title="{$newsletter_user.modifier_contentobject_id|wash}">
                                         {if is_object($newsletter_user.modifier)}
@@ -138,7 +138,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Modified'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Modified'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {if $newsletter_user.modified|ne(0)}
@@ -148,7 +148,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Confirmed'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Confirmed'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {if $newsletter_user.confirmed|ne(0)}
@@ -158,7 +158,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Removed'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Removed'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {if $newsletter_user.removed|ne(0)}
@@ -168,7 +168,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Bounced'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Bounced'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {if $newsletter_user.bounced|ne(0)}
@@ -178,7 +178,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Blacklisted'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Blacklisted'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {if $newsletter_user.blacklisted|ne(0)}
@@ -188,7 +188,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Hash'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Hash'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.hash|wash}
@@ -197,7 +197,7 @@
 
                                 <tr>
                                     <th>
-                                        {'Bounce count'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Bounce count'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.bounce_count|wash}
@@ -205,7 +205,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Remote id'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Remote id'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.remote_id|wash}
@@ -213,7 +213,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Import id'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Import id'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.import_id|wash}
@@ -221,7 +221,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Note'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Note'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.note|nl2br}
@@ -229,7 +229,7 @@
                                 </tr>
                                  <tr>
                                     <th>
-                                        {'Data xml'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Data xml'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.data_xml}
@@ -237,7 +237,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {'Data text'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Data text'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <td>
                                         {$newsletter_user.data_text}
@@ -264,28 +264,28 @@
                                         {* status is not blacklisted *}
                                         {if $newsletter_user.status|ne(8)}
                                         <form method="post" style="display:inline;" action={concat( 'newsletter/user_edit/', $newsletter_user.id )|ezurl}>
-                                            <input class="button" type="submit" name="EditUserButton" value="{'Edit'|i18n( 'cjw_newsletter/user_view' )}" title="{'Edit by admin'|i18n( 'cjw_newsletter/user_view' )}" />
+                                            <input class="button" type="submit" name="EditUserButton" value="{'Edit'|i18n( 'newsletter/user_view' )}" title="{'Edit by admin'|i18n( 'newsletter/user_view' )}" />
                                         </form>
                                         {else}
-                                        <input class="button-disabled" type="submit" value="{'Edit'|i18n( 'cjw_newsletter/user_view' )}" title="{'Edit by admin'|i18n( 'cjw_newsletter/user_view' )}" />
+                                        <input class="button-disabled" type="submit" value="{'Edit'|i18n( 'newsletter/user_view' )}" title="{'Edit by admin'|i18n( 'newsletter/user_view' )}" />
                                         {/if}
 
                                         <form method="post" style="display:inline;" action={concat( 'newsletter/user_remove/', $newsletter_user.id )|ezurl}>
                                             <input type="hidden" name="RedirectUrlActionRemove" value="newsletter/user_list/" />
                                             <input type="hidden" name="RedirectUrlActionCancel" value="{concat( 'newsletter/user_view/', $newsletter_user.id )}" />
-                                            <input class="button" type="submit" name="DeleteUserButton" value="{'Remove'|i18n( 'cjw_newsletter/user_view' )}" title="{'Delete newsletter user and all subscriptions from database'|i18n( 'cjw_newsletter/user_view' )}" />
+                                            <input class="button" type="submit" name="DeleteUserButton" value="{'Remove'|i18n( 'newsletter/user_view' )}" title="{'Delete newsletter user and all subscriptions from database'|i18n( 'newsletter/user_view' )}" />
                                         </form>
 
                                         {* status is not blacklisted *}
                                         {if $newsletter_user.status|ne(8)}
                                             <form method="post" style="display:inline;" action={'newsletter/blacklist_item_add'|ezurl}>
                                             <input type="hidden" name="Email" value="{$newsletter_user.email|wash}" />
-                                            <input class="button" type="submit" name="CreateBlacklistEntryButton" value="{'Add to blacklist'|i18n( 'cjw_newsletter/user_view' )}" title="{'Add to blacklist'|i18n( 'cjw_newsletter/user_view' )}" />
+                                            <input class="button" type="submit" name="CreateBlacklistEntryButton" value="{'Add to blacklist'|i18n( 'newsletter/user_view' )}" title="{'Add to blacklist'|i18n( 'newsletter/user_view' )}" />
                                             </form>
                                         {else}
                                             <form method="post" style="display:inline;" action={'newsletter/blacklist_item_remove'|ezurl}>
                                             <input type="hidden" name="Email" value="{$newsletter_user.email|wash}" />
-                                            <input class="button" type="submit" name="RemoveBlacklistEntryButton" value="{'Remove from blacklist'|i18n( 'cjw_newsletter/user_view' )}" title="{'Remove from blacklist'|i18n( 'cjw_newsletter/user_view' )}" />
+                                            <input class="button" type="submit" name="RemoveBlacklistEntryButton" value="{'Remove from blacklist'|i18n( 'newsletter/user_view' )}" title="{'Remove from blacklist'|i18n( 'newsletter/user_view' )}" />
                                             </form>
                                         {/if}
 
@@ -308,7 +308,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h2 class="context-title">{'Newsletter subscriptions'|i18n( 'cjw_newsletter/user_view',, hash( ) )} [{$subscription_array_count}]</h2>
+                                <h2 class="context-title">{'Newsletter subscriptions'|i18n( 'newsletter/user_view',, hash( ) )} [{$subscription_array_count}]</h2>
                                 {* DESIGN: Subline *}
                                 <div class="header-subline">
                                 </div>
@@ -328,34 +328,34 @@
                             <table class="list" cellspacing="0">
                                 <tr>
                                     <th class="tight">
-                                        {'Id'|i18n( 'cjw_newsletter/subscription_list' )}
+                                        {'Id'|i18n( 'newsletter/subscription_list' )}
                                     </th>
                                     <th class="tight">
-                                        {'List name'|i18n( 'cjw_newsletter/subscription_list' )}
+                                        {'List name'|i18n( 'newsletter/subscription_list' )}
                                     </th>
                                     <th>
-                                        {'Format'|i18n( 'cjw_newsletter/subscription_list' )}
+                                        {'Format'|i18n( 'newsletter/subscription_list' )}
                                     </th>
                                     <th>
-                                        {'Status'|i18n( 'cjw_newsletter/subscription_list' )}
+                                        {'Status'|i18n( 'newsletter/subscription_list' )}
                                     </th>
                                     <th>
-                                        {'Created'|i18n( 'cjw_newsletter/subscription_list' )}
+                                        {'Created'|i18n( 'newsletter/subscription_list' )}
                                     </th>
                                     <th>
-                                        {'Modified'|i18n( 'cjw_newsletter/subscription_list' )}
+                                        {'Modified'|i18n( 'newsletter/subscription_list' )}
                                     </th>
                                     <th>
-                                        {'Confirmed'|i18n( 'cjw_newsletter/subscription_list' )}
+                                        {'Confirmed'|i18n( 'newsletter/subscription_list' )}
                                     </th>
                                     <th>
-                                        {'Approved'|i18n( 'cjw_newsletter/subscription_list' )}
+                                        {'Approved'|i18n( 'newsletter/subscription_list' )}
                                     </th>
                                     <th>
-                                        {'Removed'|i18n( 'cjw_newsletter/subscription_list' )}
+                                        {'Removed'|i18n( 'newsletter/subscription_list' )}
                                     </th>
                                   {*  <th>
-                                        {'Hash'|i18n( 'cjw_newsletter/subscription_list' )}
+                                        {'Hash'|i18n( 'newsletter/subscription_list' )}
                                     </th> *}
                                 </tr>
                                 {foreach $subscription_array as $subscription sequence array( bglight, bgdark ) as $style}
@@ -373,19 +373,19 @@
                                         {$subscription.status_string|wash}
                                     </td>
                                     <td>
-                                        {cond( $subscription.created|gt(0), $subscription.created|l10n( shortdatetime ), 'n/a'|i18n( 'cjw_newsletter/subscription_list' ) )}
+                                        {cond( $subscription.created|gt(0), $subscription.created|l10n( shortdatetime ), 'n/a'|i18n( 'newsletter/subscription_list' ) )}
                                     </td>
                                     <td>
-                                        {cond( $subscription.modified|gt(0), $subscription.modified|l10n( shortdatetime ), 'n/a'|i18n( 'cjw_newsletter/subscription_list' ) )}
+                                        {cond( $subscription.modified|gt(0), $subscription.modified|l10n( shortdatetime ), 'n/a'|i18n( 'newsletter/subscription_list' ) )}
                                     </td>
                                     <td>
-                                        {cond( $subscription.confirmed|gt(0), $subscription.confirmed|l10n( shortdatetime ), 'n/a'|i18n( 'cjw_newsletter/subscription_list' ) )}
+                                        {cond( $subscription.confirmed|gt(0), $subscription.confirmed|l10n( shortdatetime ), 'n/a'|i18n( 'newsletter/subscription_list' ) )}
                                     </td>
                                     <td>
-                                        {cond( $subscription.approved|gt(0), $subscription.approved|l10n( shortdatetime ), 'n/a'|i18n( 'cjw_newsletter/subscription_list' ) )}
+                                        {cond( $subscription.approved|gt(0), $subscription.approved|l10n( shortdatetime ), 'n/a'|i18n( 'newsletter/subscription_list' ) )}
                                     </td>
                                     <td>
-                                        {cond( $subscription.removed|gt(0), $subscription.removed|l10n( shortdatetime ), 'n/a'|i18n( 'cjw_newsletter/subscription_list' ) )}
+                                        {cond( $subscription.removed|gt(0), $subscription.removed|l10n( shortdatetime ), 'n/a'|i18n( 'newsletter/subscription_list' ) )}
                                     </td>
                                     {*<td>
                                         {$subscription.hash|wash}
@@ -426,7 +426,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h2 class="context-title">{'Newsletter received'|i18n( 'cjw_newsletter/user_view',, hash() )} [{$edition_send_item_count}]</h2>
+                                <h2 class="context-title">{'Newsletter received'|i18n( 'newsletter/user_view',, hash() )} [{$edition_send_item_count}]</h2>
                                 {* DESIGN: Subline *}
                                 <div class="header-subline">
                                 </div>
@@ -446,28 +446,28 @@
                             <table class="list" cellspacing="0">
                                 <tr>
                                     <th class="tight">
-                                        {'Id'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Id'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <th>
-                                        {'Edition sent id'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Edition sent id'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <th>
-                                        {'Format'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Format'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <th>
-                                        {'Status'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Status'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <th>
-                                        {'Created'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Created'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <th>
-                                        {'Processed'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Processed'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <th>
-                                        {'Opened'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Opened'|i18n( 'newsletter/user_view' )}
                                     </th>
                                     <th>
-                                        {'Bounced'|i18n( 'cjw_newsletter/user_view' )}
+                                        {'Bounced'|i18n( 'newsletter/user_view' )}
                                     </th>
                                 </tr>
                                 {foreach $edition_send_item_array as $send_item sequence array( bglight, bgdark ) as $style}

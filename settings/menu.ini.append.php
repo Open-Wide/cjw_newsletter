@@ -6,14 +6,14 @@
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  * @subpackage ini
  * @filesource
  */
 
 /*
 [NavigationPart]
-Part[eznewsletternavigationpart]=CJW Newsletter
+Part[eznewsletternavigationpart]= Newsletter
 
 [TopAdminMenu]
 Tabs[]=newsletter
@@ -36,7 +36,7 @@ Shown[navigation]=true
 Shown[browse]=false
 
 [MenuSettings]
-HideLeftMenuClasses[]=cjw_newsletter_list
-HideLeftMenuClasses[]=cjw_newsletter_edition
-HideLeftMenuClasses[]=cjw_newsletter_system
+HideLeftMenuClasses[]=newsletter_list
+HideLeftMenuClasses[]=newsletter_edition
+HideLeftMenuClasses[]=newsletter_system
 */ ?>

@@ -38,7 +38,7 @@ list all blacklist items
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{'Subscription CSV import'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</h1>
+                                <h1 class="context-title">{'Subscription CSV import'|i18n( 'newsletter/subscription_list_csvimport' )}</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -52,7 +52,7 @@ list all blacklist items
                                     <h2>
                                         {switch match=$view_parameters.error}
                                             {case match='CSV_DELIM_ERROR'}
-                                                {'Unsupported CSV delimiter. Please use one of the following: ",", ";", "|"'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                                {'Unsupported CSV delimiter. Please use one of the following: ",", ";", "|"'|i18n( 'newsletter/subscription_list_csvimport' )}
                                             {/case}
                                         {/switch}
                                     </h2>
@@ -77,25 +77,25 @@ list all blacklist items
 
 {if $import_id|eq(0)}
                             <label>
-                                {"Upload file"|i18n( 'cjw_newsletter/subscription_list_csvimport' )}:
+                                {"Upload file"|i18n( 'newsletter/subscription_list_csvimport' )}:
                             </label>
-                            <input type="hidden" name="MAX_FILE_SIZE" value="0" /><input name="UploadCsvFile" type="file" /><input type="submit" value="{'Upload file'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}" />
+                            <input type="hidden" name="MAX_FILE_SIZE" value="0" /><input name="UploadCsvFile" type="file" /><input type="submit" value="{'Upload file'|i18n( 'newsletter/subscription_list_csvimport' )}" />
 {else}
 
 
                                 {if is_object( $import_object )}
                                 <label>
-                                <a href={concat( 'newsletter/import_view/', $import_object.id )|ezurl()}>{'Import   Id'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}: {$import_object.id|wash}  </a>
+                                <a href={concat( 'newsletter/import_view/', $import_object.id )|ezurl()}>{'Import   Id'|i18n( 'newsletter/subscription_list_csvimport' )}: {$import_object.id|wash}  </a>
                                 </label>
 
                                      {if $import_object.is_imported}
-                                         <p>{'Import done'|i18n( 'cjw_newsletter/subscription_list_csvimport' )} {$import_object.created|l10n( shortdatetime )|wash}</p>
+                                         <p>{'Import done'|i18n( 'newsletter/subscription_list_csvimport' )} {$import_object.created|l10n( shortdatetime )|wash}</p>
                                      {/if}
                                 {/if}
 
                             <div class="block">
                                 <label>
-                                    {"Csv File Uploaded"|i18n( 'cjw_newsletter/subscription_list_csvimport' )}:
+                                    {"Csv File Uploaded"|i18n( 'newsletter/subscription_list_csvimport' )}:
                                 </label>
                                 {*<input name="CsvFilePath" type="hidden" value="{$csv_file_path}" />*}{$csv_file_path|wash}
                             </div>
@@ -104,7 +104,7 @@ list all blacklist items
                         </div>
 
                             <input type="checkbox" name="FirstRowIsLabel" {if $first_row_is_label|eq(true())}checked="checked"{/if} />
-                            {'First row is label'|i18n( 'cjw_newsletter/subscription_list_csvimport')}
+                            {'First row is label'|i18n( 'newsletter/subscription_list_csvimport')}
 
                                 <pre>email;first_name;last_name;salutation
 user3@example.com;Julia;Mustermann;2
@@ -113,7 +113,7 @@ user4@example.com;Max;Mustermann;1</pre>{* Output format. *}
                             {* Output format. *}
                             <div class="block">
                                 <label>
-                                    {"Output format"|i18n( 'cjw_newsletter/subscription_list_csvimport' )}:
+                                    {"Output format"|i18n( 'newsletter/subscription_list_csvimport' )}:
                                 </label>
                                 {foreach $list_output_format_array as $outputformat_id => $outputformat_name}
                                 <input type="radio" name="SelectedOutputFormatArray[]" value="{$outputformat_id|wash}" {cond( $selected_output_format_array|contains( $outputformat_id ),  'checked',  '')} />
@@ -122,13 +122,13 @@ user4@example.com;Max;Mustermann;1</pre>{* Output format. *}
                             </div>
                             <div class="block">
                                 <label>
-                                    {'CSV field delimiter'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}: <input style="text-align:center" type="text" size="1" maxlength="1" name="CsvDelimiter" value="{$csv_delimiter}" /> {'(supported CSV delimiters: ",", ";", "|")'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                    {'CSV field delimiter'|i18n( 'newsletter/subscription_list_csvimport' )}: <input style="text-align:center" type="text" size="1" maxlength="1" name="CsvDelimiter" value="{$csv_delimiter}" /> {'(supported CSV delimiters: ",", ";", "|")'|i18n( 'newsletter/subscription_list_csvimport' )}
                                 </label>
                             </div>
                             {if $import_object.is_imported|not}
                             <div class="block">
                                 <label>
-                                    {"Import note"|i18n( 'cjw_newsletter/subscription_list_csvimport' )}:
+                                    {"Import note"|i18n( 'newsletter/subscription_list_csvimport' )}:
                                 </label>
                                 <textarea class="box" name="Note">{$note|wash}</textarea>
                             </div>
@@ -136,7 +136,7 @@ user4@example.com;Max;Mustermann;1</pre>{* Output format. *}
                             {else}
                                 <div class="block">
                                 <label>
-                                    {"Import note"|i18n( 'cjw_newsletter/subscription_list_csvimport' )}:
+                                    {"Import note"|i18n( 'newsletter/subscription_list_csvimport' )}:
                                 </label>
                                 <p>{$note|wash}</p>
                             </div>
@@ -157,8 +157,8 @@ user4@example.com;Max;Mustermann;1</pre>{* Output format. *}
                                             {* Edit *}
                                             <div class="left">
                                             {if $import_object.is_imported|not}
-                                                <input class="button" type="submit" name="Update" value="{'Update'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}" title="{'Update'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}" />
-                                                <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}" title="{'Cancel subscription import.'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}" />
+                                                <input class="button" type="submit" name="Update" value="{'Update'|i18n( 'newsletter/subscription_list_csvimport' )}" title="{'Update'|i18n( 'newsletter/subscription_list_csvimport' )}" />
+                                                <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'newsletter/subscription_list_csvimport' )}" title="{'Cancel subscription import.'|i18n( 'newsletter/subscription_list_csvimport' )}" />
                                             {/if}
                                             </div>
                                         </div>{* DESIGN: Control bar END *}
@@ -180,7 +180,7 @@ user4@example.com;Max;Mustermann;1</pre>{* Output format. *}
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h2 class="context-title">{'Imported items'|i18n( 'cjw_newsletter/subscription_list_csvimport' )} [{$items_count}]</h2>
+                                <h2 class="context-title">{'Imported items'|i18n( 'newsletter/subscription_list_csvimport' )} [{$items_count}]</h2>
                                 {* DESIGN: Subline *}
                                 <div class="header-subline">
                                 </div>
@@ -230,34 +230,34 @@ user4@example.com;Max;Mustermann;1</pre>{* Output format. *}
                                     <tr>
                                         {*
                                         <th class="tight">
-                                            <img src={'toggle-button-16x16.gif'|ezimage}  alt="{'Invert selection'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}" title="{'Invert selection'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}" onclick="ezjs_toggleCheckboxes( document.subscription_import, 'RowNum[]' ); return false;" />
+                                            <img src={'toggle-button-16x16.gif'|ezimage}  alt="{'Invert selection'|i18n( 'newsletter/subscription_list_csvimport' )}" title="{'Invert selection'|i18n( 'newsletter/subscription_list_csvimport' )}" onclick="ezjs_toggleCheckboxes( document.subscription_import, 'RowNum[]' ); return false;" />
                                         </th>*}
                                         <th class="tight">
-                                            {'Row nr'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                            {'Row nr'|i18n( 'newsletter/subscription_list_csvimport' )}
                                         </th>
                                         <th class="tight">
-                                            {'Email'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                            {'Email'|i18n( 'newsletter/subscription_list_csvimport' )}
                                         </th>
                                         <th class="tight">
-                                            {'First name'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                            {'First name'|i18n( 'newsletter/subscription_list_csvimport' )}
                                         </th>
                                         <th class="tight">
-                                            {'Last name'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                            {'Last name'|i18n( 'newsletter/subscription_list_csvimport' )}
                                         </th>
                                         <th class="tight">
-                                            {'Salutation'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                            {'Salutation'|i18n( 'newsletter/subscription_list_csvimport' )}
                                         </th>
                                         <th class="tight">
-                                            {'Email ok'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                            {'Email ok'|i18n( 'newsletter/subscription_list_csvimport' )}
                                         </th>
                                         <th class="tight">
-                                            {'Nl user created'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                            {'Nl user created'|i18n( 'newsletter/subscription_list_csvimport' )}
                                         </th>
                                         <th class="tight">
-                                            {'Subscription created'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                            {'Subscription created'|i18n( 'newsletter/subscription_list_csvimport' )}
                                         </th>
                                         <th class="tight">
-                                            {'Created / modified'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                            {'Created / modified'|i18n( 'newsletter/subscription_list_csvimport' )}
                                         </th>
                                     </tr>
                                     {foreach $csv_data_array as $row => $data_set max $limit offset $view_parameters.offset}
@@ -323,24 +323,24 @@ user4@example.com;Max;Mustermann;1</pre>{* Output format. *}
                                             </td>
                                             <td title="{$email_ok|wash}">
                                                 {if $email_ok|eq('1')}
-                                                   {'yes'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                                   {'yes'|i18n( 'newsletter/subscription_list_csvimport' )}
                                                 {elseif $email_ok|eq('0')}
-                                                   {'no'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                                   {'no'|i18n( 'newsletter/subscription_list_csvimport' )}
                                                 {else}
                                                     {$email_ok|wash}
                                                 {/if}
                                             </td>
                                             <td title="status old: {$user_status_old|wash} -new: {$user_status_new|wash}">
                                                 {if $user_created|eq('1')}
-                                                    <b>{'created'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                    <b>{'created'|i18n( 'newsletter/subscription_list_csvimport' )}</b>
                                                 {elseif $user_created|eq('2')}
-                                                    <b>{'updated'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                    <b>{'updated'|i18n( 'newsletter/subscription_list_csvimport' )}</b>
                                                 {elseif $user_created|eq('0')}
-                                                    <b>{'no'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                    <b>{'no'|i18n( 'newsletter/subscription_list_csvimport' )}</b>
                                                     {if $subscription_status_old|eq(3)}
-                                                        {'Removed by user'|i18n( 'cjw_newsletter/subscription/status' )}
+                                                        {'Removed by user'|i18n( 'newsletter/subscription/status' )}
                                                     {elseif $subscription_status_old|eq(8)}
-                                                        {'Blacklisted'|i18n( 'cjw_newsletter/subscription/status' )}
+                                                        {'Blacklisted'|i18n( 'newsletter/subscription/status' )}
                                                     {/if}
                                                 {else}
                                                     {$user_created|wash}
@@ -348,15 +348,15 @@ user4@example.com;Max;Mustermann;1</pre>{* Output format. *}
                                             </td>
                                             <td title="status old: {$subscription_status_old|wash} - new: {$subscription_status_new|wash}">
                                                 {if $subscription_created|eq('1')}
-                                                    {'created'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                                    {'created'|i18n( 'newsletter/subscription_list_csvimport' )}
                                                 {elseif $subscription_created|eq('2')}
-                                                    <b>{'updated'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                    <b>{'updated'|i18n( 'newsletter/subscription_list_csvimport' )}</b>
                                                 {elseif $subscription_created|eq('0')}
-                                                    <b>{'no'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                    <b>{'no'|i18n( 'newsletter/subscription_list_csvimport' )}</b>
                                                     {if $subscription_status_old|eq(3)}
-                                                        {'Removed by user'|i18n( 'cjw_newsletter/subscription/status' )}
+                                                        {'Removed by user'|i18n( 'newsletter/subscription/status' )}
                                                     {elseif $subscription_status_old|eq(8)}
-                                                        {'Blacklisted'|i18n( 'cjw_newsletter/subscription/status' )}
+                                                        {'Blacklisted'|i18n( 'newsletter/subscription/status' )}
                                                     {/if}
                                                 {else}
                                                     {$subscription_created|wash}
@@ -403,14 +403,14 @@ user4@example.com;Max;Mustermann;1</pre>{* Output format. *}
                                     <div class="box-br">
                                         {if and( is_object($import_object),
                                                  $import_object.is_imported|not )}
-                                        <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}" title="{'Cancel subscription import.'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}" />
+                                        <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'newsletter/subscription_list_csvimport' )}" title="{'Cancel subscription import.'|i18n( 'newsletter/subscription_list_csvimport' )}" />
                                         {def $access=fetch( 'user', 'has_access_to',
                                                                                 hash( 'module',   'newsletter',
                                                                                       'function', 'subscription_list_csvimport_import' ) )}
                                             {if $access }
-                                            {* Access is allowed. *}<input class="button" type="submit" name="ImportButton" value="{'Import all'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}" title="{'Import all'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}" />
+                                            {* Access is allowed. *}<input class="button" type="submit" name="ImportButton" value="{'Import all'|i18n( 'newsletter/subscription_list_csvimport' )}" title="{'Import all'|i18n( 'newsletter/subscription_list_csvimport' )}" />
                                             {else}
-                                            {* Access is denied. *}<input class="disabled" type="button" value="{'Import all'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}" title="{'Import all'|i18n( 'cjw_newsletter/subscription_list_csvimport' )} - disabled" />
+                                            {* Access is denied. *}<input class="disabled" type="button" value="{'Import all'|i18n( 'newsletter/subscription_list_csvimport' )}" title="{'Import all'|i18n( 'newsletter/subscription_list_csvimport' )} - disabled" />
                                             {/if}
                                         {/if}
                                     </div>

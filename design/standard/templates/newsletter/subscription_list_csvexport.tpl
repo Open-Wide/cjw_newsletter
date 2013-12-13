@@ -16,7 +16,7 @@
                     <div class="box-mr">
                         <div class="box-tl">
                             <div class="box-tr">
-                                <h1 class="context-title">{"Subscription CSV export"|i18n( 'cjw_newsletter/subscription_list_csvexport' )}</h1>
+                                <h1 class="context-title">{"Subscription CSV export"|i18n( 'newsletter/subscription_list_csvexport' )}</h1>
                                 {* DESIGN: Mainline *}
                                 <div class="header-mainline">
                                 </div>
@@ -46,7 +46,7 @@
                         {* show / set csv delimiter *}
                         <div class="block">
                             <label>
-                                {'CSV field delimiter'|i18n( 'cjw_newsletter/subscription_list_csvexport' )}: <input style="text-align:center" type="text" size="1" maxlength="1" name="CsvDelimiter" value="{$csv_delimiter}" />
+                                {'CSV field delimiter'|i18n( 'newsletter/subscription_list_csvexport' )}: <input style="text-align:center" type="text" size="1" maxlength="1" name="CsvDelimiter" value="{$csv_delimiter}" />
                             </label>
                         </div>
 
@@ -54,7 +54,7 @@
                         {if is_set( $str_preview_csv_data )}
                             <div class="block">
                                 <label>
-                                    {'CSV preview'|i18n( 'cjw_newsletter/subscription_list_csvexport' )}:
+                                    {'CSV preview'|i18n( 'newsletter/subscription_list_csvexport' )}:
                                 </label>
                                 <pre style="overflow: auto;">{$str_preview_csv_data}</pre>
                             </div>
@@ -79,9 +79,9 @@
                                             {* Edit *}
                                             <div class="left">
 
-                                                <input class="button" type="submit" name="ExportButton" value="{'Export'|i18n( 'cjw_newsletter/subscription_list_csvexport' )}" title="{'Export'|i18n( 'cjw_newsletter/subscription_list_csvexport' )}" />
-                                                <input class="button" type="submit" name="PreviewButton" value="{'Preview'|i18n( 'cjw_newsletter/subscription_list_csvexport' )}" title="{'Preview'|i18n( 'cjw_newsletter/subscription_list_csvexport' )}" />
-                                                <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'cjw_newsletter/subscription_list_csvexport' )}" title="{'Cancel subscription export.'|i18n( 'cjw_newsletter/subscription_list_csvexport' )}" />
+                                                <input class="button" type="submit" name="ExportButton" value="{'Export'|i18n( 'newsletter/subscription_list_csvexport' )}" title="{'Export'|i18n( 'newsletter/subscription_list_csvexport' )}" />
+                                                <input class="button" type="submit" name="PreviewButton" value="{'Preview'|i18n( 'newsletter/subscription_list_csvexport' )}" title="{'Preview'|i18n( 'newsletter/subscription_list_csvexport' )}" />
+                                                <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n( 'newsletter/subscription_list_csvexport' )}" title="{'Cancel subscription export.'|i18n( 'newsletter/subscription_list_csvexport' )}" />
 
                                             </div>
                                         </div>{* DESIGN: Control bar END *}

@@ -1,31 +1,31 @@
 <?php
 /**
- * File containing cjw_newsletterInfo class
+ * File containing newsletterInfo class
  *
  * @copyright Copyright (C) 2007-2010 CJW Network - Coolscreen.de, JAC Systeme GmbH, Webmanufaktur. All rights reserved.
  * @license http://ez.no/licenses/gnu_gpl GNU GPL v2
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  */
 /**
  * Class description here
  *
  * @version //autogentag//
- * @package cjw_newsletter
+ * @package newsletter
  */
-class cjw_newsletterInfo
+class newsletterInfo
 {
     // set manually - is used in email header, and in file header @version
     const SOFTWARE_VERSION = '1.0.0.201102111706';
 
     static function info()
     {
-        return array( 'Name'             => 'CJW Newsletter - Multi Channel Marketing',
+        return array( 'Name'             => ' Newsletter - Multi Channel Marketing',
                       'Version'          => self::SOFTWARE_VERSION,
                       'eZ version'       => '4.x',
-                      'Copyright'        => '(C) 2007-' . date( 'Y' ) . ' <a href="http://www.cjw-network.com">CJW Network</a> [ <a href="http://www.coolscreen.de">coolscreen.de - enterprise internet</a> &amp; <a href="http://www.jac-systeme.de">JAC Systeme</a> &amp; <a href="http://www.webmanufaktur.ch">Webmanufaktur</a> ]',
+                      'Copyright'        => '(C) 2007-' . date( 'Y' ) . ' <a href="http://www.-network.com"> Network</a> [ <a href="http://www.coolscreen.de">coolscreen.de - enterprise internet</a> &amp; <a href="http://www.jac-systeme.de">JAC Systeme</a> &amp; <a href="http://www.webmanufaktur.ch">Webmanufaktur</a> ]',
                       'License'          => 'GNU General Public License v2.0',
-                      'More Information' => '<a href="http://projects.ez.no/cjw_newsletter">http://projects.ez.no/cjw_newsletter</a>'
+                      'More Information' => '<a href="http://projects.ez.no/newsletter">http://projects.ez.no/newsletter</a>'
                     );
     }
 
