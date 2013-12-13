@@ -13,7 +13,7 @@
 
 /*
 [ModuleSettings]
-ExtensionRepositories[]=newsletter
+ExtensionRepositories[]=cjw_newsletter
 ModuleList[]=newsletter
 
 */ ?>

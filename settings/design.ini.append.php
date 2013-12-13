@@ -13,7 +13,7 @@
 
 /*
 [ExtensionSettings]
-DesignExtensions[]=newsletter
+DesignExtensions[]=cjw_newsletter
 
 [StylesheetSettings]
 # used for old admin

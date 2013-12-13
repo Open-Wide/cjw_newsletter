@@ -17,7 +17,7 @@
 [NewsletterListFilter]
 
 #The name of the extension where the filtering code is defined.
-ExtensionName=newsletter
+ExtensionName=cjw_newsletter
 
 #The name of the filter class.
 ClassName=NewsletterListFilter
@@ -30,7 +30,7 @@ FileName=extendedattributefilter/newsletterlistfilter.php
 
 
 [NewsletterEditionFilter]
-ExtensionName=newsletter
+ExtensionName=cjw_newsletter
 ClassName=NewsletterEditionFilter
 MethodName=createSqlParts
 FileName=extendedattributefilter/newslettereditionfilter.php

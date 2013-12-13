@@ -12,9 +12,9 @@
  */
 /*
 [DataTypeSettings]
-ExtensionDirectories[]=newsletter
+ExtensionDirectories[]=cjw_newsletter
 
-AvailableDataTypes[]=newsletterlist
+AvailableDataTypes[]=newslettereditioncontainer
 AvailableDataTypes[]=newsletteredition
 AvailableDataTypes[]=newslettersubscription
 

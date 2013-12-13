@@ -18,7 +18,7 @@
 # php runcronjobs.php -s siteaccess newsletter_users_clean_pending
 
 [CronjobSettings]
-ExtensionDirectories[]=newsletter
+ExtensionDirectories[]=cjw_newsletter
 ScriptDirectories[]=cronjobs
 
 # CronjobPart for Testing
