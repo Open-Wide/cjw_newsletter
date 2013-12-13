@@ -13,6 +13,6 @@
 
 /*
 [TreeMenu]
-ShowClasses[]=newsletter_container
+ShowClasses[]=newsletter_collections
 
 * */ ?>
