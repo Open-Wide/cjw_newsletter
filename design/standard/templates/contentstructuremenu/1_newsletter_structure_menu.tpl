@@ -1,10 +1,20 @@
 {literal}
 	<script language="JavaScript" type="text/javascript">
 	<!--
-		document.write("<style type='text/css'>div#contentstructure ul#content_tree_menu ul li { padding-left: 0px; }div#contentstructure ul#content_tree_menu ul ul { margin-left: 20px; }<\/style>");
-		-- ></script>
+		document.write("<style type='text/css'>div#contentstructure ul#content_tree_menu ul li { padding-left: 0px; }div#contentstructure ul#content_tree_menu ul ul { margin-left: 20px; }\n\<\/style>");
+	-- ></script>
+<style type='text/css'>
+	div#contentstructure ul#content_tree_menu ul a.openclose {
+		position: absolute;
+		left: 0;
+		_left: -20px;
+		top: 0;
+		width: 16px;
+		height: 16px;
+		background: rgba(0, 0, 0, 0) url('../images/content_tree-icons.png' ) no-repeat center 0px scroll;
+	}
+</style>
 {/literal}
-
 <script language="JavaScript" type="text/javascript" src={"javascript/lib/ezjslibcookiesupport.js"|ezdesign}></script>
 <script language="JavaScript" type="text/javascript" src={"javascript/lib/ezjslibdomsupport.js"|ezdesign}></script>
 <script language="JavaScript" type="text/javascript" src={"javascript/lib/ezjslibimagepreloader.js"|ezdesign}></script>

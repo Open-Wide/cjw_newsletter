@@ -31,10 +31,10 @@ alle systeme
 <li id="n0_{$newsletterRootNodeId}" {cond( $:last_item, 'class="lastli"', '' )}>
 
 	{* Fold/Unfold/Empty: [-]/[+]/[ ] *}
-	<a class="openclose" href="#" title="{'Fold/Unfold'|i18n('newsletter/contentstructuremenu')}"
-	   onclick="ezpopmenu_hideAll();
-			   ezcst_onFoldClicked(this.parentNode);
-			   return false;"></a>
+	{if or($:haveChildren, $:isRootNode)}
+		<a class="openclose" href="#" title="{'Fold/Unfold'|i18n('design/admin/contentstructuremenu')|wash}"
+		   onclick="ezpopmenu_hideAll(); ezcst_onFoldClicked( this.parentNode ); return false;"></a>
+	 {/if}
 
 	{* Label *}
 	{set toolTip = ''}
