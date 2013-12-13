@@ -21,4 +21,7 @@ TranslationExtensions[]=cjw_newsletter
 [TemplateSettings]
 ExtensionAutoloadPath[]=cjw_newsletter
 
+[MigrationSettings]
+MigrationExtensions[]=cjw_newsletter
+
 */ ?>
