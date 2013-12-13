@@ -40,8 +40,8 @@
 
 	<script language="JavaScript" type="text/javascript"><!--
 
-						var iconsList= new Array();
-				var wwwDirPrefix = "{ezsys('wwwdir')}";
+		var iconsList= new Array();
+		var wwwDirPrefix = "{ezsys('wwwdir')}";
 		var iconPath = "";
 
 		// oridinary icons.
@@ -79,17 +79,9 @@
 	{set itemClickAction = $:itemClickAction|ezurl(no)}
 {/if}
 
-{* create menu *}
-{*set contentStructureTree = content_structure_tree( $:rootNodeID,
-$:classFilter,
-$:maxDepth,
-$:maxNodes,
-$:sortBy,
-$:fetchHidden ) *}
 {* Show menu tree. All container nodes are unfolded. *}
-{*<h4>Alle Systeme</h4>*}
 <ul id="{$:menuID}">
-	{include uri="design:contentstructuremenu/2_newsletter_system_tree.tpl" contentStructureTree=$contentStructureTree class_icons_size=$:classIconsSize csm_menu_item_click_action=$:itemClickAction ui_context=$ui_context is_root_node=true()}
+	{include uri="design:contentstructuremenu/2_newsletter_system_tree.tpl" class_icons_size=$:classIconsSize csm_menu_item_click_action=$:itemClickAction ui_context=$ui_context is_root_node=true()}
 </ul>
 
 {* initialize menu *}
@@ -106,7 +98,7 @@ $:fetchHidden ) *}
 	{/foreach}
 
 
-		ezcst_setFoldUnfoldIcons({"images/content_tree-open.gif"|ezdesign}, {"images/content_tree-close.gif"|ezdesign}, {"images/1x1.gif"|ezdesign});
+	ezcst_setFoldUnfoldIcons({"images/content_tree-open.gif"|ezdesign}, {"images/content_tree-close.gif"|ezdesign}, {"images/1x1.gif"|ezdesign});
 	ezcst_initializeMenuState(nodesList, "{$:menuID}", "{$:autoopenCurrentNode}");
 	// -->
 </script>
