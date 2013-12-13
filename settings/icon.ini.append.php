@@ -20,6 +20,7 @@
 [ClassIcons]
 ClassMap[newsletter_collections]=filesystems/folder.png
 ClassMap[newsletter_system]=filesystems/folder_txt.png
+ClassMap[newsletter_mailing_list_collections]=filesystems/folder.png
 ClassMap[newsletter_list]=actions/view_tree.png
 ClassMap[newsletter_edition]=mimetypes/document.png
 
