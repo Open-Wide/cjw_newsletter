@@ -101,6 +101,15 @@ foreach ( $waitForProcessObjectList as $newsletterEdtionSendObject )
      *                                                                                ##SBOYER##
      *******************************************************************************************/
     $editionContentObject = eZFunctionHandler::execute( 'content', 'object' , array( 'object_id' => $newsletterEdtionSendObject->attribute('edition_contentobject_id') ) );
+    
+    if ( !$editionContentObject instanceof eZContentObject ) 
+    {
+    	$message = "## Skipping non-existing newsletter Edition Object with ID : " . $newsletterEdtionSendObject->attribute('edition_contentobject_id');
+	    $cli->output( $message );
+	    $newsletterEdtionSendObject->abortAllSendItems();
+	    continue;
+    }
+
     $editionContentObjectDataMap = $editionContentObject->dataMap();
     $editionContentObjectTimestamp = empty($editionContentObjectDataMap['send_date'])?0:$editionContentObjectDataMap['send_date']->DataInt;
     
