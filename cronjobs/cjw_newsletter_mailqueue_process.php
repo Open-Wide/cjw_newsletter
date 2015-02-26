@@ -102,6 +102,11 @@ foreach ( $sendObjectList as $sendObject )
 
             // ### subscription data
             $newsletterSubscriptionObject = $sendItem->attribute('newsletter_subscription_object');
+            if ( !$newsletterSubscriptionObject )
+            {
+                $itemCounter++;
+                continue;
+            }
             $newsletterUnsubscribeHash = $newsletterSubscriptionObject->attribute('hash');
 
             // ### get newsletter user data through send_item_object
